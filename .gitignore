@@ -1,0 +1,9 @@
+*.txt
+*.suo
+*.u2d
+*.sln
+*.vfproj
+*.obj
+Debug/
+x64/
+Release/

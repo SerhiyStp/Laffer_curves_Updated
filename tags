@@ -1,0 +1,1119 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+1	.\nleq\nleq1.f	/^ 1    CONTINUE$/;"	l	subroutine:N1JAC	file:
+1	.\nleq\nleq1.f	/^ 1    CONTINUE$/;"	l	subroutine:N1JACB	file:
+1	.\nleq\nleq1.f	/^ 1    CONTINUE$/;"	l	subroutine:N1JCF	file:
+1	.\nleq\nleq1.f	/^ 1    CONTINUE$/;"	l	subroutine:N1JCFB	file:
+1	.\nleq\nleq1.f	/^1        FORMAT('  ',A,' data:',\/)$/;"	l	subroutine:N1SOUT	file:
+1	.\nleq\nleq1.f	/^1       FORMAT(2X,66('*'))$/;"	l	subroutine:N1PRV1	file:
+1	.\nleq\nleq1.f	/^1       FORMAT(2X,66('*'))$/;"	l	subroutine:N1PRV2	file:
+1	.\nleq\nleq1.f	/^1     CONTINUE$/;"	l	subroutine:N1SCAL	file:
+1	.\nleq\nleq1.f	/^1     CONTINUE$/;"	l	subroutine:N1SCRB	file:
+1	.\nleq\nleq1.f	/^1     CONTINUE$/;"	l	subroutine:N1SCRF	file:
+1	.\nleq\nleq2.f	/^ 1    CONTINUE$/;"	l	subroutine:N2JAC	file:
+1	.\nleq\nleq2.f	/^ 1    CONTINUE$/;"	l	subroutine:N2JCF	file:
+1	.\nleq\nleq2.f	/^1        FORMAT('  ',A,' data:',\/)$/;"	l	subroutine:N2SOUT	file:
+1	.\nleq\nleq2.f	/^1       FORMAT(2X,66('*'))$/;"	l	subroutine:N2PRV1	file:
+1	.\nleq\nleq2.f	/^1       FORMAT(2X,66('*'))$/;"	l	subroutine:N2PRV2	file:
+1	.\nleq\nleq2.f	/^1     CONTINUE$/;"	l	subroutine:N2PRJN	file:
+1	.\nleq\nleq2.f	/^1     CONTINUE$/;"	l	subroutine:N2SCAL	file:
+1	.\nleq\nleq2.f	/^1     CONTINUE$/;"	l	subroutine:N2SCRF	file:
+10	.\minpack-hybrd\dogleg.f	/^   10       continue$/;"	l	subroutine:dogleg	file:
+10	.\minpack-hybrd\enorm.f	/^   10          continue$/;"	l	function:enorm	file:
+10	.\minpack-hybrd\fdjac1.f	/^   10          continue$/;"	l	subroutine:fdjac1	file:
+10	.\minpack-hybrd\hybrd.f	/^   10    continue$/;"	l	subroutine:hybrd	file:
+10	.\minpack-hybrd\qform.f	/^   10       continue$/;"	l	subroutine:qform	file:
+10	.\minpack-hybrd\qrfac.f	/^   10    continue$/;"	l	subroutine:qrfac	file:
+10	.\minpack-hybrd\r1mpyq.f	/^   10       continue$/;"	l	subroutine:r1mpyq	file:
+10	.\minpack-hybrd\r1updt.f	/^   10    continue$/;"	l	subroutine:r1updt	file:
+10	.\nleq\linalg_nleq1.f	/^   10             CONTINUE$/;"	l	subroutine:DLASWP	file:
+10	.\nleq\linalg_nleq1.f	/^   10       CONTINUE$/;"	l	subroutine:DGBTRF	file:
+10	.\nleq\linalg_nleq1.f	/^   10       CONTINUE$/;"	l	subroutine:DGBTRS	file:
+10	.\nleq\linalg_nleq1.f	/^   10       CONTINUE$/;"	l	subroutine:DGETRF	file:
+10	.\nleq\linalg_nleq1.f	/^   10    CONTINUE$/;"	l	subroutine:DGBTF2	file:
+10	.\nleq\linalg_nleq1.f	/^   10    CONTINUE$/;"	l	subroutine:DLAMC1	file:
+10	.\nleq\linalg_nleq1.f	/^   10    CONTINUE$/;"	l	subroutine:DLAMC2	file:
+10	.\nleq\linalg_nleq1.f	/^   10 CONTINUE$/;"	l	function:IDAMAX	file:
+10	.\nleq\linalg_nleq1.f	/^   10 CONTINUE$/;"	l	function:ILAENV	file:
+10	.\nleq\linalg_nleq1.f	/^   10 CONTINUE$/;"	l	subroutine:DGETF2	file:
+10	.\nleq\linalg_nleq1.f	/^   10 CONTINUE$/;"	l	subroutine:DLAMC4	file:
+10	.\nleq\linalg_nleq1.f	/^   10 CONTINUE$/;"	l	subroutine:DLAMC5	file:
+10	.\nleq\linalg_nleq1.f	/^10                         CONTINUE$/;"	l	subroutine:DTBSV	file:
+10	.\nleq\linalg_nleq1.f	/^10             CONTINUE$/;"	l	subroutine:DGEMM	file:
+10	.\nleq\linalg_nleq1.f	/^10             CONTINUE$/;"	l	subroutine:DGEMV	file:
+10	.\nleq\linalg_nleq1.f	/^10             CONTINUE$/;"	l	subroutine:DGER	file:
+10	.\nleq\linalg_nleq1.f	/^10       CONTINUE$/;"	l	subroutine:DTRSM	file:
+10	.\nleq\linalg_nleq1.f	/^10    CONTINUE$/;"	l	subroutine:DCOPY	file:
+10	.\nleq\linalg_nleq1.f	/^10    CONTINUE$/;"	l	subroutine:DSCAL	file:
+10	.\nleq\linalg_nleq1.f	/^10    CONTINUE$/;"	l	subroutine:DSWAP	file:
+10	.\nleq\nleq1.f	/^10        FORMAT('&name com',I3.3,:,255(7(', com',I3.3,:),\/))$/;"	l	subroutine:N1SOUT	file:
+10	.\nleq\nleq1.f	/^10      FORMAT('  ',D18.10,'  ',D18.10)$/;"	l	subroutine:N1SCAL	file:
+10	.\nleq\nleq1.f	/^10    CONTINUE$/;"	l	subroutine:N1PCHK	file:
+10	.\nleq\nleq2.f	/^10        FORMAT('&name com',I3.3,:,255(7(', com',I3.3,:),\/))$/;"	l	subroutine:N2SOUT	file:
+10	.\nleq\nleq2.f	/^10      FORMAT('  ',D18.10,'  ',D18.10)$/;"	l	subroutine:N2SCAL	file:
+10	.\nleq\nleq2.f	/^10    CONTINUE$/;"	l	subroutine:N2PCHK	file:
+10	.\nleq\wnorm.f	/^10    CONTINUE$/;"	l	function:WNORM	file:
+10	.\pppack.f90	/^10 continue$/;"	l	subroutine:interv	file:
+100	.\minpack-hybrd\dogleg.f	/^  100       continue$/;"	l	subroutine:dogleg	file:
+100	.\minpack-hybrd\enorm.f	/^  100 continue$/;"	l	function:enorm	file:
+100	.\minpack-hybrd\fdjac1.f	/^  100    continue$/;"	l	subroutine:fdjac1	file:
+100	.\minpack-hybrd\hybrd.f	/^  100          continue$/;"	l	subroutine:hybrd	file:
+100	.\minpack-hybrd\qform.f	/^  100       continue$/;"	l	subroutine:qform	file:
+100	.\minpack-hybrd\qrfac.f	/^  100    continue$/;"	l	subroutine:qrfac	file:
+100	.\minpack-hybrd\r1updt.f	/^  100    continue$/;"	l	subroutine:r1updt	file:
+100	.\nleq\linalg_nleq1.f	/^  100             CONTINUE$/;"	l	subroutine:DGBTRF	file:
+100	.\nleq\linalg_nleq1.f	/^  100 CONTINUE$/;"	l	function:ILAENV	file:
+100	.\nleq\linalg_nleq1.f	/^100                   CONTINUE$/;"	l	subroutine:DGEMM	file:
+100	.\nleq\linalg_nleq1.f	/^100             CONTINUE$/;"	l	subroutine:DTBSV	file:
+100	.\nleq\linalg_nleq1.f	/^100             CONTINUE$/;"	l	subroutine:DTRSM	file:
+100	.\nleq\linalg_nleq1.f	/^100       CONTINUE$/;"	l	subroutine:DGEMV	file:
+100	.\pppack.f90	/^100   continue$/;"	l	subroutine:cubspl	file:
+1000	.\nleq\zibmon.f	/^ 1000 CONTINUE$/;"	l	subroutine:MON	file:
+10000	.\nleq\nleq1.f	/^10000   FORMAT('   N L E Q 1  *****  V e r s i o n  ',$/;"	l	subroutine:NLEQ1	file:
+10000	.\nleq\nleq2.f	/^10000   FORMAT('    N L E Q 2  *****  V e r s i o n  ',$/;"	l	subroutine:NLEQ2	file:
+10001	.\nleq\nleq1.f	/^10001   FORMAT(\/,' Insuffient workspace for linear solver,',$/;"	l	subroutine:N1FACT	file:
+10001	.\nleq\nleq2.f	/^10001   FORMAT(1X,$/;"	l	subroutine:N2FACT	file:
+10002	.\nleq\nleq2.f	/^10002   FORMAT(\/,' Insuffient workspace for linear solver,',$/;"	l	subroutine:N2FACT	file:
+10011	.\nleq\nleq1.f	/^10011   FORMAT(\/,' Error: Bad input to dimensional parameter N supplied'$/;"	l	subroutine:N1PCHK	file:
+10011	.\nleq\nleq2.f	/^10011   FORMAT(\/,' Error: Bad input to dimensional parameter N supplied'$/;"	l	subroutine:N2PCHK	file:
+10012	.\nleq\nleq1.f	/^10012   FORMAT(\/,' Warning: User prescribed RTOL ',A,'to ',$/;"	l	subroutine:N1PCHK	file:
+10012	.\nleq\nleq2.f	/^10012   FORMAT(\/,' Warning: User prescribed RTOL ',A,'to ',$/;"	l	subroutine:N2PCHK	file:
+10013	.\nleq\nleq1.f	/^10013       FORMAT(\/,' Error: Negative value in XSCAL(',I5,') supplied')$/;"	l	subroutine:N1PCHK	file:
+10013	.\nleq\nleq2.f	/^10013       FORMAT(\/,' Error: Negative value in XSCAL(',I5,') supplied')$/;"	l	subroutine:N2PCHK	file:
+10014	.\nleq\nleq1.f	/^10014       FORMAT(\/,' Warning: XSCAL(',I5,') = ',D9.2,' too small, ',$/;"	l	subroutine:N1PCHK	file:
+10014	.\nleq\nleq2.f	/^10014       FORMAT(\/,' Warning: XSCAL(',I5,') = ',D9.2,' too small, ',$/;"	l	subroutine:N2PCHK	file:
+10015	.\nleq\nleq1.f	/^10015       FORMAT(\/,' Warning: XSCAL(',I5,') = ',D9.2,' too big, ',$/;"	l	subroutine:N1PCHK	file:
+10015	.\nleq\nleq2.f	/^10015       FORMAT(\/,' Warning: XSCAL(',I5,') = ',D9.2,' too big, ',$/;"	l	subroutine:N2PCHK	file:
+10050	.\nleq\nleq1.f	/^10050     FORMAT(' Real    Workspace declared as ',I9,$/;"	l	subroutine:NLEQ1	file:
+10050	.\nleq\nleq2.f	/^10050     FORMAT(' Real    Workspace declared as ',I9,$/;"	l	subroutine:NLEQ2	file:
+10051	.\nleq\nleq1.f	/^10051     FORMAT(\/,' N =',I4,\/\/,' Prescribed relative ',$/;"	l	subroutine:NLEQ1	file:
+10051	.\nleq\nleq2.f	/^10051     FORMAT(\/,' N =',I4,\/\/,' Prescribed relative ',$/;"	l	subroutine:NLEQ2	file:
+10052	.\nleq\nleq1.f	/^10052     FORMAT(' The Jacobian is supplied by ',A)$/;"	l	subroutine:NLEQ1	file:
+10052	.\nleq\nleq2.f	/^10052     FORMAT(' The Jacobian is supplied by ',A)$/;"	l	subroutine:NLEQ2	file:
+10055	.\nleq\nleq1.f	/^10055     FORMAT(' The Jacobian will be stored in ',A,' mode')$/;"	l	subroutine:NLEQ1	file:
+10056	.\nleq\nleq1.f	/^10056       FORMAT(' Lower bandwidth : ',I3,'   Upper bandwidth : ',I3)$/;"	l	subroutine:NLEQ1	file:
+10057	.\nleq\nleq1.f	/^10057     FORMAT(' Automatic row scaling of the Jacobian is ',A,\/)$/;"	l	subroutine:NLEQ1	file:
+10057	.\nleq\nleq2.f	/^10057     FORMAT(' Automatic row scaling of the Jacobian is ',A,\/)$/;"	l	subroutine:NLEQ2	file:
+10064	.\nleq\nleq1.f	/^10064   FORMAT(' Rank-1 updates are ',A)$/;"	l	subroutine:NLEQ1	file:
+10064	.\nleq\nleq2.f	/^10064   FORMAT(' Rank-1 updates are ',A)$/;"	l	subroutine:NLEQ2	file:
+10065	.\nleq\nleq1.f	/^10065     FORMAT(' Problem is specified as being ',A)$/;"	l	subroutine:NLEQ1	file:
+10065	.\nleq\nleq2.f	/^10065     FORMAT(' Problem is specified as being ',A)$/;"	l	subroutine:NLEQ2	file:
+10066	.\nleq\nleq1.f	/^10066     FORMAT(' Bounded damping strategy is ',A,:,\/, $/;"	l	subroutine:NLEQ1	file:
+10066	.\nleq\nleq2.f	/^10066     FORMAT(' Bounded damping strategy is ',A,:,\/, $/;"	l	subroutine:NLEQ2	file:
+10067	.\nleq\nleq1.f	/^10067     FORMAT(' Special mode: ',A,' Newton iteration will be done')$/;"	l	subroutine:NLEQ1	file:
+10068	.\nleq\nleq1.f	/^10068   FORMAT(' Maximum permitted number of iteration steps : ',$/;"	l	subroutine:NLEQ1	file:
+10068	.\nleq\nleq2.f	/^10068   FORMAT(' Maximum permitted number of iteration steps : ',$/;"	l	subroutine:NLEQ2	file:
+10069	.\nleq\nleq1.f	/^10069     FORMAT(\/\/,' Internal parameters:',\/\/,$/;"	l	subroutine:NLEQ1	file:
+10069	.\nleq\nleq2.f	/^10069     FORMAT(\/\/,' Internal parameters:',\/\/,$/;"	l	subroutine:NLEQ2	file:
+10080	.\nleq\nleq1.f	/^10080   FORMAT(\/, '   ******  Statistics * ', A8, ' *******', \/,$/;"	l	subroutine:NLEQ1	file:
+10080	.\nleq\nleq2.f	/^10080   FORMAT(\/, '   ******  Statistics * ', A8, ' *******', \/,$/;"	l	subroutine:NLEQ2	file:
+10090	.\nleq\nleq1.f	/^10090   FORMAT(\/\/,' ',20('*'),'Workspace Error',20('*'))$/;"	l	subroutine:NLEQ1	file:
+10090	.\nleq\nleq2.f	/^10090   FORMAT(\/\/\/,20('*'),'Workspace Error',20('*'))$/;"	l	subroutine:NLEQ2	file:
+10091	.\nleq\nleq1.f	/^10091     FORMAT(\/,' Real Workspace dimensioned as',1X,I9,$/;"	l	subroutine:NLEQ1	file:
+10091	.\nleq\nleq2.f	/^10091     FORMAT(\/,' Real Workspace dimensioned as',1X,I9,$/;"	l	subroutine:NLEQ2	file:
+10092	.\nleq\nleq1.f	/^10092     FORMAT(\/,' Integer Workspace dimensioned as ',$/;"	l	subroutine:NLEQ1	file:
+10092	.\nleq\nleq2.f	/^10092     FORMAT(\/,' Integer Workspace dimensioned as ',$/;"	l	subroutine:NLEQ2	file:
+101	.\nleq\nleq1.f	/^101        FORMAT('  Start data:',\/,'  N =',I5,\/\/,$/;"	l	subroutine:N1SOUT	file:
+101	.\nleq\nleq2.f	/^101        FORMAT('  Start data:',\/,'  N =',I5,\/\/,$/;"	l	subroutine:N2SOUT	file:
+1010	.\nleq\zibmon.f	/^ 1010 CONTINUE$/;"	l	subroutine:MON	file:
+1020	.\nleq\zibmon.f	/^ 1020 CONTINUE$/;"	l	subroutine:MON	file:
+1030	.\nleq\zibmon.f	/^ 1030 CONTINUE$/;"	l	subroutine:MON	file:
+1040	.\nleq\zibmon.f	/^ 1040 CONTINUE$/;"	l	subroutine:MON	file:
+1050	.\nleq\zibmon.f	/^ 1050 CONTINUE$/;"	l	subroutine:MON	file:
+1060	.\nleq\zibmon.f	/^ 1060 CONTINUE$/;"	l	subroutine:MON	file:
+1070	.\nleq\zibmon.f	/^ 1070 CONTINUE$/;"	l	subroutine:MON	file:
+1080	.\nleq\zibmon.f	/^ 1080 CONTINUE$/;"	l	subroutine:MON	file:
+1090	.\nleq\zibmon.f	/^ 1090 CONTINUE$/;"	l	subroutine:MON	file:
+11	.\nleq\linalg_nleq2.f	/^11      CONTINUE$/;"	l	subroutine:DECCON	file:
+11	.\nleq\linalg_nleq2.f	/^11      CONTINUE$/;"	l	subroutine:SOLCON	file:
+11	.\nleq\nleq1.f	/^ 11         CONTINUE$/;"	l	subroutine:N1JCF	file:
+11	.\nleq\nleq1.f	/^ 11      CONTINUE$/;"	l	subroutine:N1JAC	file:
+11	.\nleq\nleq1.f	/^ 11      CONTINUE$/;"	l	subroutine:N1JACB	file:
+11	.\nleq\nleq1.f	/^ 11      CONTINUE$/;"	l	subroutine:N1JCFB	file:
+11	.\nleq\nleq2.f	/^ 11         CONTINUE$/;"	l	subroutine:N2JCF	file:
+11	.\nleq\nleq2.f	/^ 11      CONTINUE$/;"	l	subroutine:N2JAC	file:
+110	.\minpack-hybrd\dogleg.f	/^  110    continue$/;"	l	subroutine:dogleg	file:
+110	.\minpack-hybrd\enorm.f	/^  110    continue$/;"	l	function:enorm	file:
+110	.\minpack-hybrd\fdjac1.f	/^  110 continue$/;"	l	subroutine:fdjac1	file:
+110	.\minpack-hybrd\hybrd.f	/^  110       continue$/;"	l	subroutine:hybrd	file:
+110	.\minpack-hybrd\qform.f	/^  110    continue$/;"	l	subroutine:qform	file:
+110	.\minpack-hybrd\qrfac.f	/^  110    continue$/;"	l	subroutine:qrfac	file:
+110	.\minpack-hybrd\r1updt.f	/^  110       continue$/;"	l	subroutine:r1updt	file:
+110	.\nleq\linalg_nleq1.f	/^  110          CONTINUE$/;"	l	subroutine:DGBTRF	file:
+110	.\nleq\linalg_nleq1.f	/^  110 CONTINUE$/;"	l	function:ILAENV	file:
+110	.\nleq\linalg_nleq1.f	/^110                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+110	.\nleq\linalg_nleq1.f	/^110                   CONTINUE$/;"	l	subroutine:DTBSV	file:
+110	.\nleq\linalg_nleq1.f	/^110             CONTINUE$/;"	l	subroutine:DGEMM	file:
+110	.\nleq\linalg_nleq1.f	/^110             CONTINUE$/;"	l	subroutine:DGEMV	file:
+110	.\pppack.f90	/^110   continue$/;"	l	subroutine:cubspl	file:
+110	.\pppack.f90	/^110 continue$/;"	l	subroutine:interv	file:
+1100	.\nleq\zibmon.f	/^ 1100 CONTINUE$/;"	l	subroutine:MON	file:
+111	.\nleq\nleq1.f	/^ 111        CONTINUE$/;"	l	subroutine:N1JCF	file:
+111	.\nleq\nleq2.f	/^ 111        CONTINUE$/;"	l	subroutine:N2JCF	file:
+1110	.\nleq\zibmon.f	/^ 1110 CONTINUE$/;"	l	subroutine:MON	file:
+1120	.\nleq\zibmon.f	/^ 1120 CONTINUE$/;"	l	subroutine:MON	file:
+1130	.\nleq\zibmon.f	/^ 1130 CONTINUE$/;"	l	subroutine:MON	file:
+1140	.\nleq\zibmon.f	/^ 1140 CONTINUE$/;"	l	subroutine:MON	file:
+1150	.\nleq\zibmon.f	/^ 1150 CONTINUE$/;"	l	subroutine:MON	file:
+1160	.\nleq\zibmon.f	/^ 1160 CONTINUE$/;"	l	subroutine:MON	file:
+1170	.\nleq\zibmon.f	/^ 1170 CONTINUE$/;"	l	subroutine:MON	file:
+1180	.\nleq\zibmon.f	/^ 1180 CONTINUE$/;"	l	subroutine:MON	file:
+1190	.\nleq\zibmon.f	/^ 1190 CONTINUE$/;"	l	subroutine:MON	file:
+12	.\nleq\linalg_nleq2.f	/^12      CONTINUE$/;"	l	subroutine:SOLCON	file:
+12	.\nleq\nleq1.f	/^12      CONTINUE$/;"	l	subroutine:N1LVLS	file:
+12	.\nleq\nleq2.f	/^12      CONTINUE$/;"	l	subroutine:N2LVLS	file:
+120	.\minpack-hybrd\dogleg.f	/^  120 continue$/;"	l	subroutine:dogleg	file:
+120	.\minpack-hybrd\enorm.f	/^  120    continue$/;"	l	function:enorm	file:
+120	.\minpack-hybrd\hybrd.f	/^  120       continue$/;"	l	subroutine:hybrd	file:
+120	.\minpack-hybrd\qform.f	/^  120    continue$/;"	l	subroutine:qform	file:
+120	.\minpack-hybrd\r1updt.f	/^  120    continue$/;"	l	subroutine:r1updt	file:
+120	.\nleq\linalg_nleq1.f	/^  120                CONTINUE$/;"	l	subroutine:DGBTRF	file:
+120	.\nleq\linalg_nleq1.f	/^  120 CONTINUE$/;"	l	function:ILAENV	file:
+120	.\nleq\linalg_nleq1.f	/^120                   CONTINUE$/;"	l	subroutine:DTRSM	file:
+120	.\nleq\linalg_nleq1.f	/^120             CONTINUE$/;"	l	subroutine:DTBSV	file:
+120	.\nleq\linalg_nleq1.f	/^120       CONTINUE$/;"	l	subroutine:DGEMM	file:
+120	.\nleq\linalg_nleq1.f	/^120       CONTINUE$/;"	l	subroutine:DGEMV	file:
+120	.\pppack.f90	/^120   continue$/;"	l	subroutine:cubspl	file:
+1200	.\nleq\zibmon.f	/^ 1200 QDISAB = .TRUE.$/;"	l	subroutine:MON	file:
+130	.\minpack-hybrd\dogleg.f	/^  130    continue$/;"	l	subroutine:dogleg	file:
+130	.\minpack-hybrd\enorm.f	/^  130 continue$/;"	l	function:enorm	file:
+130	.\minpack-hybrd\hybrd.f	/^  130          continue$/;"	l	subroutine:hybrd	file:
+130	.\minpack-hybrd\r1updt.f	/^  130    continue$/;"	l	subroutine:r1updt	file:
+130	.\nleq\linalg_nleq1.f	/^  130             CONTINUE$/;"	l	subroutine:DGBTRF	file:
+130	.\nleq\linalg_nleq1.f	/^  130 CONTINUE$/;"	l	function:ILAENV	file:
+130	.\nleq\linalg_nleq1.f	/^130                   CONTINUE$/;"	l	subroutine:DGEMM	file:
+130	.\nleq\linalg_nleq1.f	/^130                   CONTINUE$/;"	l	subroutine:DTBSV	file:
+130	.\nleq\linalg_nleq1.f	/^130             CONTINUE$/;"	l	subroutine:DTRSM	file:
+140	.\minpack-hybrd\dogleg.f	/^  140 continue$/;"	l	subroutine:dogleg	file:
+140	.\minpack-hybrd\hybrd.f	/^  140       continue$/;"	l	subroutine:hybrd	file:
+140	.\minpack-hybrd\r1updt.f	/^  140 continue$/;"	l	subroutine:r1updt	file:
+140	.\nleq\linalg_nleq1.f	/^  140                CONTINUE$/;"	l	subroutine:DGBTRF	file:
+140	.\nleq\linalg_nleq1.f	/^  140 CONTINUE$/;"	l	function:ILAENV	file:
+140	.\nleq\linalg_nleq1.f	/^140                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+140	.\nleq\linalg_nleq1.f	/^140                   CONTINUE$/;"	l	subroutine:DGEMM	file:
+140	.\nleq\linalg_nleq1.f	/^140             CONTINUE$/;"	l	subroutine:DTBSV	file:
+15	.\nleq\nleq1.f	/^15        FORMAT('&def  com',I3.3,:,255(7(', com',I3.3,:),\/))$/;"	l	subroutine:N1SOUT	file:
+15	.\nleq\nleq2.f	/^15        FORMAT('&def  com',I3.3,:,255(7(', com',I3.3,:),\/))$/;"	l	subroutine:N2SOUT	file:
+150	.\minpack-hybrd\hybrd.f	/^  150       continue$/;"	l	subroutine:hybrd	file:
+150	.\minpack-hybrd\r1updt.f	/^  150    continue$/;"	l	subroutine:r1updt	file:
+150	.\nleq\linalg_nleq1.f	/^  150             CONTINUE$/;"	l	subroutine:DGBTRF	file:
+150	.\nleq\linalg_nleq1.f	/^  150 CONTINUE$/;"	l	function:ILAENV	file:
+150	.\nleq\linalg_nleq1.f	/^150                         CONTINUE$/;"	l	subroutine:DGEMM	file:
+150	.\nleq\linalg_nleq1.f	/^150                   CONTINUE$/;"	l	subroutine:DTBSV	file:
+150	.\nleq\linalg_nleq1.f	/^150                   CONTINUE$/;"	l	subroutine:DTRSM	file:
+1520	.\nleq\nleq1.f	/^1520        CONTINUE$/;"	l	subroutine:N1INT	file:
+1520	.\nleq\nleq2.f	/^1520        CONTINUE$/;"	l	subroutine:N2INT	file:
+1521	.\nleq\nleq1.f	/^1521      CONTINUE$/;"	l	subroutine:N1INT	file:
+1521	.\nleq\nleq2.f	/^1521      CONTINUE$/;"	l	subroutine:N2INT	file:
+16	.\nleq\nleq1.f	/^16        FORMAT(6X,': X=1, Y=',I3)$/;"	l	subroutine:N1SOUT	file:
+16	.\nleq\nleq2.f	/^16        FORMAT(6X,': X=1, Y=',I3)$/;"	l	subroutine:N2SOUT	file:
+160	.\minpack-hybrd\hybrd.f	/^  160       continue$/;"	l	subroutine:hybrd	file:
+160	.\nleq\linalg_nleq1.f	/^  160          CONTINUE$/;"	l	subroutine:DGBTRF	file:
+160	.\nleq\linalg_nleq1.f	/^  160 CONTINUE$/;"	l	function:ILAENV	file:
+160	.\nleq\linalg_nleq1.f	/^160             CONTINUE$/;"	l	subroutine:DGEMM	file:
+160	.\nleq\linalg_nleq1.f	/^160             CONTINUE$/;"	l	subroutine:DTBSV	file:
+160	.\nleq\linalg_nleq1.f	/^160             CONTINUE$/;"	l	subroutine:DTRSM	file:
+160	.\pppack.f90	/^160   continue$/;"	l	subroutine:cubspl	file:
+16003	.\nleq\nleq1.f	/^16003       FORMAT(\/\/\/,2X,66('*'))$/;"	l	subroutine:N1INT	file:
+16003	.\nleq\nleq2.f	/^16003       FORMAT(\/\/\/,2X,66('*'))$/;"	l	subroutine:N2INT	file:
+16004	.\nleq\nleq1.f	/^16004       FORMAT(\/,8X,'It',7X,'Normf ',10X,'Normx ',8X,$/;"	l	subroutine:N1INT	file:
+16004	.\nleq\nleq2.f	/^16004       FORMAT(\/,8X,'It',7X,'Normf ',10X,'Normx ',6X,$/;"	l	subroutine:N2INT	file:
+170	.\minpack-hybrd\hybrd.f	/^  170    continue$/;"	l	subroutine:hybrd	file:
+170	.\nleq\linalg_nleq1.f	/^  170       CONTINUE$/;"	l	subroutine:DGBTRF	file:
+170	.\nleq\linalg_nleq1.f	/^170                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+170	.\nleq\linalg_nleq1.f	/^170       CONTINUE$/;"	l	subroutine:DGEMM	file:
+180	.\minpack-hybrd\hybrd.f	/^  180    continue$/;"	l	subroutine:hybrd	file:
+180	.\nleq\linalg_nleq1.f	/^  180    CONTINUE$/;"	l	subroutine:DGBTRF	file:
+180	.\nleq\linalg_nleq1.f	/^180                            CONTINUE$/;"	l	subroutine:DTRSM	file:
+180	.\nleq\linalg_nleq1.f	/^180                   CONTINUE$/;"	l	subroutine:DGEMM	file:
+190	.\nleq\linalg_nleq1.f	/^190                   CONTINUE$/;"	l	subroutine:DTRSM	file:
+190	.\nleq\linalg_nleq1.f	/^190             CONTINUE$/;"	l	subroutine:DGEMM	file:
+2	.\nleq\linalg_nleq2.f	/^2        CONTINUE$/;"	l	subroutine:DECCON	file:
+2	.\nleq\nleq1.f	/^ 2    CONTINUE$/;"	l	subroutine:N1JACB	file:
+2	.\nleq\nleq1.f	/^ 2    CONTINUE$/;"	l	subroutine:N1JCFB	file:
+2	.\nleq\nleq1.f	/^2        FORMAT(' ',I5)$/;"	l	subroutine:N1SOUT	file:
+2	.\nleq\nleq1.f	/^2       CONTINUE$/;"	l	subroutine:N1INT	file:
+2	.\nleq\nleq1.f	/^2       CONTINUE$/;"	l	subroutine:N1SCRB	file:
+2	.\nleq\nleq1.f	/^2       CONTINUE$/;"	l	subroutine:N1SCRF	file:
+2	.\nleq\nleq1.f	/^2       FORMAT(8X,'It',7X,'Normf ',10X,'Normx ',20X,'New')$/;"	l	subroutine:N1PRV1	file:
+2	.\nleq\nleq1.f	/^2       FORMAT(8X,'It',7X,'Normf ',10X,'Normx ',8X,'Damp.Fct.')$/;"	l	subroutine:N1PRV2	file:
+2	.\nleq\nleq2.f	/^2        FORMAT(' ',I5)$/;"	l	subroutine:N2SOUT	file:
+2	.\nleq\nleq2.f	/^2       CONTINUE$/;"	l	subroutine:N2INT	file:
+2	.\nleq\nleq2.f	/^2       CONTINUE$/;"	l	subroutine:N2SCRF	file:
+2	.\nleq\nleq2.f	/^2       FORMAT(8X,'It',7X,'Normf ',10X,'Normx ',20X,'New',6X,'Rank',$/;"	l	subroutine:N2PRV1	file:
+2	.\nleq\nleq2.f	/^2       FORMAT(8X,'It',7X,'Normf ',10X,'Normx ',8X,'Damp.Fct.')$/;"	l	subroutine:N2PRV2	file:
+2	.\nleq\nleq2.f	/^2     CONTINUE$/;"	l	subroutine:N2PRJN	file:
+20	.\minpack-hybrd\dogleg.f	/^   20    continue$/;"	l	subroutine:dogleg	file:
+20	.\minpack-hybrd\enorm.f	/^   20          continue$/;"	l	function:enorm	file:
+20	.\minpack-hybrd\fdjac1.f	/^   20       continue$/;"	l	subroutine:fdjac1	file:
+20	.\minpack-hybrd\hybrd.f	/^   20 continue$/;"	l	subroutine:hybrd	file:
+20	.\minpack-hybrd\qform.f	/^   20    continue$/;"	l	subroutine:qform	file:
+20	.\minpack-hybrd\qrfac.f	/^   20       continue$/;"	l	subroutine:qrfac	file:
+20	.\minpack-hybrd\r1mpyq.f	/^   20    continue$/;"	l	subroutine:r1mpyq	file:
+20	.\minpack-hybrd\r1updt.f	/^   20    continue$/;"	l	subroutine:r1updt	file:
+20	.\nleq\linalg_nleq1.f	/^   20            CONTINUE $/;"	l	subroutine:DGETF2	file:
+20	.\nleq\linalg_nleq1.f	/^   20       CONTINUE$/;"	l	function:ILAENV	file:
+20	.\nleq\linalg_nleq1.f	/^   20       CONTINUE$/;"	l	subroutine:DLASWP	file:
+20	.\nleq\linalg_nleq1.f	/^   20    CONTINUE$/;"	l	subroutine:DGBTRF	file:
+20	.\nleq\linalg_nleq1.f	/^   20    CONTINUE$/;"	l	subroutine:DGBTRS	file:
+20	.\nleq\linalg_nleq1.f	/^   20    CONTINUE$/;"	l	subroutine:DGETRF	file:
+20	.\nleq\linalg_nleq1.f	/^   20    CONTINUE$/;"	l	subroutine:DLAMC1	file:
+20	.\nleq\linalg_nleq1.f	/^   20    CONTINUE$/;"	l	subroutine:DLAMC2	file:
+20	.\nleq\linalg_nleq1.f	/^   20    CONTINUE$/;"	l	subroutine:DLAMC4	file:
+20	.\nleq\linalg_nleq1.f	/^   20 CONTINUE$/;"	l	subroutine:DGBTF2	file:
+20	.\nleq\linalg_nleq1.f	/^   20 CONTINUE$/;"	l	subroutine:DLAMC5	file:
+20	.\nleq\linalg_nleq1.f	/^   20 DMAX = DABS(DX(1))$/;"	l	function:IDAMAX	file:
+20	.\nleq\linalg_nleq1.f	/^20             CONTINUE$/;"	l	subroutine:DGEMV	file:
+20	.\nleq\linalg_nleq1.f	/^20             CONTINUE$/;"	l	subroutine:DTBSV	file:
+20	.\nleq\linalg_nleq1.f	/^20       CONTINUE$/;"	l	subroutine:DGEMM	file:
+20	.\nleq\linalg_nleq1.f	/^20    CONTINUE$/;"	l	subroutine:DGER	file:
+20	.\nleq\linalg_nleq1.f	/^20    CONTINUE$/;"	l	subroutine:DTRSM	file:
+20	.\nleq\linalg_nleq1.f	/^20    M = MOD(N,3)$/;"	l	subroutine:DSWAP	file:
+20	.\nleq\linalg_nleq1.f	/^20    M = MOD(N,5)$/;"	l	subroutine:DSCAL	file:
+20	.\nleq\linalg_nleq1.f	/^20    M = MOD(N,7)$/;"	l	subroutine:DCOPY	file:
+20	.\nleq\linalg_nleq2.f	/^20           CONTINUE$/;"	l	subroutine:DECCON	file:
+20	.\nleq\nleq1.f	/^20      FORMAT('&data ',I5)$/;"	l	subroutine:N1SOUT	file:
+20	.\nleq\nleq1.f	/^20    CONTINUE$/;"	l	subroutine:N1LVLS	file:
+20	.\nleq\nleq1.f	/^20    CONTINUE$/;"	l	subroutine:N1PCHK	file:
+20	.\nleq\nleq2.f	/^20      FORMAT('&data ',I5)$/;"	l	subroutine:N2SOUT	file:
+20	.\nleq\nleq2.f	/^20    CONTINUE$/;"	l	subroutine:N2LVLS	file:
+20	.\nleq\nleq2.f	/^20    CONTINUE$/;"	l	subroutine:N2PCHK	file:
+20	.\pppack.f90	/^20 continue$/;"	l	subroutine:interv	file:
+200	.\minpack-hybrd\hybrd.f	/^  200          continue$/;"	l	subroutine:hybrd	file:
+200	.\nleq\linalg_nleq1.f	/^200                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+200	.\nleq\linalg_nleq1.f	/^200       CONTINUE$/;"	l	subroutine:DGEMM	file:
+2000	.\nleq\linalg_nleq2.f	/^2000      LEVEL = 1$/;"	l	subroutine:DECCON	file:
+20001	.\nleq\nleq1.f	/^20001       FORMAT(' Invalid option specified: IOPT(',I2,')=',I12,';',$/;"	l	subroutine:N1PCHK	file:
+20001	.\nleq\nleq2.f	/^20001       FORMAT(' Invalid option specified: IOPT(',I2,')=',I12,';',$/;"	l	subroutine:N2PCHK	file:
+201	.\nleq\linalg_nleq2.f	/^201           CONTINUE$/;"	l	subroutine:DECCON	file:
+2011	.\nleq\linalg_nleq2.f	/^2011             CONTINUE$/;"	l	subroutine:DECCON	file:
+21	.\nleq\linalg_nleq2.f	/^21           CONTINUE$/;"	l	subroutine:DECCON	file:
+21	.\nleq\linalg_nleq2.f	/^21      CONTINUE$/;"	l	subroutine:SOLCON	file:
+21	.\nleq\nleq1.f	/^ 21         CONTINUE$/;"	l	subroutine:N1JCFB	file:
+21	.\nleq\nleq1.f	/^ 21      CONTINUE$/;"	l	subroutine:N1JACB	file:
+21	.\nleq\nleq1.f	/^21      FORMAT((6X,4(D18.10)))$/;"	l	subroutine:N1SOUT	file:
+21	.\nleq\nleq1.f	/^21    CONTINUE$/;"	l	subroutine:N1LVLS	file:
+21	.\nleq\nleq2.f	/^21      CONTINUE$/;"	l	subroutine:N2PRJN	file:
+21	.\nleq\nleq2.f	/^21      FORMAT((6X,4(D18.10)))$/;"	l	subroutine:N2SOUT	file:
+21	.\nleq\nleq2.f	/^21    CONTINUE$/;"	l	subroutine:N2LVLS	file:
+210	.\minpack-hybrd\hybrd.f	/^  210             continue$/;"	l	subroutine:hybrd	file:
+210	.\nleq\linalg_nleq1.f	/^210             CONTINUE$/;"	l	subroutine:DTRSM	file:
+211	.\nleq\linalg_nleq2.f	/^211       CONTINUE$/;"	l	subroutine:SOLCON	file:
+211	.\nleq\nleq1.f	/^ 211        CONTINUE$/;"	l	subroutine:N1JCFB	file:
+212	.\nleq\linalg_nleq2.f	/^212       CONTINUE$/;"	l	subroutine:SOLCON	file:
+212	.\nleq\nleq1.f	/^ 212        CONTINUE$/;"	l	subroutine:N1JCFB	file:
+213	.\nleq\nleq1.f	/^ 213           CONTINUE$/;"	l	subroutine:N1JCFB	file:
+22	.\nleq\nleq1.f	/^ 22      CONTINUE$/;"	l	subroutine:N1JACB	file:
+220	.\minpack-hybrd\hybrd.f	/^  220          continue$/;"	l	subroutine:hybrd	file:
+220	.\nleq\linalg_nleq1.f	/^220                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+2200	.\nleq\nleq1.f	/^2200          CONTINUE$/;"	l	subroutine:N1INT	file:
+2200	.\nleq\nleq2.f	/^2200          CONTINUE$/;"	l	subroutine:N2INT	file:
+2201	.\nleq\nleq1.f	/^2201            CONTINUE$/;"	l	subroutine:N1INT	file:
+2201	.\nleq\nleq2.f	/^2201          CONTINUE$/;"	l	subroutine:N2INT	file:
+2202	.\nleq\nleq1.f	/^2202            CONTINUE$/;"	l	subroutine:N1INT	file:
+2202	.\nleq\nleq2.f	/^2202          CONTINUE$/;"	l	subroutine:N2INT	file:
+221	.\nleq\linalg_nleq2.f	/^221             CONTINUE$/;"	l	subroutine:DECCON	file:
+221	.\nleq\nleq1.f	/^ 221        CONTINUE$/;"	l	subroutine:N1JACB	file:
+221	.\nleq\nleq1.f	/^221             CONTINUE$/;"	l	subroutine:N1INT	file:
+221	.\nleq\nleq2.f	/^221           CONTINUE$/;"	l	subroutine:N2INT	file:
+222	.\nleq\linalg_nleq2.f	/^222        CONTINUE$/;"	l	subroutine:DECCON	file:
+22201	.\nleq\nleq1.f	/^22201               FORMAT (\/, ' +++ aposteriori estimate +++', \/,$/;"	l	subroutine:N1INT	file:
+22201	.\nleq\nleq2.f	/^22201             FORMAT (\/, ' +++ aposteriori estimate +++', \/,$/;"	l	subroutine:N2INT	file:
+230	.\minpack-hybrd\hybrd.f	/^  230       continue$/;"	l	subroutine:hybrd	file:
+230	.\nleq\linalg_nleq1.f	/^230                            CONTINUE$/;"	l	subroutine:DTRSM	file:
+232	.\nleq\nleq2.f	/^232         CONTINUE$/;"	l	subroutine:N2INT	file:
+2321	.\nleq\nleq1.f	/^2321          CONTINUE$/;"	l	subroutine:N1INT	file:
+2322	.\nleq\nleq1.f	/^2322            CONTINUE$/;"	l	subroutine:N1INT	file:
+2323	.\nleq\nleq1.f	/^2323              CONTINUE$/;"	l	subroutine:N1INT	file:
+24	.\nleq\linalg_nleq2.f	/^24               CONTINUE$/;"	l	subroutine:DECCON	file:
+240	.\minpack-hybrd\hybrd.f	/^  240       continue$/;"	l	subroutine:hybrd	file:
+240	.\nleq\linalg_nleq1.f	/^240                   CONTINUE$/;"	l	subroutine:DTRSM	file:
+241	.\nleq\linalg_nleq2.f	/^241                 CONTINUE$/;"	l	subroutine:DECCON	file:
+2410	.\nleq\nleq1.f	/^2410            CONTINUE$/;"	l	subroutine:N1INT	file:
+2410	.\nleq\nleq2.f	/^2410        CONTINUE$/;"	l	subroutine:N2INT	file:
+2412	.\nleq\nleq1.f	/^2412              CONTINUE$/;"	l	subroutine:N1INT	file:
+2412	.\nleq\nleq2.f	/^2412          CONTINUE$/;"	l	subroutine:N2INT	file:
+2413	.\nleq\nleq1.f	/^2413            CONTINUE$/;"	l	subroutine:N1INT	file:
+2415	.\nleq\nleq1.f	/^2415              CONTINUE$/;"	l	subroutine:N1INT	file:
+242	.\nleq\linalg_nleq2.f	/^242                    CONTINUE$/;"	l	subroutine:DECCON	file:
+242	.\nleq\nleq1.f	/^242             CONTINUE$/;"	l	subroutine:N1INT	file:
+242	.\nleq\nleq2.f	/^242           CONTINUE$/;"	l	subroutine:N2INT	file:
+243	.\nleq\nleq1.f	/^243       CONTINUE$/;"	l	subroutine:N1INT	file:
+243	.\nleq\nleq2.f	/^243       CONTINUE$/;"	l	subroutine:N2INT	file:
+250	.\minpack-hybrd\hybrd.f	/^  250          continue$/;"	l	subroutine:hybrd	file:
+250	.\nleq\linalg_nleq1.f	/^250                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+260	.\minpack-hybrd\hybrd.f	/^  260       continue$/;"	l	subroutine:hybrd	file:
+260	.\nleq\linalg_nleq1.f	/^260             CONTINUE$/;"	l	subroutine:DTRSM	file:
+270	.\minpack-hybrd\hybrd.f	/^  270             continue$/;"	l	subroutine:hybrd	file:
+270	.\nleq\linalg_nleq1.f	/^270                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+280	.\minpack-hybrd\hybrd.f	/^  280          continue$/;"	l	subroutine:hybrd	file:
+280	.\nleq\linalg_nleq1.f	/^280                            CONTINUE$/;"	l	subroutine:DTRSM	file:
+290	.\minpack-hybrd\hybrd.f	/^  290    continue$/;"	l	subroutine:hybrd	file:
+290	.\nleq\linalg_nleq1.f	/^290                   CONTINUE$/;"	l	subroutine:DTRSM	file:
+2999	.\nleq\linalg_nleq2.f	/^2999     CONTINUE$/;"	l	subroutine:DECCON	file:
+3	.\nleq\linalg_nleq2.f	/^3        CONTINUE$/;"	l	subroutine:DECCON	file:
+3	.\nleq\nleq1.f	/^3         CONTINUE$/;"	l	subroutine:N1SCRB	file:
+3	.\nleq\nleq1.f	/^3         CONTINUE$/;"	l	subroutine:N1SCRF	file:
+3	.\nleq\nleq1.f	/^3        FORMAT((12X,3(D18.10,1X)))$/;"	l	subroutine:N1SOUT	file:
+3	.\nleq\nleq1.f	/^3       FORMAT(8X,'It',7X,'Normf ',10X,'Normx ',8X,'Damp.Fct.',3X,'New')$/;"	l	subroutine:N1PRV1	file:
+3	.\nleq\nleq1.f	/^3     CONTINUE$/;"	l	subroutine:N1LVLS	file:
+3	.\nleq\nleq1.f	/^3     FORMAT(6X,I4,5X,D10.3,4X,A1,1X,D10.3,2X,4X,F7.5)$/;"	l	subroutine:N1PRV2	file:
+3	.\nleq\nleq2.f	/^3         CONTINUE$/;"	l	subroutine:N2INT	file:
+3	.\nleq\nleq2.f	/^3         CONTINUE$/;"	l	subroutine:N2SCRF	file:
+3	.\nleq\nleq2.f	/^3        FORMAT((12X,3(D18.10,1X)))$/;"	l	subroutine:N2SOUT	file:
+3	.\nleq\nleq2.f	/^3       FORMAT(8X,'It',7X,'Normf ',10X,'Normx ',8X,'Damp.Fct.',3X,'New',$/;"	l	subroutine:N2PRV1	file:
+3	.\nleq\nleq2.f	/^3     CONTINUE$/;"	l	subroutine:N2LVLS	file:
+3	.\nleq\nleq2.f	/^3     FORMAT(6X,I4,5X,D10.3,4X,A1,1X,D10.3,6X,F7.5)$/;"	l	subroutine:N2PRV2	file:
+30	.\minpack-hybrd\dogleg.f	/^   30       continue$/;"	l	subroutine:dogleg	file:
+30	.\minpack-hybrd\enorm.f	/^   30       continue$/;"	l	function:enorm	file:
+30	.\minpack-hybrd\fdjac1.f	/^   30    continue$/;"	l	subroutine:fdjac1	file:
+30	.\minpack-hybrd\hybrd.f	/^   30 continue$/;"	l	subroutine:hybrd	file:
+30	.\minpack-hybrd\qform.f	/^   30 continue$/;"	l	subroutine:qform	file:
+30	.\minpack-hybrd\qrfac.f	/^   30       continue$/;"	l	subroutine:qrfac	file:
+30	.\minpack-hybrd\r1mpyq.f	/^   30       continue$/;"	l	subroutine:r1mpyq	file:
+30	.\minpack-hybrd\r1updt.f	/^   30    continue$/;"	l	subroutine:r1updt	file:
+30	.\nleq\linalg_nleq1.f	/^   30       CONTINUE$/;"	l	function:ILAENV	file:
+30	.\nleq\linalg_nleq1.f	/^   30       CONTINUE$/;"	l	subroutine:DGBTF2	file:
+30	.\nleq\linalg_nleq1.f	/^   30       CONTINUE$/;"	l	subroutine:DGBTRF	file:
+30	.\nleq\linalg_nleq1.f	/^   30    CONTINUE$/;"	l	subroutine:DGBTRS	file:
+30	.\nleq\linalg_nleq1.f	/^   30    CONTINUE$/;"	l	subroutine:DLAMC1	file:
+30	.\nleq\linalg_nleq1.f	/^   30    CONTINUE$/;"	l	subroutine:DLAMC2	file:
+30	.\nleq\linalg_nleq1.f	/^   30    CONTINUE$/;"	l	subroutine:DLAMC4	file:
+30	.\nleq\linalg_nleq1.f	/^   30    CONTINUE$/;"	l	subroutine:DLASWP	file:
+30	.\nleq\linalg_nleq1.f	/^   30 CONTINUE$/;"	l	function:IDAMAX	file:
+30	.\nleq\linalg_nleq1.f	/^   30 CONTINUE$/;"	l	subroutine:DLAMC5	file:
+30	.\nleq\linalg_nleq1.f	/^30                         CONTINUE$/;"	l	subroutine:DTBSV	file:
+30	.\nleq\linalg_nleq1.f	/^30                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+30	.\nleq\linalg_nleq1.f	/^30             CONTINUE$/;"	l	subroutine:DGEMM	file:
+30	.\nleq\linalg_nleq1.f	/^30             CONTINUE$/;"	l	subroutine:DGEMV	file:
+30	.\nleq\linalg_nleq1.f	/^30             CONTINUE$/;"	l	subroutine:DGER	file:
+30	.\nleq\linalg_nleq1.f	/^30    CONTINUE$/;"	l	subroutine:DCOPY	file:
+30	.\nleq\linalg_nleq1.f	/^30    CONTINUE$/;"	l	subroutine:DSCAL	file:
+30	.\nleq\linalg_nleq1.f	/^30    CONTINUE$/;"	l	subroutine:DSWAP	file:
+30	.\nleq\nleq1.f	/^30        FORMAT('&wktype 3111',\/,'&atext x ''iter''')$/;"	l	subroutine:N1SOUT	file:
+30	.\nleq\nleq2.f	/^30        FORMAT('&wktype 3111',\/,'&atext x ''iter''')$/;"	l	subroutine:N2SOUT	file:
+30	.\pppack.f90	/^30 continue$/;"	l	subroutine:interv	file:
+300	.\minpack-hybrd\hybrd.f	/^  300 continue$/;"	l	subroutine:hybrd	file:
+300	.\nleq\linalg_nleq1.f	/^300                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+31	.\nleq\linalg_nleq2.f	/^31          CONTINUE$/;"	l	subroutine:DECCON	file:
+31	.\nleq\linalg_nleq2.f	/^31    CONTINUE$/;"	l	subroutine:SOLCON	file:
+310	.\nleq\linalg_nleq1.f	/^310             CONTINUE$/;"	l	subroutine:DTRSM	file:
+3109	.\nleq\nleq1.f	/^3109      CONTINUE$/;"	l	subroutine:N1INT	file:
+3109	.\nleq\nleq2.f	/^3109          CONTINUE$/;"	l	subroutine:N2INT	file:
+311	.\nleq\linalg_nleq2.f	/^311               CONTINUE$/;"	l	subroutine:DECCON	file:
+311	.\nleq\linalg_nleq2.f	/^311       CONTINUE$/;"	l	subroutine:SOLCON	file:
+3111	.\nleq\nleq1.f	/^3111        CONTINUE$/;"	l	subroutine:N1INT	file:
+3111	.\nleq\nleq2.f	/^3111          CONTINUE$/;"	l	subroutine:N2INT	file:
+3112	.\nleq\nleq1.f	/^3112        CONTINUE$/;"	l	subroutine:N1INT	file:
+3112	.\nleq\nleq2.f	/^3112          CONTINUE$/;"	l	subroutine:N2INT	file:
+3113	.\nleq\nleq2.f	/^3113          CONTINUE$/;"	l	subroutine:N2INT	file:
+31130	.\nleq\nleq1.f	/^31130           FORMAT(8X,I2,' Not accepted damping factor ',$/;"	l	subroutine:N1INT	file:
+31130	.\nleq\nleq2.f	/^31130           FORMAT(8X,I2,' Not accepted damping ',$/;"	l	subroutine:N2INT	file:
+312	.\nleq\nleq2.f	/^312             CONTINUE$/;"	l	subroutine:N2INT	file:
+3121	.\nleq\nleq1.f	/^3121        CONTINUE$/;"	l	subroutine:N1INT	file:
+3121	.\nleq\nleq2.f	/^3121          CONTINUE$/;"	l	subroutine:N2INT	file:
+3122	.\nleq\nleq1.f	/^3122        CONTINUE$/;"	l	subroutine:N1INT	file:
+3122	.\nleq\nleq2.f	/^3122          CONTINUE$/;"	l	subroutine:N2INT	file:
+3123	.\nleq\nleq1.f	/^3123          CONTINUE$/;"	l	subroutine:N1INT	file:
+3123	.\nleq\nleq2.f	/^3123            CONTINUE$/;"	l	subroutine:N2INT	file:
+3124	.\nleq\nleq1.f	/^3124        CONTINUE$/;"	l	subroutine:N1INT	file:
+3124	.\nleq\nleq2.f	/^3124          CONTINUE$/;"	l	subroutine:N2INT	file:
+32	.\nleq\linalg_nleq2.f	/^32         CONTINUE$/;"	l	subroutine:DECCON	file:
+32	.\nleq\nleq1.f	/^32        CONTINUE$/;"	l	subroutine:N1INT	file:
+32	.\nleq\nleq2.f	/^32          CONTINUE$/;"	l	subroutine:N2INT	file:
+320	.\nleq\linalg_nleq1.f	/^320                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+32001	.\nleq\nleq1.f	/^32001         FORMAT(' ** ICONV: ',I1,'  ALPHA: ',D9.2,$/;"	l	subroutine:N1INT	file:
+32001	.\nleq\nleq2.f	/^32001           FORMAT(' ** ICONV: ',I1,'  ALPHA: ',D9.2,$/;"	l	subroutine:N2INT	file:
+321	.\nleq\linalg_nleq2.f	/^321           CONTINUE$/;"	l	subroutine:DECCON	file:
+321	.\nleq\linalg_nleq2.f	/^321     CONTINUE$/;"	l	subroutine:SOLCON	file:
+3211	.\nleq\linalg_nleq2.f	/^3211      CONTINUE$/;"	l	subroutine:SOLCON	file:
+322	.\nleq\linalg_nleq2.f	/^322     CONTINUE$/;"	l	subroutine:SOLCON	file:
+3221	.\nleq\linalg_nleq2.f	/^3221        CONTINUE$/;"	l	subroutine:SOLCON	file:
+330	.\nleq\linalg_nleq1.f	/^330                            CONTINUE$/;"	l	subroutine:DTRSM	file:
+331	.\nleq\nleq1.f	/^331         CONTINUE$/;"	l	subroutine:N1INT	file:
+331	.\nleq\nleq2.f	/^331             CONTINUE$/;"	l	subroutine:N2INT	file:
+332	.\nleq\nleq2.f	/^332               CONTINUE$/;"	l	subroutine:N2INT	file:
+33201	.\nleq\nleq1.f	/^33201         FORMAT (\/, ' +++ apriori estimate +++', \/,$/;"	l	subroutine:N1INT	file:
+33201	.\nleq\nleq2.f	/^33201             FORMAT (\/, ' +++ apriori estimate +++', \/,$/;"	l	subroutine:N2INT	file:
+34	.\nleq\nleq1.f	/^34        CONTINUE$/;"	l	subroutine:N1INT	file:
+34	.\nleq\nleq2.f	/^34            CONTINUE$/;"	l	subroutine:N2INT	file:
+340	.\nleq\linalg_nleq1.f	/^340                   CONTINUE$/;"	l	subroutine:DTRSM	file:
+35	.\nleq\nleq1.f	/^35          CONTINUE$/;"	l	subroutine:N1INT	file:
+35	.\nleq\nleq1.f	/^35        FORMAT('&vars = com',I3.3,\/,'&atext y ''x',I3,'''',$/;"	l	subroutine:N1SOUT	file:
+35	.\nleq\nleq2.f	/^35              CONTINUE$/;"	l	subroutine:N2INT	file:
+35	.\nleq\nleq2.f	/^35        FORMAT('&vars = com',I3.3,\/,'&atext y ''x',I3,'''',$/;"	l	subroutine:N2SOUT	file:
+350	.\nleq\linalg_nleq1.f	/^350                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+36	.\nleq\nleq1.f	/^36        FORMAT('&vars = com',I3.3,\/,'&atext y ''',A,'''',$/;"	l	subroutine:N1SOUT	file:
+36	.\nleq\nleq2.f	/^36        FORMAT('&vars = com',I3.3,\/,'&atext y ''',A,'''',$/;"	l	subroutine:N2SOUT	file:
+360	.\nleq\linalg_nleq1.f	/^360             CONTINUE$/;"	l	subroutine:DTRSM	file:
+361	.\nleq\nleq1.f	/^361           CONTINUE$/;"	l	subroutine:N1INT	file:
+361	.\nleq\nleq2.f	/^361             CONTINUE$/;"	l	subroutine:N2INT	file:
+36101	.\nleq\nleq1.f	/^36101           FORMAT(8X,I2,' FCN could not be evaluated  ',$/;"	l	subroutine:N1INT	file:
+36101	.\nleq\nleq2.f	/^36101               FORMAT(8X,I2,' FCN could not be evaluated  ',$/;"	l	subroutine:N2INT	file:
+363	.\nleq\nleq1.f	/^363             CONTINUE$/;"	l	subroutine:N1INT	file:
+363	.\nleq\nleq2.f	/^363               CONTINUE$/;"	l	subroutine:N2INT	file:
+3630	.\nleq\nleq1.f	/^3630            CONTINUE                   $/;"	l	subroutine:N1INT	file:
+3630	.\nleq\nleq2.f	/^3630              CONTINUE                   $/;"	l	subroutine:N2INT	file:
+3631	.\nleq\nleq1.f	/^3631              CONTINUE$/;"	l	subroutine:N1INT	file:
+3631	.\nleq\nleq2.f	/^3631                CONTINUE$/;"	l	subroutine:N2INT	file:
+3632	.\nleq\nleq1.f	/^3632              CONTINUE$/;"	l	subroutine:N1INT	file:
+3632	.\nleq\nleq2.f	/^3632                CONTINUE$/;"	l	subroutine:N2INT	file:
+39	.\nleq\nleq1.f	/^39            CONTINUE$/;"	l	subroutine:N1INT	file:
+39	.\nleq\nleq2.f	/^39              CONTINUE$/;"	l	subroutine:N2INT	file:
+39001	.\nleq\nleq1.f	/^39001           FORMAT (\/, ' +++ corrector computation +++', \/,$/;"	l	subroutine:N1INT	file:
+39001	.\nleq\nleq2.f	/^39001             FORMAT (\/, ' +++ corrector computation +++', \/,$/;"	l	subroutine:N2INT	file:
+39002	.\nleq\nleq1.f	/^39002             FORMAT (\/, ' +++ corrector setting 1 +++', \/,$/;"	l	subroutine:N1INT	file:
+39002	.\nleq\nleq2.f	/^39002               FORMAT (\/, ' +++ corrector setting 1 +++', \/,$/;"	l	subroutine:N2INT	file:
+39003	.\nleq\nleq1.f	/^39003             FORMAT (\/, ' +++ corrector setting 2 +++', \/,$/;"	l	subroutine:N1INT	file:
+39003	.\nleq\nleq2.f	/^39003                 FORMAT (\/, ' +++ corrector setting 2 +++', \/,$/;"	l	subroutine:N2INT	file:
+4	.\nleq\linalg_nleq2.f	/^4     CONTINUE$/;"	l	subroutine:SOLCON	file:
+4	.\nleq\nleq1.f	/^4       FORMAT(2X,66('*'))$/;"	l	subroutine:N1PRV2	file:
+4	.\nleq\nleq1.f	/^4     FORMAT(6X,I4,5X,D10.3,2X,4X,D10.3,17X,I2)$/;"	l	subroutine:N1PRV1	file:
+4	.\nleq\nleq2.f	/^4       FORMAT(2X,66('*'))$/;"	l	subroutine:N2PRV2	file:
+4	.\nleq\nleq2.f	/^4     FORMAT(6X,I4,5X,D10.3,2X,4X,D10.3,17X,I2,6X,I4,2X,D10.3)$/;"	l	subroutine:N2PRV1	file:
+40	.\minpack-hybrd\dogleg.f	/^   40    continue$/;"	l	subroutine:dogleg	file:
+40	.\minpack-hybrd\enorm.f	/^   40          continue$/;"	l	function:enorm	file:
+40	.\minpack-hybrd\fdjac1.f	/^   40 continue$/;"	l	subroutine:fdjac1	file:
+40	.\minpack-hybrd\hybrd.f	/^   40       continue$/;"	l	subroutine:hybrd	file:
+40	.\minpack-hybrd\qform.f	/^   40       continue$/;"	l	subroutine:qform	file:
+40	.\minpack-hybrd\qrfac.f	/^   40    continue$/;"	l	subroutine:qrfac	file:
+40	.\minpack-hybrd\r1mpyq.f	/^   40    continue$/;"	l	subroutine:r1mpyq	file:
+40	.\minpack-hybrd\r1updt.f	/^   40       continue$/;"	l	subroutine:r1updt	file:
+40	.\nleq\linalg_nleq1.f	/^   40          CONTINUE$/;"	l	subroutine:DLASWP	file:
+40	.\nleq\linalg_nleq1.f	/^   40       CONTINUE$/;"	l	function:ILAENV	file:
+40	.\nleq\linalg_nleq1.f	/^   40       CONTINUE$/;"	l	subroutine:DGBTRS	file:
+40	.\nleq\linalg_nleq1.f	/^   40    CONTINUE$/;"	l	subroutine:DGBTRF	file:
+40	.\nleq\linalg_nleq1.f	/^   40 CONTINUE$/;"	l	subroutine:DGBTF2	file:
+40	.\nleq\linalg_nleq1.f	/^40                            CONTINUE$/;"	l	subroutine:DTRSM	file:
+40	.\nleq\linalg_nleq1.f	/^40             CONTINUE$/;"	l	subroutine:DGEMV	file:
+40	.\nleq\linalg_nleq1.f	/^40             CONTINUE$/;"	l	subroutine:DTBSV	file:
+40	.\nleq\linalg_nleq1.f	/^40       CONTINUE$/;"	l	subroutine:DGEMM	file:
+40	.\nleq\linalg_nleq1.f	/^40    CONTINUE$/;"	l	subroutine:DGER	file:
+40	.\nleq\linalg_nleq1.f	/^40    MP1 = M + 1$/;"	l	subroutine:DCOPY	file:
+40	.\nleq\linalg_nleq1.f	/^40    MP1 = M + 1$/;"	l	subroutine:DSCAL	file:
+40	.\nleq\linalg_nleq1.f	/^40    MP1 = M + 1$/;"	l	subroutine:DSWAP	file:
+42	.\nleq\nleq2.f	/^42              CONTINUE$/;"	l	subroutine:N2INT	file:
+4299	.\nleq\nleq1.f	/^4299    CONTINUE$/;"	l	subroutine:N1INT	file:
+4299	.\nleq\nleq2.f	/^4299    CONTINUE$/;"	l	subroutine:N2INT	file:
+5	.\nleq\linalg_nleq1.f	/^    5     IX = IX + INCX$/;"	l	function:IDAMAX	file:
+5	.\nleq\nleq1.f	/^5     FORMAT(6X,I4,5X,D10.3,6X,D10.3,6X,F7.5,4X,I2)$/;"	l	subroutine:N1PRV1	file:
+5	.\nleq\nleq2.f	/^5     FORMAT(6X,I4,5X,D10.3,6X,D10.3,6X,F7.5,4X,I2,6X,I4,2X,D10.3)$/;"	l	subroutine:N2PRV1	file:
+50	.\minpack-hybrd\dogleg.f	/^   50    continue$/;"	l	subroutine:dogleg	file:
+50	.\minpack-hybrd\enorm.f	/^   50          continue$/;"	l	function:enorm	file:
+50	.\minpack-hybrd\hybrd.f	/^   50    continue$/;"	l	subroutine:hybrd	file:
+50	.\minpack-hybrd\qform.f	/^   50    continue$/;"	l	subroutine:qform	file:
+50	.\minpack-hybrd\qrfac.f	/^   50       continue$/;"	l	subroutine:qrfac	file:
+50	.\minpack-hybrd\r1mpyq.f	/^   50 continue$/;"	l	subroutine:r1mpyq	file:
+50	.\minpack-hybrd\r1updt.f	/^   50    continue$/;"	l	subroutine:r1updt	file:
+50	.\nleq\linalg_nleq1.f	/^   50       CONTINUE$/;"	l	subroutine:DGBTRF	file:
+50	.\nleq\linalg_nleq1.f	/^   50    CONTINUE$/;"	l	subroutine:DLASWP	file:
+50	.\nleq\linalg_nleq1.f	/^   50 CONTINUE$/;"	l	function:ILAENV	file:
+50	.\nleq\linalg_nleq1.f	/^50                         CONTINUE$/;"	l	subroutine:DTBSV	file:
+50	.\nleq\linalg_nleq1.f	/^50                   CONTINUE$/;"	l	subroutine:DGEMM	file:
+50	.\nleq\linalg_nleq1.f	/^50                   CONTINUE$/;"	l	subroutine:DGEMV	file:
+50	.\nleq\linalg_nleq1.f	/^50                   CONTINUE$/;"	l	subroutine:DTRSM	file:
+50	.\nleq\linalg_nleq1.f	/^50    CONTINUE$/;"	l	subroutine:DCOPY	file:
+50	.\nleq\linalg_nleq1.f	/^50    CONTINUE$/;"	l	subroutine:DSCAL	file:
+50	.\nleq\linalg_nleq1.f	/^50    CONTINUE$/;"	l	subroutine:DSWAP	file:
+50	.\pppack.f90	/^50 continue$/;"	l	subroutine:interv	file:
+6	.\nleq\nleq1.f	/^6       FORMAT(2X,66('*'))$/;"	l	subroutine:N1PRV1	file:
+6	.\nleq\nleq2.f	/^6       FORMAT(2X,66('*'))$/;"	l	subroutine:N2PRV1	file:
+60	.\minpack-hybrd\dogleg.f	/^   60    continue$/;"	l	subroutine:dogleg	file:
+60	.\minpack-hybrd\enorm.f	/^   60       continue$/;"	l	function:enorm	file:
+60	.\minpack-hybrd\fdjac1.f	/^   60          continue$/;"	l	subroutine:fdjac1	file:
+60	.\minpack-hybrd\hybrd.f	/^   60       continue$/;"	l	subroutine:hybrd	file:
+60	.\minpack-hybrd\qform.f	/^   60 continue$/;"	l	subroutine:qform	file:
+60	.\minpack-hybrd\qrfac.f	/^   60          continue$/;"	l	subroutine:qrfac	file:
+60	.\minpack-hybrd\r1updt.f	/^   60    continue$/;"	l	subroutine:r1updt	file:
+60	.\nleq\linalg_nleq1.f	/^   60    CONTINUE$/;"	l	subroutine:DGBTRF	file:
+60	.\nleq\linalg_nleq1.f	/^   60 CONTINUE$/;"	l	function:ILAENV	file:
+60	.\nleq\linalg_nleq1.f	/^60                   CONTINUE$/;"	l	subroutine:DGEMM	file:
+60	.\nleq\linalg_nleq1.f	/^60             CONTINUE$/;"	l	subroutine:DTBSV	file:
+60	.\nleq\linalg_nleq1.f	/^60             CONTINUE$/;"	l	subroutine:DTRSM	file:
+60	.\nleq\linalg_nleq1.f	/^60       CONTINUE$/;"	l	subroutine:DGEMV	file:
+70	.\minpack-hybrd\dogleg.f	/^   70       continue$/;"	l	subroutine:dogleg	file:
+70	.\minpack-hybrd\enorm.f	/^   70    continue$/;"	l	function:enorm	file:
+70	.\minpack-hybrd\fdjac1.f	/^   70             continue$/;"	l	subroutine:fdjac1	file:
+70	.\minpack-hybrd\hybrd.f	/^   70    continue$/;"	l	subroutine:hybrd	file:
+70	.\minpack-hybrd\qform.f	/^   70       continue$/;"	l	subroutine:qform	file:
+70	.\minpack-hybrd\qrfac.f	/^   70          continue$/;"	l	subroutine:qrfac	file:
+70	.\minpack-hybrd\r1updt.f	/^   70 continue$/;"	l	subroutine:r1updt	file:
+70	.\nleq\linalg_nleq1.f	/^   70             CONTINUE$/;"	l	subroutine:DGBTRF	file:
+70	.\nleq\linalg_nleq1.f	/^   70 CONTINUE$/;"	l	function:ILAENV	file:
+70	.\nleq\linalg_nleq1.f	/^70                         CONTINUE$/;"	l	subroutine:DGEMM	file:
+70	.\nleq\linalg_nleq1.f	/^70                         CONTINUE$/;"	l	subroutine:DTBSV	file:
+70	.\nleq\linalg_nleq1.f	/^70                         CONTINUE$/;"	l	subroutine:DTRSM	file:
+70	.\nleq\linalg_nleq1.f	/^70                   CONTINUE$/;"	l	subroutine:DGEMV	file:
+80	.\minpack-hybrd\dogleg.f	/^   80    continue$/;"	l	subroutine:dogleg	file:
+80	.\minpack-hybrd\enorm.f	/^   80    continue$/;"	l	function:enorm	file:
+80	.\minpack-hybrd\fdjac1.f	/^   80          continue$/;"	l	subroutine:fdjac1	file:
+80	.\minpack-hybrd\hybrd.f	/^   80       continue$/;"	l	subroutine:hybrd	file:
+80	.\minpack-hybrd\qform.f	/^   80          continue$/;"	l	subroutine:qform	file:
+80	.\minpack-hybrd\qrfac.f	/^   80       continue$/;"	l	subroutine:qrfac	file:
+80	.\minpack-hybrd\r1updt.f	/^   80    continue$/;"	l	subroutine:r1updt	file:
+80	.\nleq\linalg_nleq1.f	/^   80       CONTINUE$/;"	l	subroutine:DGBTRF	file:
+80	.\nleq\linalg_nleq1.f	/^   80 CONTINUE$/;"	l	function:ILAENV	file:
+80	.\nleq\linalg_nleq1.f	/^80                            CONTINUE$/;"	l	subroutine:DTRSM	file:
+80	.\nleq\linalg_nleq1.f	/^80             CONTINUE$/;"	l	subroutine:DGEMM	file:
+80	.\nleq\linalg_nleq1.f	/^80             CONTINUE$/;"	l	subroutine:DTBSV	file:
+80	.\nleq\linalg_nleq1.f	/^80       CONTINUE$/;"	l	subroutine:DGEMV	file:
+90	.\minpack-hybrd\dogleg.f	/^   90    continue$/;"	l	subroutine:dogleg	file:
+90	.\minpack-hybrd\enorm.f	/^   90    continue$/;"	l	function:enorm	file:
+90	.\minpack-hybrd\fdjac1.f	/^   90       continue$/;"	l	subroutine:fdjac1	file:
+90	.\minpack-hybrd\hybrd.f	/^   90          continue$/;"	l	subroutine:hybrd	file:
+90	.\minpack-hybrd\qform.f	/^   90          continue$/;"	l	subroutine:qform	file:
+90	.\minpack-hybrd\qrfac.f	/^   90       continue$/;"	l	subroutine:qrfac	file:
+90	.\minpack-hybrd\r1updt.f	/^   90    continue$/;"	l	subroutine:r1updt	file:
+90	.\nleq\linalg_nleq1.f	/^   90          CONTINUE$/;"	l	subroutine:DGBTRF	file:
+90	.\nleq\linalg_nleq1.f	/^   90 CONTINUE$/;"	l	function:ILAENV	file:
+90	.\nleq\linalg_nleq1.f	/^90                   CONTINUE$/;"	l	subroutine:DTBSV	file:
+90	.\nleq\linalg_nleq1.f	/^90                   CONTINUE$/;"	l	subroutine:DTRSM	file:
+90	.\nleq\linalg_nleq1.f	/^90             CONTINUE$/;"	l	subroutine:DGEMV	file:
+90	.\nleq\linalg_nleq1.f	/^90       CONTINUE$/;"	l	subroutine:DGEMM	file:
+90	.\pppack.f90	/^90    continue$/;"	l	subroutine:cubspl	file:
+9000	.\nleq\zibmon.f	/^ 9000 FORMAT (\/\/\/)$/;"	l	subroutine:MON	file:
+9010	.\nleq\zibmon.f	/^ 9010 FORMAT (1X, 77('#'))$/;"	l	subroutine:MON	file:
+9020	.\nleq\zibmon.f	/^ 9020 FORMAT (' #   ', A, T75,  '   #')$/;"	l	subroutine:MON	file:
+9030	.\nleq\zibmon.f	/^ 9030 FORMAT (' #   ', A40, 1X, A31, '#')$/;"	l	subroutine:MON	file:
+9040	.\nleq\zibmon.f	/^ 9040 FORMAT (' #   ', A11, F11.3, 5X, A13, F11.3, 21X, '#')$/;"	l	subroutine:MON	file:
+9050	.\nleq\zibmon.f	/^ 9050 FORMAT (' #   ', 2X, 'Name', 14X, 'Calls', 7X, 'Time', 4X,$/;"	l	subroutine:MON	file:
+9060	.\nleq\zibmon.f	/^ 9060 FORMAT (' #   ', A17, I8, F11.3, F11.4, F11.2, 14X, '#')$/;"	l	subroutine:MON	file:
+9070	.\nleq\zibmon.f	/^ 9070 FORMAT (' #   ', A17, I8, F11.3, F11.4, F11.2, F11.2, 3X, '#')$/;"	l	subroutine:MON	file:
+9080	.\nleq\zibmon.f	/^ 9080 FORMAT (\/, ' ++ Error in subroutine ', A, ' ++',\/, 4X, A)$/;"	l	subroutine:MON	file:
+9090	.\nleq\zibmon.f	/^ 9090 FORMAT (\/, ' ++ Error in subroutine ', A, ' ++',\/, 4X, A,$/;"	l	subroutine:MON	file:
+91	.\nleq\nleq1.f	/^91              CONTINUE$/;"	l	subroutine:N1INT	file:
+91	.\nleq\nleq2.f	/^91            CONTINUE$/;"	l	subroutine:N2INT	file:
+9100	.\nleq\zibmon.f	/^ 9100 FORMAT (\/, ' ++ Error in subroutine ', A, ' ++', 4X, A,\/, 4X, A,$/;"	l	subroutine:MON	file:
+91001	.\nleq\nleq1.f	/^91001         FORMAT(\/\/\/' Solution of nonlinear system ',$/;"	l	subroutine:N1INT	file:
+91001	.\nleq\nleq2.f	/^91001         FORMAT(\/\/\/' Solution of nonlinear system ',$/;"	l	subroutine:N2INT	file:
+91002	.\nleq\nleq1.f	/^91002         FORMAT(\/\/\/' Solution of linear system ',$/;"	l	subroutine:N1INT	file:
+91002	.\nleq\nleq2.f	/^91002         FORMAT(\/\/\/' Solution of linear system ',$/;"	l	subroutine:N2INT	file:
+9110	.\nleq\zibmon.f	/^ 9110 FORMAT (\/, ' ++ Error in subroutine ', A, ' ++', 4X, A, I3, 1X, A,$/;"	l	subroutine:MON	file:
+92	.\nleq\nleq1.f	/^92                CONTINUE$/;"	l	subroutine:N1INT	file:
+92	.\nleq\nleq2.f	/^92              CONTINUE$/;"	l	subroutine:N2INT	file:
+92101	.\nleq\nleq1.f	/^92101     FORMAT(\/,' Iteration terminates due to ',$/;"	l	subroutine:N1INT	file:
+92101	.\nleq\nleq2.f	/^92101     FORMAT(\/,' Iteration terminates at stationary point',\/)$/;"	l	subroutine:N2INT	file:
+92201	.\nleq\nleq1.f	/^92201     FORMAT(\/,' Iteration terminates after NITMAX ',$/;"	l	subroutine:N1INT	file:
+92201	.\nleq\nleq2.f	/^92201     FORMAT(\/,' Iteration terminates after NITMAX ',$/;"	l	subroutine:N2INT	file:
+92301	.\nleq\nleq1.f	/^92301     FORMAT(\/,' Damping factor has become too ',$/;"	l	subroutine:N1INT	file:
+92301	.\nleq\nleq2.f	/^92301     FORMAT(\/,' Newton method fails to converge')$/;"	l	subroutine:N2INT	file:
+92401	.\nleq\nleq1.f	/^92401     FORMAT(\/,' Warning: Monotonicity test failed after ',A,$/;"	l	subroutine:N1INT	file:
+92401	.\nleq\nleq2.f	/^92401     FORMAT(\/,' Warning: Monotonicity test failed after ',A,$/;"	l	subroutine:N2INT	file:
+92402	.\nleq\nleq1.f	/^92402     FORMAT(\/,' Warning: ',A,' convergence slowed down;',\/,$/;"	l	subroutine:N1INT	file:
+92402	.\nleq\nleq2.f	/^92402     FORMAT(\/,' Warning: ',A,' convergence slowed down;',\/,$/;"	l	subroutine:N2INT	file:
+92410	.\nleq\nleq1.f	/^92410     FORMAT(\/,' Warning: No quadratic or superlinear convergence ',$/;"	l	subroutine:N1INT	file:
+92410	.\nleq\nleq2.f	/^92410     FORMAT(\/,' Warning: No quadratic or superlinear convergence ',$/;"	l	subroutine:N2INT	file:
+92501	.\nleq\nleq1.f	/^92501     FORMAT(\/,' Error ',I5,' signalled by linear solver N1FACT')$/;"	l	subroutine:N1INT	file:
+92501	.\nleq\nleq2.f	/^92501     FORMAT(\/,' Error ',I5,' signalled by linear solver N2FACT')$/;"	l	subroutine:N2INT	file:
+92601	.\nleq\nleq1.f	/^92601     FORMAT(\/,' Error ',I5,' signalled by linear solver N1SOLV')$/;"	l	subroutine:N1INT	file:
+92601	.\nleq\nleq2.f	/^92601     FORMAT(\/,' Error ',I5,' signalled by linear solver N2SOLV')$/;"	l	subroutine:N2INT	file:
+92701	.\nleq\nleq1.f	/^92701     FORMAT(\/,' Error ',I5,' signalled by user function FCN')$/;"	l	subroutine:N1INT	file:
+92701	.\nleq\nleq2.f	/^92701     FORMAT(\/,' Error ',I5,' signalled by user function FCN')$/;"	l	subroutine:N2INT	file:
+92801	.\nleq\nleq1.f	/^92801     FORMAT(\/,' Error ',I5,' signalled by user function JAC')$/;"	l	subroutine:N1INT	file:
+92801	.\nleq\nleq2.f	/^92801     FORMAT(\/,' Error ',I5,' signalled by user function JAC')$/;"	l	subroutine:N2INT	file:
+92810	.\nleq\nleq1.f	/^92810     FORMAT(' Try to find a better initial guess for the solution')$/;"	l	subroutine:N1INT	file:
+92810	.\nleq\nleq2.f	/^92810     FORMAT(' Try to find a better initial guess for the solution')$/;"	l	subroutine:N2INT	file:
+93	.\nleq\nleq1.f	/^93      CONTINUE$/;"	l	subroutine:N1INT	file:
+93	.\nleq\nleq2.f	/^93      CONTINUE$/;"	l	subroutine:N2INT	file:
+93001	.\nleq\nleq2.f	/^93001     FORMAT(\/,3X,'Subcondition ( 1,',I4,')',1X,D10.3,2X,$/;"	l	subroutine:N2INT	file:
+93100	.\nleq\nleq1.f	/^93100     FORMAT(\/,'    Achieved relative accuracy',D10.3,2X)$/;"	l	subroutine:N1INT	file:
+93100	.\nleq\nleq2.f	/^93100     FORMAT(\/,'    Achieved relative accuracy',D10.3,2X)$/;"	l	subroutine:N2INT	file:
+99	.\nleq\nleq1.f	/^ 99   CONTINUE$/;"	l	subroutine:N1JCF	file:
+99	.\nleq\nleq1.f	/^ 99   CONTINUE$/;"	l	subroutine:N1JCFB	file:
+99	.\nleq\nleq1.f	/^99    CONTINUE$/;"	l	subroutine:N1JAC	file:
+99	.\nleq\nleq1.f	/^99    CONTINUE$/;"	l	subroutine:N1JACB	file:
+99	.\nleq\nleq2.f	/^ 99   CONTINUE$/;"	l	subroutine:N2JCF	file:
+99	.\nleq\nleq2.f	/^99    CONTINUE$/;"	l	subroutine:N2JAC	file:
+999	.\nleq\linalg_nleq2.f	/^999   CONTINUE$/;"	l	subroutine:DECCON	file:
+9999	.\nleq\linalg_nleq1.f	/^ 9999 FORMAT( \/ \/ ' WARNING. The value EMIN may be incorrect:-',$/;"	l	subroutine:DLAMC2	file:
+9999	.\nleq\linalg_nleq1.f	/^9999  FORMAT (' ** On entry to ',A6,' parameter number ',I2,' had ',$/;"	l	subroutine:XERBLA	file:
+A	.\defineparameters.F90	/^    real(8), dimension (1:q) :: A,/;"	v	module:defineparameters
+AE	.\Model_Parameters.f90	/^        real(8) :: AE /;"	v	module:Model_Parameters
+AE	.\defineparameters.F90	/^    real(8) :: AE=/;"	v	module:defineparameters
+AEdum	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=/;"	v	module:defineparameters
+BREAKM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,gnfM,cM,VM,temp3M,BREAKM$/;"	v	module:defineparameters
+BREAKS	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,cS,VS,temp3S,BREAKS,/;"	v	module:defineparameters
+BREAKr	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n) :: gkr,cr,Vr,temp3r,BREAKr$/;"	v	module:defineparameters
+CSCOEFM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:,:), allocatable :: CSCOEFM$/;"	v	module:defineparameters
+CSCOEFS	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l,1:4) :: CSCOEFS$/;"	v	module:defineparameters
+CSCOEFr	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n,1:4) :: CSCOEFr$/;"	v	module:defineparameters
+DCOPY	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DCOPY(/;"	s
+DECCON	.\nleq\linalg_nleq2.f	/^      SUBROUTINE DECCON(/;"	s
+DGBTF2	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGBTF2(/;"	s
+DGBTRF	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGBTRF(/;"	s
+DGBTRS	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGBTRS(/;"	s
+DGEMM	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGEMM(/;"	s
+DGEMV	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGEMV(/;"	s
+DGER	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGER(/;"	s
+DGETF2	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGETF2(/;"	s
+DGETRF	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGETRF(/;"	s
+DGETRS	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DGETRS(/;"	s
+DLAMC1	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DLAMC1(/;"	s
+DLAMC2	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DLAMC2(/;"	s
+DLAMC3	.\nleq\linalg_nleq1.f	/^      DOUBLE PRECISION FUNCTION DLAMC3(/;"	f
+DLAMC4	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DLAMC4(/;"	s
+DLAMC5	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DLAMC5(/;"	s
+DLAMCH	.\nleq\linalg_nleq1.f	/^      DOUBLE PRECISION FUNCTION DLAMCH(/;"	f
+DLASWP	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DLASWP(/;"	s
+DSCAL	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DSCAL(/;"	s
+DSWAP	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DSWAP(/;"	s
+DTBSV	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DTBSV(/;"	s
+DTRSM	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DTRSM(/;"	s
+FNORM	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(1,2),OBJ,FNORM$/;"	v	module:glob0
+Femalesim1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:46,1:6) :: Malesim1, Femalesim1$/;"	v	module:defineparameters
+Femalesim2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:46,1:6) :: Malesim2, Femalesim2$/;"	v	module:defineparameters
+Fmf	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=/;"	v	module:defineparameters
+Fmm	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=/;"	v	module:defineparameters
+Fsf	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=/;"	v	module:defineparameters
+Fsm	.\defineparameters.F90	/^    real(8) :: Fsm=/;"	v	module:defineparameters
+Fw	.\Model_Parameters.f90	/^        real(8), parameter :: Fw=/;"	v	module:Model_Parameters
+Fws	.\Model_Parameters.f90	/^        real(8), parameter :: Fw=-0.0460d0, Fws=/;"	v	module:Model_Parameters
+GRAD	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(/;"	v	module:glob0
+GRAD2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(/;"	v	module:glob0
+Gamma_redistr	.\Model_Parameters.f90	/^        real(8) :: Gamma_redistr /;"	v	module:Model_Parameters
+H	.\defineparameters.F90	/^    real(8), dimension (1:2,1:q) :: H$/;"	v	module:defineparameters
+Hfknot	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha, siga, rhoa,Knot(n+3),Hmknot(p+3),Hfknot(/;"	v	module:defineparameters
+Hmknot	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha, siga, rhoa,Knot(n+3),Hmknot(/;"	v	module:defineparameters
+Hybrd_problem	.\minpack-hybrd\hybrd_wrapper.f90	/^    type Hybrd_problem /;"	t	module:hybrd_wrapper
+IDAMAX	.\nleq\linalg_nleq1.f	/^      INTEGER FUNCTION IDAMAX(/;"	f
+IEEECK	.\nleq\linalg_nleq1.f	/^      INTEGER          FUNCTION IEEECK(/;"	f
+ILAENV	.\nleq\linalg_nleq1.f	/^      INTEGER FUNCTION ILAENV(/;"	f
+IPARMQ	.\nleq\linalg_nleq1.f	/^      INTEGER FUNCTION IPARMQ(/;"	f
+ITMAX	.\Solvelastactive.f90	/^    integer :: MAXFCN,ITMAX,/;"	v	module:glob0
+Initialize	.\main.f90	/^        subroutine Initialize(/;"	s	program:Laffer
+K	.\defineparameters.F90	/^    real(8), dimension (1:n) :: K$/;"	v	module:defineparameters
+Knot	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha, siga, rhoa,Knot(/;"	v	module:defineparameters
+LSAME	.\nleq\linalg_nleq1.f	/^      LOGICAL FUNCTION LSAME(/;"	f
+Laffer	.\main.f90	/^ program Laffer$/;"	p
+LinInterp	.\Utilities.f90	/^    function LinInterp(/;"	f	module:Utilities
+MAXFCN	.\Solvelastactive.f90	/^    integer :: MAXFCN,/;"	v	module:glob0
+MON	.\nleq\zibmon.f	/^      SUBROUTINE MON$/;"	s
+MONDEF	.\nleq\zibmon.f	/^      ENTRY MONDEF(/;"	e	subroutine:MON
+MONGET	.\nleq\zibmon.f	/^      ENTRY MONGET(/;"	e	subroutine:MON
+MONHLT	.\nleq\zibmon.f	/^      ENTRY MONHLT$/;"	e	subroutine:MON
+MONINI	.\nleq\zibmon.f	/^      ENTRY MONINI /;"	e	subroutine:MON
+MONOFF	.\nleq\zibmon.f	/^      ENTRY MONOFF /;"	e	subroutine:MON
+MONON	.\nleq\zibmon.f	/^      ENTRY MONON /;"	e	subroutine:MON
+MONPRT	.\nleq\zibmon.f	/^      ENTRY MONPRT$/;"	e	subroutine:MON
+MONSTR	.\nleq\zibmon.f	/^      ENTRY MONSTR /;"	e	subroutine:MON
+MakeGrid	.\Utilities.f90	/^    subroutine MakeGrid(/;"	s	module:Utilities
+Malesim1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:46,1:6) :: Malesim1,/;"	v	module:defineparameters
+Malesim2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:46,1:6) :: Malesim2,/;"	v	module:defineparameters
+Model_Parameters	.\Model_Parameters.f90	/^module Model_Parameters$/;"	m
+N1FACT	.\nleq\nleq1.f	/^      SUBROUTINE N1FACT(/;"	s
+N1INT	.\nleq\nleq1.f	/^      SUBROUTINE N1INT(/;"	s
+N1JAC	.\nleq\nleq1.f	/^      SUBROUTINE N1JAC /;"	s
+N1JACB	.\nleq\nleq1.f	/^      SUBROUTINE N1JACB /;"	s
+N1JCF	.\nleq\nleq1.f	/^      SUBROUTINE N1JCF /;"	s
+N1JCFB	.\nleq\nleq1.f	/^      SUBROUTINE N1JCFB /;"	s
+N1LVLS	.\nleq\nleq1.f	/^      SUBROUTINE N1LVLS(/;"	s
+N1PCHK	.\nleq\nleq1.f	/^      SUBROUTINE N1PCHK(/;"	s
+N1PRV1	.\nleq\nleq1.f	/^      SUBROUTINE N1PRV1(/;"	s
+N1PRV2	.\nleq\nleq1.f	/^      SUBROUTINE N1PRV2(/;"	s
+N1SCAL	.\nleq\nleq1.f	/^      SUBROUTINE N1SCAL(/;"	s
+N1SCRB	.\nleq\nleq1.f	/^      SUBROUTINE N1SCRB(/;"	s
+N1SCRF	.\nleq\nleq1.f	/^      SUBROUTINE N1SCRF(/;"	s
+N1SOLV	.\nleq\nleq1.f	/^      SUBROUTINE N1SOLV(/;"	s
+N1SOUT	.\nleq\nleq1.f	/^      SUBROUTINE N1SOUT(/;"	s
+N2FACT	.\nleq\nleq2.f	/^      SUBROUTINE N2FACT(/;"	s
+N2INT	.\nleq\nleq2.f	/^      SUBROUTINE N2INT(/;"	s
+N2JAC	.\nleq\nleq2.f	/^      SUBROUTINE N2JAC /;"	s
+N2JCF	.\nleq\nleq2.f	/^      SUBROUTINE N2JCF /;"	s
+N2LVLS	.\nleq\nleq2.f	/^      SUBROUTINE N2LVLS(/;"	s
+N2PCHK	.\nleq\nleq2.f	/^      SUBROUTINE N2PCHK(/;"	s
+N2PRJN	.\nleq\nleq2.f	/^      SUBROUTINE N2PRJN(/;"	s
+N2PRV1	.\nleq\nleq2.f	/^      SUBROUTINE N2PRV1(/;"	s
+N2PRV2	.\nleq\nleq2.f	/^      SUBROUTINE N2PRV2(/;"	s
+N2SCAL	.\nleq\nleq2.f	/^      SUBROUTINE N2SCAL(/;"	s
+N2SCRF	.\nleq\nleq2.f	/^      SUBROUTINE N2SCRF(/;"	s
+N2SOLV	.\nleq\nleq2.f	/^      SUBROUTINE N2SOLV(/;"	s
+N2SOUT	.\nleq\nleq2.f	/^      SUBROUTINE N2SOUT(/;"	s
+NLEQ1	.\nleq\nleq1.f	/^      SUBROUTINE NLEQ1(/;"	s
+NLEQ2	.\nleq\nleq2.f	/^      SUBROUTINE NLEQ2(/;"	s
+OBJ	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(1,2),OBJ,/;"	v	module:glob0
+OmegaActive	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: OmegaRet, OmegaActive,/;"	v	module:Model_Parameters
+OmegaRet	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: OmegaRet,/;"	v	module:Model_Parameters
+PolicyFunctions	.\PolicyFunctions.f90	/^    module PolicyFunctions$/;"	m
+Prob_a	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: a, Prob_a /;"	v	module:Model_Parameters
+Prob_u	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: u, Prob_u /;"	v	module:Model_Parameters
+Probd	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: OmegaRet, OmegaActive, Probm, Probd$/;"	v	module:Model_Parameters
+Probd	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(/;"	v	module:defineparameters
+Probfam	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Probfam$/;"	v	module:Model_Parameters
+Probm	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: OmegaRet, OmegaActive, Probm,/;"	v	module:Model_Parameters
+Probm	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(/;"	v	module:defineparameters
+Psi_pension	.\Model_Parameters.f90	/^        real(8) :: Psi_pension /;"	v	module:Model_Parameters
+RHS	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(/;"	v	module:glob0
+Random1	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000,1:45) :: Random1,/;"	v	module:defineparameters
+Random1f	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m,Random1f,/;"	v	module:Model_Parameters
+Random1m	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m,/;"	v	module:Model_Parameters
+Random2	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000,1:45) :: Random1, Random2,/;"	v	module:defineparameters
+Random2f	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m,Random1f, Random2f$/;"	v	module:Model_Parameters
+Random2m	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m,/;"	v	module:Model_Parameters
+Random3	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000,1:45) :: Random1, Random2, Random3,/;"	v	module:defineparameters
+Random3f	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f,/;"	v	module:Model_Parameters
+Random3m	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m,/;"	v	module:Model_Parameters
+Random4	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000,1:45) :: Random1, Random2, Random3, Random4$/;"	v	module:defineparameters
+Random5	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000) :: Random5,/;"	v	module:defineparameters
+Random6	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000) :: Random5, Random6$/;"	v	module:defineparameters
+SOL	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(/;"	v	module:glob0
+SOL2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(/;"	v	module:glob0
+SOLCON	.\nleq\linalg_nleq2.f	/^      SUBROUTINE SOLCON(/;"	s
+Sim1f	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: Sim1m,Sim1f /;"	v	module:Model_Parameters
+Sim1m	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: Sim1m,/;"	v	module:Model_Parameters
+SimR1f	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: SimR1m, SimR1f /;"	v	module:Model_Parameters
+SimR1m	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: SimR1m,/;"	v	module:Model_Parameters
+Solve12to44	.\Solve12to44.f90	/^subroutine Solve12to44(/;"	s
+SolveActiveLife	.\SolveActiveLife.f90	/^subroutine SolveActiveLife(/;"	s
+SolveInRetirement	.\SolveInRetirement.f90	/^    subroutine SolveInRetirement(/;"	s
+Solvelastactive	.\Solvelastactive.f90	/^subroutine Solvelastactive(/;"	s
+Statistics	.\Statistics.f90	/^subroutine Statistics$/;"	s
+T	.\Model_Parameters.f90	/^        integer, parameter :: T /;"	v	module:Model_Parameters
+Theta	.\defineparameters.F90	/^    real(8), dimension (1:p) :: Theta$/;"	v	module:defineparameters
+Tret	.\Model_Parameters.f90	/^        integer, parameter :: Tret /;"	v	module:Model_Parameters
+U	.\defineparameters.F90	/^    real(8), dimension (1:2,1:2,1:l) :: U,/;"	v	module:defineparameters
+Uc	.\Utilities.f90	/^    function Uc(/;"	f	module:Utilities
+Ul	.\Utilities.f90	/^    function Ul(/;"	f	module:Utilities
+Unemp_benefit	.\Model_Parameters.f90	/^        real(8) :: Unemp_benefit,/;"	v	module:Model_Parameters
+Utilities	.\Utilities.f90	/^module Utilities$/;"	m
+VM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,gnfM,cM,VM,/;"	v	module:defineparameters
+VS	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,cS,VS,/;"	v	module:defineparameters
+Vr	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n) :: gkr,cr,Vr,/;"	v	module:defineparameters
+WNORM	.\nleq\wnorm.f	/^      DOUBLE PRECISION FUNCTION WNORM(/;"	f
+WeightActive	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: WeightRet, WeightActive$/;"	v	module:Model_Parameters
+WeightRet	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: WeightRet,/;"	v	module:Model_Parameters
+XERBLA	.\nleq\linalg_nleq1.f	/^      SUBROUTINE XERBLA(/;"	s
+XF1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:46,1:5) :: XM1,XF1$/;"	v	module:defineparameters
+XF2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:46,1:5) :: XM2,XF2$/;"	v	module:defineparameters
+XFR1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:31,1:2) :: XMR1,XFR1$/;"	v	module:defineparameters
+XFR2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:31,1:2) :: XMR2,XFR2$/;"	v	module:defineparameters
+XGUESS	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(/;"	v	module:glob0
+XGUESS2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(/;"	v	module:glob0
+XLB	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(/;"	v	module:glob0
+XLB2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(/;"	v	module:glob0
+XM1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:46,1:5) :: XM1,/;"	v	module:defineparameters
+XM2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:46,1:5) :: XM2,/;"	v	module:defineparameters
+XMR1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:31,1:2) :: XMR1,/;"	v	module:defineparameters
+XMR2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:31,1:2) :: XMR2,/;"	v	module:defineparameters
+XUB	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(/;"	v	module:glob0
+XUB2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(/;"	v	module:glob0
+ZIBCONST	.\nleq\zibconst.f	/^      SUBROUTINE ZIBCONST(/;"	s
+ZIBSEC	.\nleq\zibsec.f	/^      SUBROUTINE ZIBSEC /;"	s
+a	.\Model_Parameters.f90	/^        real/;"	v	module:Model_Parameters
+alpha	.\Model_Parameters.f90	/^        real(8), parameter :: alpha /;"	v	module:Model_Parameters
+alpha	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha,/;"	v	module:defineparameters
+beta	.\Model_Parameters.f90	/^        real(8), parameter :: beta /;"	v	module:Model_Parameters
+beta	.\defineparameters.F90	/^    real(8) :: beta=/;"	v	module:defineparameters
+bilin_interp	.\Utilities.f90	/^    function bilin_interp(/;"	f	module:Utilities
+break	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: break$/;"	v	module:PolicyFunctions
+c	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), alloca/;"	v	module:PolicyFunctions
+cM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,gnfM,cM,/;"	v	module:defineparameters
+cS	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,cS,/;"	v	module:defineparameters
+c_grid	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: c_grid$/;"	v	module:PolicyFunctions
+c_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: c_ret,/;"	v	module:PolicyFunctions
+cdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: c,cdum$/;"	v	module:PolicyFunctions
+chif	.\Model_Parameters.f90	/^        real(8) :: chif=/;"	v	module:Model_Parameters
+chif	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=1.0\/0.3,etaf=1.0\/0.6,psim=0.4,psif=0.4,chim=169.0,chif=/;"	v	module:defineparameters
+chifs	.\Model_Parameters.f90	/^        real(8) :: chif= 4.54d0,   chifs=/;"	v	module:Model_Parameters
+chim	.\Model_Parameters.f90	/^        real(8) :: chim=/;"	v	module:Model_Parameters
+chim	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=1.0\/0.3,etaf=1.0\/0.6,psim=0.4,psif=0.4,chim=/;"	v	module:defineparameters
+chims	.\Model_Parameters.f90	/^        real(8) :: chim= 20.45d0,    chims=/;"	v	module:Model_Parameters
+cons_floor	.\Model_Parameters.f90	/^        real(8), parameter :: cons_floor /;"	v	module:Model_Parameters
+count5	.\defineparameters.F90	/^    integer :: i,d2, iter, count5$/;"	v	module:defineparameters
+cr	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n) :: gkr,cr,/;"	v	module:defineparameters
+cs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: cs,/;"	v	module:PolicyFunctions
+cs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: cs_ret$/;"	v	module:PolicyFunctions
+csdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: cs,csdum$/;"	v	module:PolicyFunctions
+cubspl	.\pppack.f90	/^subroutine cubspl /;"	s	module:pppack
+d2	.\defineparameters.F90	/^    integer :: i,d2,/;"	v	module:defineparameters
+debttoGDP	.\Model_Parameters.f90	/^        real(8) :: debttoGDP=/;"	v	module:Model_Parameters
+defineparameters	.\defineparameters.F90	/^module defineparameters$/;"	m
+delta	.\Model_Parameters.f90	/^        real(8), parameter :: delta /;"	v	module:Model_Parameters
+delta	.\defineparameters.F90	/^    real(8) :: beta=1.04, r=0.011, delta=/;"	v	module:defineparameters
+deltaf	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=/;"	v	module:defineparameters
+deltam	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=/;"	v	module:defineparameters
+dogleg	.\minpack-hybrd\dogleg.f	/^      subroutine dogleg(/;"	s
+dpmpar	.\minpack-hybrd\dpmpar.f	/^      double precision function dpmpar(/;"	f
+dum	.\Solvelastactive.f90	/^    real(8) :: dum,/;"	v	module:glob0
+dum	.\main.f90	/^        real(8) :: dum,/;"	v	program:Laffer
+dum2	.\main.f90	/^        real(8) :: dum,dum2$/;"	v	program:Laffer
+enorm	.\minpack-hybrd\enorm.f	/^      double precision function enorm(/;"	f
+epsa	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa,/;"	v	module:defineparameters
+epsfcn	.\minpack-hybrd\hybrd_wrapper.f90	/^        real(8) :: epsfcn /;"	k	type:Hybrd_problem
+epsfcn	.\minpack-hybrd\hybrd_wrapper.f90	/^    real(8) :: epsfcn /;"	v	module:hybrd_wrapper
+epsilon	.\Model_Parameters.f90	/^        real(8) :: epsilon=/;"	v	module:Model_Parameters
+epsilon	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=0.37503, lumpsum=0.015869,lumpsumdum=0.015869, epsilon=/;"	v	module:defineparameters
+epsilon2	.\Model_Parameters.f90	/^        real(8) :: epsilon=1d0, epsilon2=/;"	v	module:Model_Parameters
+epsilon2	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=0.37503, lumpsum=0.015869,lumpsumdum=0.015869, epsilon=0.1, epsilon2=/;"	v	module:defineparameters
+epsilon3	.\Model_Parameters.f90	/^        real(8) :: epsilon=1d0, epsilon2=1d0, epsilon3=/;"	v	module:Model_Parameters
+epsilon4	.\Model_Parameters.f90	/^        real(8) :: epsilon=1d0, epsilon2=1d0, epsilon3=1d0, epsilon4=/;"	v	module:Model_Parameters
+epsilon5	.\Model_Parameters.f90	/^        real(8) :: epsilon=1d0, epsilon2=1d0, epsilon3=1d0, epsilon4=1d0, epsilon5=/;"	v	module:Model_Parameters
+epsilon6	.\Model_Parameters.f90	/^        real(8) :: epsilon=1d0, epsilon2=1d0, epsilon3=1d0, epsilon4=1d0, epsilon5=1d0, epsilon6=/;"	v	module:Model_Parameters
+epsu	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu,/;"	v	module:defineparameters
+eta	.\defineparameters.F90	/^    real(8) :: beta=/;"	v	module:defineparameters
+etaf	.\Model_Parameters.f90	/^        real(8), parameter :: etaf /;"	v	module:Model_Parameters
+etaf	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=1.0\/0.3,etaf=/;"	v	module:defineparameters
+etam	.\Model_Parameters.f90	/^        real(8), parameter :: etam /;"	v	module:Model_Parameters
+etam	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=/;"	v	module:defineparameters
+ev	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: ev$/;"	v	module:PolicyFunctions
+ev_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:,:), allocatable :: ev_spln_coefs$/;"	v	module:PolicyFunctions
+ev_spln_coefs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: ev_spln_coefs_ret,/;"	v	module:PolicyFunctions
+evm	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: evm /;"	v	module:PolicyFunctions
+evm_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: evm_spln_coefs /;"	v	module:PolicyFunctions
+evs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: evs$/;"	v	module:PolicyFunctions
+evs_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: evs_spln_coefs,/;"	v	module:PolicyFunctions
+evs_spln_coefs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: ev_spln_coefs_ret,evs_spln_coefs_ret$/;"	v	module:PolicyFunctions
+exp1f	.\Model_Parameters.f90	/^        integer, dimension (:,:,:,:), allocatable :: exp1m,exp1f /;"	v	module:Model_Parameters
+exp1m	.\Model_Parameters.f90	/^        integer, dimension (:,:,:,:), allocatable :: exp1m,/;"	v	module:Model_Parameters
+expF1	.\defineparameters.F90	/^    integer, dimension (1:10000,1:46,1:4) :: expM1,expF1$/;"	v	module:defineparameters
+expF2	.\defineparameters.F90	/^    integer, dimension (1:100000,1:46,1:4) :: expM2,expF2$/;"	v	module:defineparameters
+expM1	.\defineparameters.F90	/^    integer, dimension (1:10000,1:46,1:4) :: expM1,/;"	v	module:defineparameters
+expM2	.\defineparameters.F90	/^    integer, dimension (1:100000,1:46,1:4) :: expM2,/;"	v	module:defineparameters
+factor	.\minpack-hybrd\hybrd_wrapper.f90	/^        real(8) :: factor$/;"	k	type:Hybrd_problem
+factor	.\minpack-hybrd\hybrd_wrapper.f90	/^    real(8) :: factor$/;"	v	module:hybrd_wrapper
+famshock	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f, marstatm, marstatf, famshock$/;"	v	module:Model_Parameters
+fdjac1	.\minpack-hybrd\fdjac1.f	/^      subroutine fdjac1(/;"	s
+fpartner	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:), allocatable :: fpartner,/;"	v	module:PolicyFunctions
+fpartnerdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:), allocatable :: fpartner,fpartnerdum,/;"	v	module:PolicyFunctions
+fpartnerdum2	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:), allocatable :: fpartner,fpartnerdum,fpartnerdum2$/;"	v	module:PolicyFunctions
+gam0	.\defineparameters.F90	/^    real(8) :: gam0=/;"	v	module:defineparameters
+gam1	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=/;"	v	module:defineparameters
+gam2	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=0.0533247, gam2=/;"	v	module:defineparameters
+gam3	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=0.0533247, gam2=-0.001456, gam3=/;"	v	module:defineparameters
+gamf0	.\defineparameters.F90	/^    real(8) :: gamf0=/;"	v	module:defineparameters
+gamf1	.\defineparameters.F90	/^    real(8) :: gamf0=-2.18, gamf1=/;"	v	module:defineparameters
+gamf2	.\defineparameters.F90	/^    real(8) :: gamf0=-2.18, gamf1=0.0556236, gamf2=/;"	v	module:defineparameters
+gamf3	.\defineparameters.F90	/^    real(8) :: gamf0=-2.18, gamf1=0.0556236, gamf2=-0.00165, gamf3=/;"	v	module:defineparameters
+gamma	.\Model_Parameters.f90	/^        real(8) :: gamma(/;"	v	module:Model_Parameters
+gamma0	.\Model_Parameters.f90	/^        real(8) :: gamma(2,3), gamma0 /;"	v	module:Model_Parameters
+gamsc0	.\defineparameters.F90	/^    real(8) :: gamsc0=/;"	v	module:defineparameters
+gamsc1	.\defineparameters.F90	/^    real(8) :: gamsc0=-1.2, gamsc1=/;"	v	module:defineparameters
+gamsc2	.\defineparameters.F90	/^    real(8) :: gamsc0=-1.2, gamsc1=0.0720771, gamsc2=/;"	v	module:defineparameters
+gamsc3	.\defineparameters.F90	/^    real(8) :: gamsc0=-1.2, gamsc1=0.0720771, gamsc2=-0.0020941, gamsc3=/;"	v	module:defineparameters
+gamscf0	.\defineparameters.F90	/^    real(8) :: gamscf0=/;"	v	module:defineparameters
+gamscf1	.\defineparameters.F90	/^    real(8) :: gamscf0=-1.4, gamscf1=/;"	v	module:defineparameters
+gamscf2	.\defineparameters.F90	/^    real(8) :: gamscf0=-1.4, gamscf1=0.0713539, gamscf2=/;"	v	module:defineparameters
+gamscf3	.\defineparameters.F90	/^    real(8) :: gamscf0=-1.4, gamscf1=0.0713539, gamscf2=-0.0020398, gamscf3=/;"	v	module:defineparameters
+getHybrSoln	.\minpack-hybrd\hybrd_wrapper.f90	/^    subroutine getHybrSoln(/;"	s	module:hybrd_wrapper
+getSoln	.\minpack-hybrd\hybrd_wrapper.f90	/^    subroutine getSoln(/;"	s	module:hybrd_wrapper
+gkM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,/;"	v	module:defineparameters
+gkS	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,/;"	v	module:defineparameters
+gkdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: k,gkdum$/;"	v	module:PolicyFunctions
+gkr	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n) :: gkr,/;"	v	module:defineparameters
+gksdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: ks,gksdum$/;"	v	module:PolicyFunctions
+glob0	.\Solvelastactive.f90	/^module glob0$/;"	m
+gnM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,/;"	v	module:defineparameters
+gnS	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,cS,VS,temp3S,BREAKS,gnS$/;"	v	module:defineparameters
+gnfM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,gnfM,/;"	v	module:defineparameters
+hmax	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax,/;"	v	module:defineparameters
+hmin	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin,/;"	v	module:defineparameters
+hybrd	.\minpack-hybrd\hybrd.f	/^      subroutine hybrd(/;"	s
+hybrd_wrapper	.\minpack-hybrd\hybrd_wrapper.f90	/^module hybrd_wrapper$/;"	m
+i	.\defineparameters.F90	/^    in/;"	v	module:defineparameters
+iaf	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,/;"	v	program:Laffer
+iam	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,/;"	v	program:Laffer
+ik	.\main.f90	/^        integer :: ik,/;"	v	program:Laffer
+ik2	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,iu2,ik2$/;"	v	program:Laffer
+inck	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck,/;"	v	module:defineparameters
+ind	.\Solvelastactive.f90	/^    integer :: MAXFCN,ITMAX,ind,/;"	v	module:glob0
+ind2	.\Solvelastactive.f90	/^    integer :: MAXFCN,ITMAX,ind,ind2,/;"	v	module:glob0
+ind3	.\Solvelastactive.f90	/^    integer :: MAXFCN,ITMAX,ind,ind2,ind3$/;"	v	module:glob0
+init	.\minpack-hybrd\hybrd_wrapper.f90	/^    subroutine init(/;"	s	module:hybrd_wrapper
+initmarr	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=0.0533247, gam2=-0.001456, gam3=0.0000142, marr=0.7372, initmarr=/;"	v	module:defineparameters
+interv	.\pppack.f90	/^subroutine interv /;"	s	module:pppack
+it	.\Model_Parameters.f90	/^        integer :: it,/;"	v	module:Model_Parameters
+it2	.\main.f90	/^        integer :: ik,tprint,it2,/;"	v	program:Laffer
+it3	.\main.f90	/^        integer :: ik,tprint,it2,it3,/;"	v	program:Laffer
+it4	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,/;"	v	program:Laffer
+iter	.\Model_Parameters.f90	/^        integer :: it,iter$/;"	v	module:Model_Parameters
+iter	.\defineparameters.F90	/^    integer :: i,d2, iter,/;"	v	module:defineparameters
+itg	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,/;"	v	module:glob0
+iu2	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,iu2,/;"	v	program:Laffer
+iuf	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,/;"	v	program:Laffer
+ium	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,/;"	v	program:Laffer
+ix	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,/;"	v	program:Laffer
+j	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,/;"	v	program:Laffer
+k	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: k,/;"	v	module:PolicyFunctions
+k_grid	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: k_grid$/;"	v	module:PolicyFunctions
+k_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: k_ret$/;"	v	module:PolicyFunctions
+kdum	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,/;"	v	module:glob0
+kmax	.\defineparameters.F90	/^    real(8) :: kmin, kmax,/;"	v	module:defineparameters
+kmin	.\defineparameters.F90	/^    real(8) :: kmin,/;"	v	module:defineparameters
+ks	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: ks,/;"	v	module:PolicyFunctions
+ks_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: ks_ret$/;"	v	module:PolicyFunctions
+l	.\defineparameters.F90	/^    integer, parameter :: n=16, p=45, t=75, q=2, l=/;"	v	module:defineparameters
+labor1	.\labor1.f90	/^SUBROUTINE labor1 /;"	s
+labor1work	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: labor1work$/;"	v	module:PolicyFunctions
+labor2	.\labor2.f90	/^SUBROUTINE labor2 /;"	s
+labor2_hybrd	.\labor2.f90	/^subroutine labor2_hybrd(/;"	s
+labor3	.\labor3.f90	/^SUBROUTINE labor3 /;"	s
+laborf	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), allocatable :: laborm,laborf$/;"	v	module:PolicyFunctions
+laborm	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), allocatable :: laborm,/;"	v	module:PolicyFunctions
+labors	.\labors.f90	/^SUBROUTINE labors /;"	s
+laborsinglef	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: laborsinglem,laborsinglef$/;"	v	module:PolicyFunctions
+laborsinglem	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: laborsinglem,/;"	v	module:PolicyFunctions
+ldfjac	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: ldfjac,/;"	k	type:Hybrd_problem
+ldfjac	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: ldfjac,/;"	v	module:hybrd_wrapper
+locate	.\Utilities.f90	/^    function locate(/;"	f	module:Utilities
+lr	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: ldfjac, lr$/;"	k	type:Hybrd_problem
+lr	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: ldfjac, lr$/;"	v	module:hybrd_wrapper
+lsupply	.\lsupply.f90	/^subroutine lsupply(/;"	s
+lumpsum	.\Model_Parameters.f90	/^        real(8) :: Unemp_benefit, lumpsum=/;"	v	module:Model_Parameters
+lumpsum	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=0.37503, lumpsum=/;"	v	module:defineparameters
+lumpsumdum	.\Model_Parameters.f90	/^        real(8) :: Unemp_benefit, lumpsum=2d0*0.093544d0, lumpsumdum=/;"	v	module:Model_Parameters
+lumpsumdum	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=0.37503, lumpsum=0.015869,lumpsumdum=/;"	v	module:defineparameters
+ma	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma,/;"	v	module:defineparameters
+marr	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=0.0533247, gam2=-0.001456, gam3=0.0000142, marr=/;"	v	module:defineparameters
+marstatf	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f, marstatm, marstatf,/;"	v	module:Model_Parameters
+marstatm	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f, marstatm,/;"	v	module:Model_Parameters
+max44to13	.\max44to13.f90	/^subroutine max44to13(/;"	s
+max76to46	.\max76to46.F90	/^subroutine max76to46$/;"	s
+maxfev	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: maxfev /;"	k	type:Hybrd_problem
+maxfev	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: maxfev /;"	v	module:hybrd_wrapper
+milspendtoGDP	.\Model_Parameters.f90	/^        real(8) :: milspendtoGDP=/;"	v	module:Model_Parameters
+mix	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(/;"	v	module:defineparameters
+mix2	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(/;"	v	module:defineparameters
+mix3	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(/;"	v	module:defineparameters
+mix4	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(10000,2),mix4(/;"	v	module:defineparameters
+ml	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: ml,/;"	k	type:Hybrd_problem
+ml	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: ml,/;"	v	module:hybrd_wrapper
+mode	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: mode /;"	k	type:Hybrd_problem
+mode	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: mode /;"	v	module:hybrd_wrapper
+mpartner	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), allocatable :: mpartner,/;"	v	module:PolicyFunctions
+mpartnerdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), allocatable :: mpartner,mpartnerdum,/;"	v	module:PolicyFunctions
+mpartnerdum2	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), allocatable :: mpartner,mpartnerdum,mpartnerdum2$/;"	v	module:PolicyFunctions
+mu	.\Model_Parameters.f90	/^        real(8), parameter :: mu /;"	v	module:Model_Parameters
+mu	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: ml, mu$/;"	k	type:Hybrd_problem
+muh	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: ml, muh$/;"	v	module:hybrd_wrapper
+n	.\defineparameters.F90	/^    int/;"	v	module:defineparameters
+na	.\Model_Parameters.f90	/^        integer, parameter :: na /;"	v	module:Model_Parameters
+nc	.\Model_Parameters.f90	/^        integer, parameter :: nc /;"	v	module:Model_Parameters
+neqs	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: neqs /;"	k	type:Hybrd_problem
+netinc	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,/;"	v	module:glob0
+nf	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: nm,nf,/;"	v	module:PolicyFunctions
+nfam	.\Model_Parameters.f90	/^        integer, parameter :: nfam /;"	v	module:Model_Parameters
+nfdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: nm,nf,nmdum,nfdum$/;"	v	module:PolicyFunctions
+nfev	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: nfev$/;"	k	type:Hybrd_problem
+nfev	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: nfev$/;"	v	module:hybrd_wrapper
+nk	.\Model_Parameters.f90	/^        integer, parameter :: nk /;"	v	module:Model_Parameters
+nm	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: nm,/;"	v	module:PolicyFunctions
+nmdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: nm,nf,nmdum,/;"	v	module:PolicyFunctions
+ns	.\PolicyFunctions.f90	/^        real(8), dimensi/;"	v	module:PolicyFunctions
+nsdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: ns,nsdum$/;"	v	module:PolicyFunctions
+nsim	.\Model_Parameters.f90	/^        integer, parameter :: nsim /;"	v	module:Model_Parameters
+nsim2	.\Model_Parameters.f90	/^        integer, parameter :: nsim2 /;"	v	module:Model_Parameters
+nu	.\Model_Parameters.f90	/^        integer, parameter :: nu /;"	v	module:Model_Parameters
+nw	.\Model_Parameters.f90	/^        integer, parameter :: nw /;"	v	module:Model_Parameters
+p	.\defineparameters.F90	/^    integer, pa/;"	v	module:defineparameters
+p_ev_spln_coefs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: p_ev_spln_coefs_ret,/;"	v	module:PolicyFunctions
+p_evs_spln_coefs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: p_ev_spln_coefs_ret,p_evs_spln_coefs_ret /;"	v	module:PolicyFunctions
+partest	.\partest.f90	/^subroutine partest(/;"	s
+partest2	.\partest.f90	/^subroutine partest2(/;"	s
+partest21	.\partest21.f90	/^subroutine partest21(/;"	s
+partest22	.\partest21.f90	/^subroutine partest22(/;"	s
+partest23	.\partest21.f90	/^subroutine partest23(/;"	s
+partest24	.\partest21.f90	/^subroutine partest24(/;"	s
+partest25	.\partest21.f90	/^subroutine partest25(/;"	s
+partest26	.\partest21.f90	/^subroutine partest26(/;"	s
+partest27	.\partest21.f90	/^subroutine partest27(/;"	s
+partest3	.\partest.f90	/^subroutine partest3(/;"	s
+partest4	.\partest.f90	/^subroutine partest4(/;"	s
+partest5	.\partest.f90	/^subroutine partest5(/;"	s
+partest6	.\partest.f90	/^subroutine partest6(/;"	s
+partest7	.\partest.f90	/^subroutine partest7(/;"	s
+pi	.\defineparameters.F90	/^    real(8), parameter :: pi=/;"	v	module:defineparameters
+ppp_csint	.\PolicyFunctions.f90	/^    subroutine ppp_csint(/;"	s	module:PolicyFunctions
+ppp_csval	.\PolicyFunctions.f90	/^    function ppp_csval(/;"	f	module:PolicyFunctions
+pppack	.\pppack.f90	/^module pppack$/;"	m
+pprob	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(10000,2),mix4(10000,2),tp(1,2),tp2(1,2),pprob(/;"	v	module:defineparameters
+pprob2	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(10000,2),mix4(10000,2),tp(1,2),tp2(1,2),pprob(45,46,8,2,l,2),pprob2(/;"	v	module:defineparameters
+pprob3	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(10000,2),mix4(10000,2),tp(1,2),tp2(1,2),pprob(45,46,8,2,l,2),pprob2(45,46,8,2,l,2),pprob3(/;"	v	module:defineparameters
+ppvalu	.\pppack.f90	/^function ppvalu /;"	f	module:pppack
+proba	.\defineparameters.F90	/^    real(8), dimension (1:q) :: A, proba$/;"	v	module:defineparameters
+probu	.\defineparameters.F90	/^    real(8), dimension (1:2,1:2,1:l) :: U, probu$/;"	v	module:defineparameters
+psi	.\defineparameters.F90	/^    real(8) :: w=1.0, psi,/;"	v	module:defineparameters
+psi2	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2,/;"	v	module:defineparameters
+psif	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=1.0\/0.3,etaf=1.0\/0.6,psim=0.4,psif=/;"	v	module:defineparameters
+psim	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=1.0\/0.3,etaf=1.0\/0.6,psim=/;"	v	module:defineparameters
+q	.\defineparameters.F90	/^    integer, parameter :: n=16, p=45, t=75, q=/;"	v	module:defineparameters
+qform	.\minpack-hybrd\qform.f	/^      subroutine qform(/;"	s
+qrfac	.\minpack-hybrd\qrfac.f	/^      subroutine qrfac(/;"	s
+r	.\Model_Parameters.f90	/^        re/;"	v	module:Model_Parameters
+r	.\defineparameters.F90	/^    re/;"	v	module:defineparameters
+r1mpyq	.\minpack-hybrd\r1mpyq.f	/^      subroutine r1mpyq(/;"	s
+r1updt	.\minpack-hybrd\r1updt.f	/^      subroutine r1updt(/;"	s
+ratio	.\Model_Parameters.f90	/^        real(8) :: ratio=/;"	v	module:Model_Parameters
+ratiodum	.\Model_Parameters.f90	/^        real(8) :: ratio=4.2867d0, ratiodum=/;"	v	module:Model_Parameters
+rho_af	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_af=0.38475527d0, rho_af=/;"	v	module:Model_Parameters
+rho_am	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_am=0.33828463d0, rho_am=/;"	v	module:Model_Parameters
+rho_uf	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_uf=0.31004311d0, rho_uf=/;"	v	module:Model_Parameters
+rho_um	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_um=0.31925155D0, rho_um=/;"	v	module:Model_Parameters
+rhoa	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha, siga, rhoa,/;"	v	module:defineparameters
+setHybrParams	.\minpack-hybrd\hybrd_wrapper.f90	/^    subroutine setHybrParams(/;"	s	module:hybrd_wrapper
+siga	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha, siga,/;"	v	module:defineparameters
+sigma	.\Model_Parameters.f90	/^        real(8), parameter :: sigma /;"	v	module:Model_Parameters
+sigma_af	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_af=/;"	v	module:Model_Parameters
+sigma_am	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_am=/;"	v	module:Model_Parameters
+sigma_uf	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_uf=/;"	v	module:Model_Parameters
+sigma_um	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_um=/;"	v	module:Model_Parameters
+sim	.\defineparameters.F90	/^    integer, dimension (1:4) :: sim$/;"	v	module:defineparameters
+simulation	.\Simulation.f90	/^subroutine simulation(/;"	s
+t	.\defineparameters.F90	/^    inte/;"	v	module:defineparameters
+t0	.\defineparameters.F90	/^    real(8), parameter :: t0=/;"	v	module:defineparameters
+t0M	.\defineparameters.F90	/^    real(8), parameter :: t0M=/;"	v	module:defineparameters
+t1	.\defineparameters.F90	/^    real(8), parameter :: t0=2.604929, t1=/;"	v	module:defineparameters
+t1M	.\defineparameters.F90	/^    real(8), parameter :: t0M=3.907341, t1M=/;"	v	module:defineparameters
+t2	.\defineparameters.F90	/^    real(8), parameter :: t0=2.604929, t1=-9.655736, t2=/;"	v	module:defineparameters
+t2M	.\defineparameters.F90	/^    real(8), parameter :: t0M=3.907341, t1M=-12.23614, t2M=/;"	v	module:defineparameters
+t3	.\defineparameters.F90	/^    real(8), parameter :: t0=2.604929, t1=-9.655736, t2=12.78917, t3=/;"	v	module:defineparameters
+t3M	.\defineparameters.F90	/^    real(8), parameter :: t0M=3.907341, t1M=-12.23614, t2M=13.88106, t3M=/;"	v	module:defineparameters
+t4	.\defineparameters.F90	/^    real(8), parameter :: t0=2.604929, t1=-9.655736, t2=12.78917, t3=-6.821912, t4=/;"	v	module:defineparameters
+t4M	.\defineparameters.F90	/^    real(8), parameter :: t0M=3.907341, t1M=-12.23614, t2M=13.88106, t3M=-6.514196, t4M=/;"	v	module:defineparameters
+tSS_employee	.\Utilities.f90	/^    function tSS_employee(/;"	f	module:Utilities
+tSS_employer	.\Utilities.f90	/^    function tSS_employer(/;"	f	module:Utilities
+t_employee	.\Model_Parameters.f90	/^        real(8), parameter :: t_employer=0.0765d0, t_employee=/;"	v	module:Model_Parameters
+t_employer	.\Model_Parameters.f90	/^        real(8), parameter :: t_employer=/;"	v	module:Model_Parameters
+tax_labor	.\Utilities.f90	/^    function tax_labor(/;"	f	module:Utilities
+tax_labors	.\Utilities.f90	/^    function tax_labors(/;"	f	module:Utilities
+tax_level_scale	.\Model_Parameters.f90	/^        real(8) :: tax_level_scale=/;"	v	module:Model_Parameters
+tax_prog_scale	.\Model_Parameters.f90	/^        real(8) :: tax_level_scale=1.0d0, tax_prog_scale=/;"	v	module:Model_Parameters
+tc	.\Model_Parameters.f90	/^        real(8), parameter :: tc /;"	v	module:Model_Parameters
+tc	.\defineparameters.F90	/^    real(8), parameter :: t0=2.604929, t1=-9.655736, t2=12.78917, t3=-6.821912, t4=1.293703, tc=/;"	v	module:defineparameters
+temp3M	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,gnfM,cM,VM,temp3M,/;"	v	module:defineparameters
+temp3S	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,cS,VS,temp3S,/;"	v	module:defineparameters
+temp3r	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n) :: gkr,cr,Vr,temp3r,/;"	v	module:defineparameters
+theta	.\Model_Parameters.f90	/^        real(8) :: theta(/;"	v	module:Model_Parameters
+thetas	.\Model_Parameters.f90	/^        real(8) :: theta(3,2), thetas(/;"	v	module:Model_Parameters
+tk	.\Model_Parameters.f90	/^        real(8), parameter :: tk /;"	v	module:Model_Parameters
+tol	.\minpack-hybrd\hybrd_wrapper.f90	/^        real(8) :: tol$/;"	k	type:Hybrd_problem
+tol	.\minpack-hybrd\hybrd_wrapper.f90	/^    real(8) :: tol$/;"	v	module:hybrd_wrapper
+tp	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(10000,2),mix4(10000,2),tp(/;"	v	module:defineparameters
+tp2	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(10000,2),mix4(10000,2),tp(1,2),tp2(/;"	v	module:defineparameters
+tprint	.\main.f90	/^        integer :: ik,tprint,/;"	v	program:Laffer
+trans_a	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: trans_a /;"	v	module:Model_Parameters
+trans_u	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: trans_u /;"	v	module:Model_Parameters
+transa	.\defineparameters.F90	/^    real(8), dimension (1:q,1:q) :: transa$/;"	v	module:defineparameters
+transfam	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: transfam$/;"	v	module:Model_Parameters
+transu	.\defineparameters.F90	/^    real(8), dimension (1:2,1:2,1:l,1:l) :: transu$/;"	v	module:defineparameters
+trilin_interp	.\Utilities.f90	/^    function trilin_interp(/;"	f	module:Utilities
+u	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: u,/;"	v	module:Model_Parameters
+unempbenefit	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=0.37503, lumpsum=0.015869,lumpsumdum=0.015869, epsilon=0.1, epsilon2=0.1, unempbenefit=/;"	v	module:defineparameters
+v	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: v,/;"	v	module:PolicyFunctions
+v_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: c_ret, v_ret$/;"	v	module:PolicyFunctions
+v_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:,:), allocatable :: v_spln_coefs$/;"	v	module:PolicyFunctions
+vdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: v,vdum$/;"	v	module:PolicyFunctions
+vs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: vs,/;"	v	module:PolicyFunctions
+vs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: vs_ret$/;"	v	module:PolicyFunctions
+vs_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: evs_spln_coefs,/;"	v	module:PolicyFunctions
+vsdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: vs,vsdum$/;"	v	module:PolicyFunctions
+w	.\Model_Parameters.f90	/^        real(8) :: w /;"	v	module:Model_Parameters
+w	.\defineparameters.F90	/^    real(8) :: w=/;"	v	module:defineparameters
+wage	.\Utilities.f90	/^    function wage(/;"	f	module:Utilities
+wage_grid	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: wage_grid$/;"	v	module:PolicyFunctions
+wagef	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,/;"	v	module:glob0
+wagem	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,/;"	v	module:glob0
+ybar	.\Model_Parameters.f90	/^        real(8), parameter :: ybar /;"	v	module:Model_Parameters
+zet	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet,/;"	v	module:defineparameters
