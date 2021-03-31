@@ -12,9 +12,9 @@ module Utilities
         real(8) :: wage
         
         if(gender==1) then
-            wage = w*exp(-1.638568+gamma0+gamma(gender,1)*(x+19d0) + gamma(gender,2)*(x+19d0)**2d0 + gamma(gender,3)*(x+19d0)**3d0 + aval + uval)
+            wage = w*exp(gamma0+gamma(gender,1)*x + gamma(gender,2)*x**2d0 + gamma(gender,3)*x**3d0 + aval + uval)
         else
-            wage = w*exp(gamma(gender,1)*(x-1d0) + gamma(gender,2)*(x-1d0)**2d0 + gamma(gender,3)*(x-1d0)**3d0 + aval + uval)
+            wage = w*exp(gamma0f+gamma(gender,1)*x + gamma(gender,2)*x**2d0 + gamma(gender,3)*x**3d0 + aval + uval)
         end if
     end function wage
     
@@ -64,6 +64,13 @@ module Utilities
         
         Ul = -chim*(lm**(1d0+etam))/(1d0+etam)-chif*(lf**(1d0+etaf))/(1d0+etaf)
     end function Ul
+    
+    function dUc(c)
+        real(8) :: c, dUc
+        
+        dUc = c**(-1d0)
+    end function dUc
+    
     
     function LinInterp(x,xGrid,fVals,nx)
         real(8) :: LinInterp
@@ -116,7 +123,8 @@ module Utilities
     function locate(xx,x,n) result(loc)
         integer :: loc
         integer :: n
-        real(8), dimension (:), allocatable :: xx
+        !real(8), dimension (:), allocatable :: xx
+        real(8) :: xx(n)
         real(8) :: x
         integer :: jl, ju, jm
         
@@ -142,11 +150,14 @@ module Utilities
     
     end function locate
     
-     function bilin_interp(xx,yy,V,nx,ny,arg) result(val)
+    function bilin_interp(xx,yy,V,nx,ny,arg) result(val)
         real(8) :: val
         integer :: nx, ny
-        real(8), dimension (:), allocatable :: xx, yy
-        real(8), dimension (:,:), allocatable :: V
+        !real(8), dimension (:), allocatable :: xx, yy
+        real(8) :: xx(nx)
+        real(8) :: yy(ny)
+        !real(8), dimension (:,:), allocatable :: V
+        real(8) :: V(nx,ny)
         real(8) :: arg(2)
         real(8) :: x, y
         integer :: jx, jy
@@ -167,8 +178,10 @@ module Utilities
     function trilin_interp(xx,yy,zz,V,nx,ny,nz,arg) result(val)
         real(8) :: val
         integer :: nx, ny, nz
-        real(8), dimension (:), allocatable :: xx, yy, zz
-        real(8), dimension (:,:,:), allocatable :: V
+        !real(8), dimension (:), allocatable :: xx, yy, zz
+        real(8) :: xx(nx), yy(ny), zz(nz)
+        !real(8), dimension (:,:,:), allocatable :: V
+        real(8) :: V(nx,ny,nz)
         real(8) :: arg(3)
         real(8) :: x, y, z
         integer :: jx, jy, jz

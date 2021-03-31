@@ -166,6 +166,10 @@ subroutine lsupply(ik)
             end do
         end do
 
+        !Male works
+        
+        ind2=1
+        
         do ium=1,nw
             wagem=wage_grid(ium)
             xguess_loc_1(1)=0.99d0
@@ -206,6 +210,51 @@ subroutine lsupply(ik)
             labormwork(ik,ium)=dum4
         end do
 
+        
+     !Female works
+     
+     ind2=2
+        
+        do ium=1,nw
+            wagem=wage_grid(ium)
+            xguess_loc_1(1)=0.99d0
+            ITMAX=1000000
+            !CALL D_NEQNF(labor1, SOL, ERREL,ITMAX=ITMAX,XGUESS=XGUESS)
+            call getHybrSoln(xguess_loc_1, 1, labor1_hybrd, sol_loc_1, fnorm)
+            dum6=FNORM
+            dum4=min(sol_loc_1(1),1d0)
+            if(dum6>10d0*(ERREL**2)) then
+                xguess_loc_1(1)=0.01d0
+                ITMAX=1000000
+                !CALL D_NEQNF(labor1, SOL, ERREL,ITMAX=ITMAX,XGUESS=XGUESS,FNORM=FNORM)
+                call getHybrSoln(xguess_loc_1, 1, labor1_hybrd, sol_loc_1, fnorm)
+                if(FNORM<dum6) then
+                    dum4=min(sol_loc_1(1),1d0)
+                    dum6=FNORM
+                end if
+            end if
+            if(dum6>10d0*(ERREL**2)) then
+                xguess_loc_1(1)=0.3d0
+                ITMAX=1000000
+                !CALL D_NEQNF(labor1, SOL, ERREL,ITMAX=ITMAX,XGUESS=XGUESS,FNORM=FNORM)
+                call getHybrSoln(xguess_loc_1, 1, labor1_hybrd, sol_loc_1, fnorm)
+                if(FNORM<dum6) then
+                    dum4=min(sol_loc_1(1),1d0)
+                    dum6=FNORM
+                end if
+                !if(dum6>10d0*(ERREL**2)) then
+                !    Print *,'ik is',ik
+                !    Print *,'iam is',iam
+                !    Print *,'ium is',ium
+                !    Print *,'iaf is',iaf
+                !    Print *,'iuf is',iuf
+                !    Print *,'dum6 is',dum6
+                !    Print *,'ERREL is',ERREL
+                !end if
+            end if
+            laborfwork(ik,ium)=dum4
+        end do   
+        
     ! Singles:
 
     ind2=1

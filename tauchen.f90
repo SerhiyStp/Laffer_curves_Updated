@@ -31,7 +31,7 @@ Integer, parameter :: draws_number=1000000
 Real(8)  STDW, step, M, temp1,dum
 Real(8), Dimension(draws_number) :: normal_draws
 
-M=2.0
+M=1.5d0
 
 !==================================
 !USE PZW TO SET THE VALUE OF SHOCKS

@@ -663,17 +663,18 @@ DSCAL	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DSCAL(/;"	s
 DSWAP	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DSWAP(/;"	s
 DTBSV	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DTBSV(/;"	s
 DTRSM	.\nleq\linalg_nleq1.f	/^      SUBROUTINE DTRSM(/;"	s
-FNORM	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(1,2),OBJ,FNORM$/;"	v	module:glob0
+EXPORDER	.\Model_Parameters.f90	/^        integer, parameter :: EXPORDER /;"	v	module:Model_Parameters
+EXP_KNOT	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: EXP_KNOT$/;"	v	module:PolicyFunctions
+FNORM	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(1,2),OBJ,FNORM$/;"	v	module:glob0
+Fc	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Fc,/;"	v	module:Model_Parameters
 Femalesim1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:46,1:6) :: Malesim1, Femalesim1$/;"	v	module:defineparameters
 Femalesim2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:46,1:6) :: Malesim2, Femalesim2$/;"	v	module:defineparameters
 Fmf	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=/;"	v	module:defineparameters
 Fmm	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=/;"	v	module:defineparameters
 Fsf	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=/;"	v	module:defineparameters
 Fsm	.\defineparameters.F90	/^    real(8) :: Fsm=/;"	v	module:defineparameters
-Fw	.\Model_Parameters.f90	/^        real(8), parameter :: Fw=/;"	v	module:Model_Parameters
-Fws	.\Model_Parameters.f90	/^        real(8), parameter :: Fw=-0.0460d0, Fws=/;"	v	module:Model_Parameters
-GRAD	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(/;"	v	module:glob0
-GRAD2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(/;"	v	module:glob0
+GRAD	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(/;"	v	module:glob0
+GRAD2	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(/;"	v	module:glob0
 Gamma_redistr	.\Model_Parameters.f90	/^        real(8) :: Gamma_redistr /;"	v	module:Model_Parameters
 H	.\defineparameters.F90	/^    real(8), dimension (1:2,1:q) :: H$/;"	v	module:defineparameters
 Hfknot	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha, siga, rhoa,Knot(n+3),Hmknot(p+3),Hfknot(/;"	v	module:defineparameters
@@ -682,15 +683,18 @@ Hybrd_problem	.\minpack-hybrd\hybrd_wrapper.f90	/^    type Hybrd_problem /;"	t	m
 IDAMAX	.\nleq\linalg_nleq1.f	/^      INTEGER FUNCTION IDAMAX(/;"	f
 IEEECK	.\nleq\linalg_nleq1.f	/^      INTEGER          FUNCTION IEEECK(/;"	f
 ILAENV	.\nleq\linalg_nleq1.f	/^      INTEGER FUNCTION ILAENV(/;"	f
+INTERP2D	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: INTERP2D$/;"	v	module:PolicyFunctions
 IPARMQ	.\nleq\linalg_nleq1.f	/^      INTEGER FUNCTION IPARMQ(/;"	f
-ITMAX	.\Solvelastactive.f90	/^    integer :: MAXFCN,ITMAX,/;"	v	module:glob0
-Initialize	.\main.f90	/^        subroutine Initialize(/;"	s	program:Laffer
+ITMAX	.\glob0.f90	/^    integer :: MAXFCN,ITMAX,/;"	v	module:glob0
+Initialize	.\main.f90	/^    subroutine Initialize(/;"	s	program:Laffer
 K	.\defineparameters.F90	/^    real(8), dimension (1:n) :: K$/;"	v	module:defineparameters
+KORDER	.\Model_Parameters.f90	/^        integer, parameter :: KORDER /;"	v	module:Model_Parameters
+K_KNOT	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: K_KNOT$/;"	v	module:PolicyFunctions
 Knot	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha, siga, rhoa,Knot(/;"	v	module:defineparameters
 LSAME	.\nleq\linalg_nleq1.f	/^      LOGICAL FUNCTION LSAME(/;"	f
-Laffer	.\main.f90	/^ program Laffer$/;"	p
+Laffer	.\main.f90	/^program Laffer$/;"	p
 LinInterp	.\Utilities.f90	/^    function LinInterp(/;"	f	module:Utilities
-MAXFCN	.\Solvelastactive.f90	/^    integer :: MAXFCN,/;"	v	module:glob0
+MAXFCN	.\glob0.f90	/^    integer :: MAXFCN,/;"	v	module:glob0
 MON	.\nleq\zibmon.f	/^      SUBROUTINE MON$/;"	s
 MONDEF	.\nleq\zibmon.f	/^      ENTRY MONDEF(/;"	e	subroutine:MON
 MONGET	.\nleq\zibmon.f	/^      ENTRY MONGET(/;"	e	subroutine:MON
@@ -734,24 +738,24 @@ N2SOLV	.\nleq\nleq2.f	/^      SUBROUTINE N2SOLV(/;"	s
 N2SOUT	.\nleq\nleq2.f	/^      SUBROUTINE N2SOUT(/;"	s
 NLEQ1	.\nleq\nleq1.f	/^      SUBROUTINE NLEQ1(/;"	s
 NLEQ2	.\nleq\nleq2.f	/^      SUBROUTINE NLEQ2(/;"	s
-OBJ	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(1,2),OBJ,/;"	v	module:glob0
+OBJ	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(2), GRAD2(1,2),OBJ,/;"	v	module:glob0
 OmegaActive	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: OmegaRet, OmegaActive,/;"	v	module:Model_Parameters
 OmegaRet	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: OmegaRet,/;"	v	module:Model_Parameters
 PolicyFunctions	.\PolicyFunctions.f90	/^    module PolicyFunctions$/;"	m
 Prob_a	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: a, Prob_a /;"	v	module:Model_Parameters
+Prob_fc	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Fc, Prob_fc /;"	v	module:Model_Parameters
 Prob_u	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: u, Prob_u /;"	v	module:Model_Parameters
 Probd	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: OmegaRet, OmegaActive, Probm, Probd$/;"	v	module:Model_Parameters
 Probd	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(/;"	v	module:defineparameters
-Probfam	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Probfam$/;"	v	module:Model_Parameters
 Probm	.\Model_Parameters.f90	/^        real(8), dimension (:), allocatable :: OmegaRet, OmegaActive, Probm,/;"	v	module:Model_Parameters
 Probm	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(/;"	v	module:defineparameters
 Psi_pension	.\Model_Parameters.f90	/^        real(8) :: Psi_pension /;"	v	module:Model_Parameters
-RHS	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(/;"	v	module:glob0
+RHS	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(/;"	v	module:glob0
 Random1	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000,1:45) :: Random1,/;"	v	module:defineparameters
-Random1f	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m,Random1f,/;"	v	module:Model_Parameters
+Random1f	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m, Random1f,/;"	v	module:Model_Parameters
 Random1m	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m,/;"	v	module:Model_Parameters
 Random2	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000,1:45) :: Random1, Random2,/;"	v	module:defineparameters
-Random2f	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m,Random1f, Random2f$/;"	v	module:Model_Parameters
+Random2f	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m, Random1f, Random2f,/;"	v	module:Model_Parameters
 Random2m	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m,/;"	v	module:Model_Parameters
 Random3	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000,1:45) :: Random1, Random2, Random3,/;"	v	module:defineparameters
 Random3f	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f,/;"	v	module:Model_Parameters
@@ -759,19 +763,20 @@ Random3m	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatabl
 Random4	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000,1:45) :: Random1, Random2, Random3, Random4$/;"	v	module:defineparameters
 Random5	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000) :: Random5,/;"	v	module:defineparameters
 Random6	.\defineparameters.F90	/^    real(8), dimension (1:10,1:10000) :: Random5, Random6$/;"	v	module:defineparameters
-SOL	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(/;"	v	module:glob0
-SOL2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(/;"	v	module:glob0
+SOL	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(/;"	v	module:glob0
+SOL2	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(/;"	v	module:glob0
 SOLCON	.\nleq\linalg_nleq2.f	/^      SUBROUTINE SOLCON(/;"	s
-Sim1f	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: Sim1m,Sim1f /;"	v	module:Model_Parameters
+Sim1f	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: Sim1m,Sim1f,/;"	v	module:Model_Parameters
 Sim1m	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: Sim1m,/;"	v	module:Model_Parameters
 SimR1f	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: SimR1m, SimR1f /;"	v	module:Model_Parameters
 SimR1m	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: SimR1m,/;"	v	module:Model_Parameters
-Solve12to44	.\Solve12to44.f90	/^subroutine Solve12to44(/;"	s
 SolveActiveLife	.\SolveActiveLife.f90	/^subroutine SolveActiveLife(/;"	s
-SolveInRetirement	.\SolveInRetirement.f90	/^    subroutine SolveInRetirement(/;"	s
+SolveInRetirement	.\SolveInRetirement.f90	/^subroutine SolveInRetirement(/;"	s
+Solvefirstactive	.\Solvefirstactive.f90	/^subroutine Solvefirstactive(/;"	s
 Solvelastactive	.\Solvelastactive.f90	/^subroutine Solvelastactive(/;"	s
 Statistics	.\Statistics.f90	/^subroutine Statistics$/;"	s
 T	.\Model_Parameters.f90	/^        integer, parameter :: T /;"	v	module:Model_Parameters
+TAUCHEN	.\tauchen.f90	/^MODULE TAUCHEN$/;"	m
 Theta	.\defineparameters.F90	/^    real(8), dimension (1:p) :: Theta$/;"	v	module:defineparameters
 Tret	.\Model_Parameters.f90	/^        integer, parameter :: Tret /;"	v	module:Model_Parameters
 U	.\defineparameters.F90	/^    real(8), dimension (1:2,1:2,1:l) :: U,/;"	v	module:defineparameters
@@ -790,24 +795,25 @@ XF1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:46,1:5) :: XM1,XF
 XF2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:46,1:5) :: XM2,XF2$/;"	v	module:defineparameters
 XFR1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:31,1:2) :: XMR1,XFR1$/;"	v	module:defineparameters
 XFR2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:31,1:2) :: XMR2,XFR2$/;"	v	module:defineparameters
-XGUESS	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(/;"	v	module:glob0
-XGUESS2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(/;"	v	module:glob0
-XLB	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(/;"	v	module:glob0
-XLB2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(/;"	v	module:glob0
+XGUESS	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(/;"	v	module:glob0
+XGUESS2	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(/;"	v	module:glob0
+XLB	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(/;"	v	module:glob0
+XLB2	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(/;"	v	module:glob0
 XM1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:46,1:5) :: XM1,/;"	v	module:defineparameters
 XM2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:46,1:5) :: XM2,/;"	v	module:defineparameters
 XMR1	.\defineparameters.F90	/^    real(8), dimension (1:10000,1:31,1:2) :: XMR1,/;"	v	module:defineparameters
 XMR2	.\defineparameters.F90	/^    real(8), dimension (1:100000,1:31,1:2) :: XMR2,/;"	v	module:defineparameters
-XUB	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(/;"	v	module:glob0
-XUB2	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(/;"	v	module:glob0
+XUB	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(/;"	v	module:glob0
+XUB2	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,SOL(1), XGUESS(1), XLB(1), XUB(1), GRAD(1,1), RHS(1),SOL2(2), XGUESS2(2), XLB2(2), XUB2(/;"	v	module:glob0
 ZIBCONST	.\nleq\zibconst.f	/^      SUBROUTINE ZIBCONST(/;"	s
 ZIBSEC	.\nleq\zibsec.f	/^      SUBROUTINE ZIBSEC /;"	s
 a	.\Model_Parameters.f90	/^        real/;"	v	module:Model_Parameters
+ability_prob	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: ability_prob$/;"	v	module:PolicyFunctions
 alpha	.\Model_Parameters.f90	/^        real(8), parameter :: alpha /;"	v	module:Model_Parameters
 alpha	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha,/;"	v	module:defineparameters
 beta	.\Model_Parameters.f90	/^        real(8), parameter :: beta /;"	v	module:Model_Parameters
 beta	.\defineparameters.F90	/^    real(8) :: beta=/;"	v	module:defineparameters
-bilin_interp	.\Utilities.f90	/^    function bilin_interp(/;"	f	module:Utilities
+bilin_interp	.\Utilities.f90	/^     function bilin_interp(/;"	f	module:Utilities
 break	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: break$/;"	v	module:PolicyFunctions
 c	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), alloca/;"	v	module:PolicyFunctions
 cM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,gnfM,cM,/;"	v	module:defineparameters
@@ -817,29 +823,31 @@ c_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: c
 cdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: c,cdum$/;"	v	module:PolicyFunctions
 chif	.\Model_Parameters.f90	/^        real(8) :: chif=/;"	v	module:Model_Parameters
 chif	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=1.0\/0.3,etaf=1.0\/0.6,psim=0.4,psif=0.4,chim=169.0,chif=/;"	v	module:defineparameters
-chifs	.\Model_Parameters.f90	/^        real(8) :: chif= 4.54d0,   chifs=/;"	v	module:Model_Parameters
+chifs	.\Model_Parameters.f90	/^        real(8) :: chif= 3.935d0,   chifs=/;"	v	module:Model_Parameters
 chim	.\Model_Parameters.f90	/^        real(8) :: chim=/;"	v	module:Model_Parameters
 chim	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=1.0\/0.3,etaf=1.0\/0.6,psim=0.4,psif=0.4,chim=/;"	v	module:defineparameters
-chims	.\Model_Parameters.f90	/^        real(8) :: chim= 20.45d0,    chims=/;"	v	module:Model_Parameters
+chims	.\Model_Parameters.f90	/^        real(8) :: chim= 21.45d0,    chims=/;"	v	module:Model_Parameters
 cons_floor	.\Model_Parameters.f90	/^        real(8), parameter :: cons_floor /;"	v	module:Model_Parameters
 count5	.\defineparameters.F90	/^    integer :: i,d2, iter, count5$/;"	v	module:defineparameters
+counter	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,iu2,ik2,ifc,counter$/;"	v	program:Laffer
 cr	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n) :: gkr,cr,/;"	v	module:defineparameters
-cs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: cs,/;"	v	module:PolicyFunctions
+cs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: cs$/;"	v	module:PolicyFunctions
 cs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: cs_ret$/;"	v	module:PolicyFunctions
-csdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: cs,csdum$/;"	v	module:PolicyFunctions
 cubspl	.\pppack.f90	/^subroutine cubspl /;"	s	module:pppack
 d2	.\defineparameters.F90	/^    integer :: i,d2,/;"	v	module:defineparameters
 debttoGDP	.\Model_Parameters.f90	/^        real(8) :: debttoGDP=/;"	v	module:Model_Parameters
 defineparameters	.\defineparameters.F90	/^module defineparameters$/;"	m
 delta	.\Model_Parameters.f90	/^        real(8), parameter :: delta /;"	v	module:Model_Parameters
 delta	.\defineparameters.F90	/^    real(8) :: beta=1.04, r=0.011, delta=/;"	v	module:defineparameters
+deltaexp	.\Model_Parameters.f90	/^        real(8), parameter :: deltaexp /;"	v	module:Model_Parameters
 deltaf	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=/;"	v	module:defineparameters
 deltam	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=/;"	v	module:defineparameters
 dogleg	.\minpack-hybrd\dogleg.f	/^      subroutine dogleg(/;"	s
 dpmpar	.\minpack-hybrd\dpmpar.f	/^      double precision function dpmpar(/;"	f
-dum	.\Solvelastactive.f90	/^    real(8) :: dum,/;"	v	module:glob0
-dum	.\main.f90	/^        real(8) :: dum,/;"	v	program:Laffer
-dum2	.\main.f90	/^        real(8) :: dum,dum2$/;"	v	program:Laffer
+dum	.\glob0.f90	/^    real(8) :: dum,/;"	v	module:glob0
+dum	.\main.f90	/^    real(8) :: dum,/;"	v	program:Laffer
+dum2	.\main.f90	/^    real(8) :: dum,dum2,/;"	v	program:Laffer
+dum3	.\main.f90	/^    real(8) :: dum,dum2,dum3$/;"	v	program:Laffer
 enorm	.\minpack-hybrd\enorm.f	/^      double precision function enorm(/;"	f
 epsa	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa,/;"	v	module:defineparameters
 epsfcn	.\minpack-hybrd\hybrd_wrapper.f90	/^        real(8) :: epsfcn /;"	k	type:Hybrd_problem
@@ -859,26 +867,29 @@ etaf	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,del
 etam	.\Model_Parameters.f90	/^        real(8), parameter :: etam /;"	v	module:Model_Parameters
 etam	.\defineparameters.F90	/^    real(8) :: Fsm=5.0,Fsf=7.0,Fmm=5.0,Fmf=7.0,deltam=0.11,deltaf=0.11,etam=/;"	v	module:defineparameters
 ev	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: ev$/;"	v	module:PolicyFunctions
-ev_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:,:), allocatable :: ev_spln_coefs$/;"	v	module:PolicyFunctions
+ev_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: ev_spln_coefs$/;"	v	module:PolicyFunctions
 ev_spln_coefs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: ev_spln_coefs_ret,/;"	v	module:PolicyFunctions
-evm	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: evm /;"	v	module:PolicyFunctions
+evm	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: evm /;"	v	module:PolicyFunctions
 evm_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: evm_spln_coefs /;"	v	module:PolicyFunctions
-evs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: evs$/;"	v	module:PolicyFunctions
+evs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: evs$/;"	v	module:PolicyFunctions
 evs_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: evs_spln_coefs,/;"	v	module:PolicyFunctions
 evs_spln_coefs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: ev_spln_coefs_ret,evs_spln_coefs_ret$/;"	v	module:PolicyFunctions
 exp1f	.\Model_Parameters.f90	/^        integer, dimension (:,:,:,:), allocatable :: exp1m,exp1f /;"	v	module:Model_Parameters
 exp1m	.\Model_Parameters.f90	/^        integer, dimension (:,:,:,:), allocatable :: exp1m,/;"	v	module:Model_Parameters
+exp2f	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: Sim1m,Sim1f,exp2m,exp2f /;"	v	module:Model_Parameters
+exp2m	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:,:), allocatable :: Sim1m,Sim1f,exp2m,/;"	v	module:Model_Parameters
 expF1	.\defineparameters.F90	/^    integer, dimension (1:10000,1:46,1:4) :: expM1,expF1$/;"	v	module:defineparameters
 expF2	.\defineparameters.F90	/^    integer, dimension (1:100000,1:46,1:4) :: expM2,expF2$/;"	v	module:defineparameters
 expM1	.\defineparameters.F90	/^    integer, dimension (1:10000,1:46,1:4) :: expM1,/;"	v	module:defineparameters
 expM2	.\defineparameters.F90	/^    integer, dimension (1:100000,1:46,1:4) :: expM2,/;"	v	module:defineparameters
+exp_grid	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: exp_grid$/;"	v	module:PolicyFunctions
+exp_grid_dum	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: exp_grid_dum$/;"	v	module:PolicyFunctions
 factor	.\minpack-hybrd\hybrd_wrapper.f90	/^        real(8) :: factor$/;"	k	type:Hybrd_problem
 factor	.\minpack-hybrd\hybrd_wrapper.f90	/^    real(8) :: factor$/;"	v	module:hybrd_wrapper
-famshock	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f, marstatm, marstatf, famshock$/;"	v	module:Model_Parameters
 fdjac1	.\minpack-hybrd\fdjac1.f	/^      subroutine fdjac1(/;"	s
-fpartner	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:), allocatable :: fpartner,/;"	v	module:PolicyFunctions
-fpartnerdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:), allocatable :: fpartner,fpartnerdum,/;"	v	module:PolicyFunctions
-fpartnerdum2	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:), allocatable :: fpartner,fpartnerdum,fpartnerdum2$/;"	v	module:PolicyFunctions
+fpartner	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: fpartner,/;"	v	module:PolicyFunctions
+fpartnerdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: fpartner,fpartnerdum,/;"	v	module:PolicyFunctions
+fpartnerdum2	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: fpartner,fpartnerdum,fpartnerdum2$/;"	v	module:PolicyFunctions
 gam0	.\defineparameters.F90	/^    real(8) :: gam0=/;"	v	module:defineparameters
 gam1	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=/;"	v	module:defineparameters
 gam2	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=0.0533247, gam2=/;"	v	module:defineparameters
@@ -903,8 +914,7 @@ gkM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatab
 gkS	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,/;"	v	module:defineparameters
 gkdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: k,gkdum$/;"	v	module:PolicyFunctions
 gkr	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n) :: gkr,/;"	v	module:defineparameters
-gksdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: ks,gksdum$/;"	v	module:PolicyFunctions
-glob0	.\Solvelastactive.f90	/^module glob0$/;"	m
+glob0	.\glob0.f90	/^module glob0$/;"	m
 gnM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,/;"	v	module:defineparameters
 gnS	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,cS,VS,temp3S,BREAKS,gnS$/;"	v	module:defineparameters
 gnfM	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,gnfM,/;"	v	module:defineparameters
@@ -913,46 +923,52 @@ hmin	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin,/;"	v	module:defin
 hybrd	.\minpack-hybrd\hybrd.f	/^      subroutine hybrd(/;"	s
 hybrd_wrapper	.\minpack-hybrd\hybrd_wrapper.f90	/^module hybrd_wrapper$/;"	m
 i	.\defineparameters.F90	/^    in/;"	v	module:defineparameters
-iaf	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,/;"	v	program:Laffer
-iam	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,/;"	v	program:Laffer
-ik	.\main.f90	/^        integer :: ik,/;"	v	program:Laffer
-ik2	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,iu2,ik2$/;"	v	program:Laffer
+i	.\main.f90	/^    in/;"	v	program:Laffer
+i_k	.\main.f90	/^    integer :: i_k,/;"	v	program:Laffer
+iaf	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,/;"	v	program:Laffer
+iam	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,/;"	v	program:Laffer
+ifc	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,iu2,ik2,ifc,/;"	v	program:Laffer
+ik	.\main.f90	/^    integer :: ik,/;"	v	program:Laffer
+ik2	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,iu2,ik2,/;"	v	program:Laffer
 inck	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck,/;"	v	module:defineparameters
-ind	.\Solvelastactive.f90	/^    integer :: MAXFCN,ITMAX,ind,/;"	v	module:glob0
-ind2	.\Solvelastactive.f90	/^    integer :: MAXFCN,ITMAX,ind,ind2,/;"	v	module:glob0
-ind3	.\Solvelastactive.f90	/^    integer :: MAXFCN,ITMAX,ind,ind2,ind3$/;"	v	module:glob0
+ind	.\glob0.f90	/^    integer :: MAXFCN,ITMAX,ind,/;"	v	module:glob0
+ind2	.\glob0.f90	/^    integer :: MAXFCN,ITMAX,ind,ind2,/;"	v	module:glob0
+ind3	.\glob0.f90	/^    integer :: MAXFCN,ITMAX,ind,ind2,ind3$/;"	v	module:glob0
 init	.\minpack-hybrd\hybrd_wrapper.f90	/^    subroutine init(/;"	s	module:hybrd_wrapper
 initmarr	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=0.0533247, gam2=-0.001456, gam3=0.0000142, marr=0.7372, initmarr=/;"	v	module:defineparameters
 interv	.\pppack.f90	/^subroutine interv /;"	s	module:pppack
 it	.\Model_Parameters.f90	/^        integer :: it,/;"	v	module:Model_Parameters
-it2	.\main.f90	/^        integer :: ik,tprint,it2,/;"	v	program:Laffer
-it3	.\main.f90	/^        integer :: ik,tprint,it2,it3,/;"	v	program:Laffer
-it4	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,/;"	v	program:Laffer
+it2	.\main.f90	/^    integer :: ik,tprint,it2,/;"	v	program:Laffer
+it3	.\main.f90	/^    integer :: ik,tprint,it2,it3,/;"	v	program:Laffer
+it4	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,/;"	v	program:Laffer
 iter	.\Model_Parameters.f90	/^        integer :: it,iter$/;"	v	module:Model_Parameters
 iter	.\defineparameters.F90	/^    integer :: i,d2, iter,/;"	v	module:defineparameters
-itg	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,/;"	v	module:glob0
-iu2	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,iu2,/;"	v	program:Laffer
-iuf	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,/;"	v	program:Laffer
-ium	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,/;"	v	program:Laffer
-ix	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,/;"	v	program:Laffer
-j	.\main.f90	/^        integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,/;"	v	program:Laffer
+itg	.\glob0.f90	/^    real(8) :: dum,kdum,itg,/;"	v	module:glob0
+iu2	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,iu2,/;"	v	program:Laffer
+iuf	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,/;"	v	program:Laffer
+ium	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,/;"	v	program:Laffer
+ix	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,/;"	v	program:Laffer
+j	.\main.f90	/^    integer :: ik,tprint,it2,it3,it4,ium,iam,iuf,iaf,ix,j,/;"	v	program:Laffer
 k	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: k,/;"	v	module:PolicyFunctions
 k_grid	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: k_grid$/;"	v	module:PolicyFunctions
 k_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: k_ret$/;"	v	module:PolicyFunctions
-kdum	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,/;"	v	module:glob0
+kdum	.\glob0.f90	/^    real(8) :: dum,kdum,/;"	v	module:glob0
 kmax	.\defineparameters.F90	/^    real(8) :: kmin, kmax,/;"	v	module:defineparameters
 kmin	.\defineparameters.F90	/^    real(8) :: kmin,/;"	v	module:defineparameters
-ks	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: ks,/;"	v	module:PolicyFunctions
+ks	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: ks$/;"	v	module:PolicyFunctions
 ks_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: ks_ret$/;"	v	module:PolicyFunctions
 l	.\defineparameters.F90	/^    integer, parameter :: n=16, p=45, t=75, q=2, l=/;"	v	module:defineparameters
 labor1	.\labor1.f90	/^SUBROUTINE labor1 /;"	s
-labor1work	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: labor1work$/;"	v	module:PolicyFunctions
+labor1_hybrd	.\labor1.f90	/^subroutine labor1_hybrd(/;"	s
 labor2	.\labor2.f90	/^SUBROUTINE labor2 /;"	s
 labor2_hybrd	.\labor2.f90	/^subroutine labor2_hybrd(/;"	s
 labor3	.\labor3.f90	/^SUBROUTINE labor3 /;"	s
-laborf	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), allocatable :: laborm,laborf$/;"	v	module:PolicyFunctions
-laborm	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), allocatable :: laborm,/;"	v	module:PolicyFunctions
+labor3_hybrd	.\labor3.f90	/^subroutine labor3_hybrd(/;"	s
+laborf	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: laborm,laborf$/;"	v	module:PolicyFunctions
+laborm	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: laborm,/;"	v	module:PolicyFunctions
+labormwork	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: labormwork$/;"	v	module:PolicyFunctions
 labors	.\labors.f90	/^SUBROUTINE labors /;"	s
+labors_hybrd	.\labors.f90	/^subroutine labors_hybrd(/;"	s
 laborsinglef	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: laborsinglem,laborsinglef$/;"	v	module:PolicyFunctions
 laborsinglem	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: laborsinglem,/;"	v	module:PolicyFunctions
 ldfjac	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: ldfjac,/;"	k	type:Hybrd_problem
@@ -963,14 +979,16 @@ lr	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: ldfjac, lr$/;"	v	module:hy
 lsupply	.\lsupply.f90	/^subroutine lsupply(/;"	s
 lumpsum	.\Model_Parameters.f90	/^        real(8) :: Unemp_benefit, lumpsum=/;"	v	module:Model_Parameters
 lumpsum	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=0.37503, lumpsum=/;"	v	module:defineparameters
-lumpsumdum	.\Model_Parameters.f90	/^        real(8) :: Unemp_benefit, lumpsum=2d0*0.093544d0, lumpsumdum=/;"	v	module:Model_Parameters
+lumpsumdum	.\Model_Parameters.f90	/^        real(8) :: Unemp_benefit, lumpsum=2d0*0.08462158531908406d0, lumpsumdum=/;"	v	module:Model_Parameters
 lumpsumdum	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=0.37503, lumpsum=0.015869,lumpsumdum=/;"	v	module:defineparameters
 ma	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma,/;"	v	module:defineparameters
 marr	.\defineparameters.F90	/^    real(8) :: gam0=-1.4, gam1=0.0533247, gam2=-0.001456, gam3=0.0000142, marr=/;"	v	module:defineparameters
 marstatf	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f, marstatm, marstatf,/;"	v	module:Model_Parameters
+marstatf_init	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m, Random1f, Random2f, marstatm_init, marstatf_init$/;"	v	module:Model_Parameters
 marstatm	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f, marstatm,/;"	v	module:Model_Parameters
+marstatm_init	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: Random1m, Random2m, Random1f, Random2f, marstatm_init,/;"	v	module:Model_Parameters
+match	.\Model_Parameters.f90	/^        real(8) :: match=/;"	v	module:Model_Parameters
 max44to13	.\max44to13.f90	/^subroutine max44to13(/;"	s
-max76to46	.\max76to46.F90	/^subroutine max76to46$/;"	s
 maxfev	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: maxfev /;"	k	type:Hybrd_problem
 maxfev	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: maxfev /;"	v	module:hybrd_wrapper
 milspendtoGDP	.\Model_Parameters.f90	/^        real(8) :: milspendtoGDP=/;"	v	module:Model_Parameters
@@ -987,14 +1005,17 @@ mpartnerdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), alloca
 mpartnerdum2	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:), allocatable :: mpartner,mpartnerdum,mpartnerdum2$/;"	v	module:PolicyFunctions
 mu	.\Model_Parameters.f90	/^        real(8), parameter :: mu /;"	v	module:Model_Parameters
 mu	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: ml, mu$/;"	k	type:Hybrd_problem
+mu_fcm	.\Model_Parameters.f90	/^        real(8), parameter :: mu_fcm=/;"	v	module:Model_Parameters
+mu_fcs	.\Model_Parameters.f90	/^        real(8), parameter :: mu_fcm=-0.0536d0, mu_fcs=/;"	v	module:Model_Parameters
 muh	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: ml, muh$/;"	v	module:hybrd_wrapper
 n	.\defineparameters.F90	/^    int/;"	v	module:defineparameters
 na	.\Model_Parameters.f90	/^        integer, parameter :: na /;"	v	module:Model_Parameters
 nc	.\Model_Parameters.f90	/^        integer, parameter :: nc /;"	v	module:Model_Parameters
 neqs	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: neqs /;"	k	type:Hybrd_problem
-netinc	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,/;"	v	module:glob0
+netinc	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,/;"	v	module:glob0
+nexp	.\Model_Parameters.f90	/^        integer, parameter :: nexp /;"	v	module:Model_Parameters
 nf	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: nm,nf,/;"	v	module:PolicyFunctions
-nfam	.\Model_Parameters.f90	/^        integer, parameter :: nfam /;"	v	module:Model_Parameters
+nfc	.\Model_Parameters.f90	/^        integer, parameter :: nfc /;"	v	module:Model_Parameters
 nfdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: nm,nf,nmdum,nfdum$/;"	v	module:PolicyFunctions
 nfev	.\minpack-hybrd\hybrd_wrapper.f90	/^        integer :: nfev$/;"	k	type:Hybrd_problem
 nfev	.\minpack-hybrd\hybrd_wrapper.f90	/^    integer :: nfev$/;"	v	module:hybrd_wrapper
@@ -1002,7 +1023,6 @@ nk	.\Model_Parameters.f90	/^        integer, parameter :: nk /;"	v	module:Model_
 nm	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: nm,/;"	v	module:PolicyFunctions
 nmdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: nm,nf,nmdum,/;"	v	module:PolicyFunctions
 ns	.\PolicyFunctions.f90	/^        real(8), dimensi/;"	v	module:PolicyFunctions
-nsdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: ns,nsdum$/;"	v	module:PolicyFunctions
 nsim	.\Model_Parameters.f90	/^        integer, parameter :: nsim /;"	v	module:Model_Parameters
 nsim2	.\Model_Parameters.f90	/^        integer, parameter :: nsim2 /;"	v	module:Model_Parameters
 nu	.\Model_Parameters.f90	/^        integer, parameter :: nu /;"	v	module:Model_Parameters
@@ -1012,18 +1032,13 @@ p_ev_spln_coefs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), 
 p_evs_spln_coefs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:), allocatable :: p_ev_spln_coefs_ret,p_evs_spln_coefs_ret /;"	v	module:PolicyFunctions
 partest	.\partest.f90	/^subroutine partest(/;"	s
 partest2	.\partest.f90	/^subroutine partest2(/;"	s
-partest21	.\partest21.f90	/^subroutine partest21(/;"	s
-partest22	.\partest21.f90	/^subroutine partest22(/;"	s
-partest23	.\partest21.f90	/^subroutine partest23(/;"	s
-partest24	.\partest21.f90	/^subroutine partest24(/;"	s
-partest25	.\partest21.f90	/^subroutine partest25(/;"	s
-partest26	.\partest21.f90	/^subroutine partest26(/;"	s
-partest27	.\partest21.f90	/^subroutine partest27(/;"	s
 partest3	.\partest.f90	/^subroutine partest3(/;"	s
 partest4	.\partest.f90	/^subroutine partest4(/;"	s
 partest5	.\partest.f90	/^subroutine partest5(/;"	s
 partest6	.\partest.f90	/^subroutine partest6(/;"	s
 partest7	.\partest.f90	/^subroutine partest7(/;"	s
+partest8	.\partest.f90	/^subroutine partest8(/;"	s
+partshock	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: Random3m, Random3f, marstatm, marstatf, partshock$/;"	v	module:Model_Parameters
 pi	.\defineparameters.F90	/^    real(8), parameter :: pi=/;"	v	module:defineparameters
 ppp_csint	.\PolicyFunctions.f90	/^    subroutine ppp_csint(/;"	s	module:PolicyFunctions
 ppp_csval	.\PolicyFunctions.f90	/^    function ppp_csval(/;"	f	module:PolicyFunctions
@@ -1046,9 +1061,11 @@ r	.\defineparameters.F90	/^    re/;"	v	module:defineparameters
 r1mpyq	.\minpack-hybrd\r1mpyq.f	/^      subroutine r1mpyq(/;"	s
 r1updt	.\minpack-hybrd\r1updt.f	/^      subroutine r1updt(/;"	s
 ratio	.\Model_Parameters.f90	/^        real(8) :: ratio=/;"	v	module:Model_Parameters
-ratiodum	.\Model_Parameters.f90	/^        real(8) :: ratio=4.2867d0, ratiodum=/;"	v	module:Model_Parameters
+ratiodum	.\Model_Parameters.f90	/^        real(8) :: ratio=4.29195095854055d0, ratiodum=/;"	v	module:Model_Parameters
 rho_af	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_af=0.38475527d0, rho_af=/;"	v	module:Model_Parameters
 rho_am	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_am=0.33828463d0, rho_am=/;"	v	module:Model_Parameters
+rho_fcm	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_fcm=0.1680d0, rho_fcm=/;"	v	module:Model_Parameters
+rho_fcs	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_fcs=0.2832d0, rho_fcs=/;"	v	module:Model_Parameters
 rho_uf	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_uf=0.31004311d0, rho_uf=/;"	v	module:Model_Parameters
 rho_um	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_um=0.31925155D0, rho_um=/;"	v	module:Model_Parameters
 rhoa	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, ma, alpha, siga, rhoa,/;"	v	module:defineparameters
@@ -1057,6 +1074,8 @@ siga	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet, epsa, epsu, 
 sigma	.\Model_Parameters.f90	/^        real(8), parameter :: sigma /;"	v	module:Model_Parameters
 sigma_af	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_af=/;"	v	module:Model_Parameters
 sigma_am	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_am=/;"	v	module:Model_Parameters
+sigma_fcm	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_fcm=/;"	v	module:Model_Parameters
+sigma_fcs	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_fcs=/;"	v	module:Model_Parameters
 sigma_uf	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_uf=/;"	v	module:Model_Parameters
 sigma_um	.\Model_Parameters.f90	/^        real(8), parameter :: sigma_um=/;"	v	module:Model_Parameters
 sim	.\defineparameters.F90	/^    integer, dimension (1:4) :: sim$/;"	v	module:defineparameters
@@ -1076,44 +1095,44 @@ tSS_employee	.\Utilities.f90	/^    function tSS_employee(/;"	f	module:Utilities
 tSS_employer	.\Utilities.f90	/^    function tSS_employer(/;"	f	module:Utilities
 t_employee	.\Model_Parameters.f90	/^        real(8), parameter :: t_employer=0.0765d0, t_employee=/;"	v	module:Model_Parameters
 t_employer	.\Model_Parameters.f90	/^        real(8), parameter :: t_employer=/;"	v	module:Model_Parameters
+tauchen_hans	.\tauchen.f90	/^Subroutine tauchen_hans(/;"	s	module:TAUCHEN
 tax_labor	.\Utilities.f90	/^    function tax_labor(/;"	f	module:Utilities
 tax_labors	.\Utilities.f90	/^    function tax_labors(/;"	f	module:Utilities
 tax_level_scale	.\Model_Parameters.f90	/^        real(8) :: tax_level_scale=/;"	v	module:Model_Parameters
-tax_prog_scale	.\Model_Parameters.f90	/^        real(8) :: tax_level_scale=1.0d0, tax_prog_scale=/;"	v	module:Model_Parameters
+tax_prog_scale	.\Model_Parameters.f90	/^        real(8) :: tax_level_scale=1.0, tax_prog_scale=/;"	v	module:Model_Parameters
 tc	.\Model_Parameters.f90	/^        real(8), parameter :: tc /;"	v	module:Model_Parameters
 tc	.\defineparameters.F90	/^    real(8), parameter :: t0=2.604929, t1=-9.655736, t2=12.78917, t3=-6.821912, t4=1.293703, tc=/;"	v	module:defineparameters
 temp3M	.\defineparameters.F90	/^    real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: gkM,gnM,gnfM,cM,VM,temp3M,/;"	v	module:defineparameters
 temp3S	.\defineparameters.F90	/^    real(8), dimension (1:2,1:45,1:n,1:p,1:q,1:l) :: gkS,cS,VS,temp3S,/;"	v	module:defineparameters
 temp3r	.\defineparameters.F90	/^    real(8), dimension (1:3,1:30,1:n) :: gkr,cr,Vr,temp3r,/;"	v	module:defineparameters
 theta	.\Model_Parameters.f90	/^        real(8) :: theta(/;"	v	module:Model_Parameters
-thetas	.\Model_Parameters.f90	/^        real(8) :: theta(3,2), thetas(/;"	v	module:Model_Parameters
+thetas	.\Model_Parameters.f90	/^        real(8) :: theta(2), thetas(/;"	v	module:Model_Parameters
 tk	.\Model_Parameters.f90	/^        real(8), parameter :: tk /;"	v	module:Model_Parameters
 tol	.\minpack-hybrd\hybrd_wrapper.f90	/^        real(8) :: tol$/;"	k	type:Hybrd_problem
 tol	.\minpack-hybrd\hybrd_wrapper.f90	/^    real(8) :: tol$/;"	v	module:hybrd_wrapper
 tp	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(10000,2),mix4(10000,2),tp(/;"	v	module:defineparameters
 tp2	.\defineparameters.F90	/^    real(8) :: kmin, kmax, hmin, hmax, inck, Probm(45), Probd(45), mix(10000,2),mix2(10000,2),mix3(10000,2),mix4(10000,2),tp(1,2),tp2(/;"	v	module:defineparameters
-tprint	.\main.f90	/^        integer :: ik,tprint,/;"	v	program:Laffer
+tprint	.\main.f90	/^    integer :: ik,tprint,/;"	v	program:Laffer
 trans_a	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: trans_a /;"	v	module:Model_Parameters
+trans_fc	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: trans_fc /;"	v	module:Model_Parameters
 trans_u	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: trans_u /;"	v	module:Model_Parameters
 transa	.\defineparameters.F90	/^    real(8), dimension (1:q,1:q) :: transa$/;"	v	module:defineparameters
-transfam	.\Model_Parameters.f90	/^        real(8), dimension (:,:,:), allocatable :: transfam$/;"	v	module:Model_Parameters
 transu	.\defineparameters.F90	/^    real(8), dimension (1:2,1:2,1:l,1:l) :: transu$/;"	v	module:defineparameters
 trilin_interp	.\Utilities.f90	/^    function trilin_interp(/;"	f	module:Utilities
 u	.\Model_Parameters.f90	/^        real(8), dimension (:,:), allocatable :: u,/;"	v	module:Model_Parameters
 unempbenefit	.\defineparameters.F90	/^    real(8) :: AE=0.37503, AEdum=0.37503, lumpsum=0.015869,lumpsumdum=0.015869, epsilon=0.1, epsilon2=0.1, unempbenefit=/;"	v	module:defineparameters
 v	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: v,/;"	v	module:PolicyFunctions
 v_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: c_ret, v_ret$/;"	v	module:PolicyFunctions
-v_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:,:), allocatable :: v_spln_coefs$/;"	v	module:PolicyFunctions
+v_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: v_spln_coefs$/;"	v	module:PolicyFunctions
 vdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:,:), allocatable :: v,vdum$/;"	v	module:PolicyFunctions
-vs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: vs,/;"	v	module:PolicyFunctions
+vs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: vs$/;"	v	module:PolicyFunctions
 vs_ret	.\PolicyFunctions.f90	/^        real(8), dimension (:,:), allocatable :: vs_ret$/;"	v	module:PolicyFunctions
 vs_spln_coefs	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:,:), allocatable :: evs_spln_coefs,/;"	v	module:PolicyFunctions
-vsdum	.\PolicyFunctions.f90	/^        real(8), dimension (:,:,:,:,:,:), allocatable :: vs,vsdum$/;"	v	module:PolicyFunctions
 w	.\Model_Parameters.f90	/^        real(8) :: w /;"	v	module:Model_Parameters
 w	.\defineparameters.F90	/^    real(8) :: w=/;"	v	module:defineparameters
 wage	.\Utilities.f90	/^    function wage(/;"	f	module:Utilities
 wage_grid	.\PolicyFunctions.f90	/^        real(8), dimension (:), allocatable :: wage_grid$/;"	v	module:PolicyFunctions
-wagef	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,/;"	v	module:glob0
-wagem	.\Solvelastactive.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,/;"	v	module:glob0
+wagef	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,wagef,/;"	v	module:glob0
+wagem	.\glob0.f90	/^    real(8) :: dum,kdum,itg,netinc,wagem,/;"	v	module:glob0
 ybar	.\Model_Parameters.f90	/^        real(8), parameter :: ybar /;"	v	module:Model_Parameters
 zet	.\defineparameters.F90	/^    real(8) :: w=1.0, psi, psi2, zet,/;"	v	module:defineparameters

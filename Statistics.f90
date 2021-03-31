@@ -10,7 +10,7 @@ use CORVC_int
 implicit none
 integer :: i,country,ia,ia2,iu,ix,um,it2,ik,ifc, NVAR=2,it3,it4,ICOPT=2,ik2
 real(8) :: dum2,dum3,dum4,dum5,dum6,dum7,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,SST,SSE,COV(2,2)
-real(8) :: dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25
+real(8) :: dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25,r_ret,ss_tax,ss_expense
 real(8), dimension (:,:), allocatable :: XVARS
 real(8), dimension (:), allocatable :: YVAR, BREG
 real(8), allocatable :: spousewage(:,:), spousewage2(:,:)
@@ -36,7 +36,7 @@ dum3=0d0
 dum4=0d0
 dum5=0d0
 
-!Labor Supply
+!Labor Supply before 65
 
 do i=1,T
 
@@ -52,7 +52,9 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Labor supply is',dum2
+Print *,'Labor supply below 65 is',dum2
+
+
 
 dum2=0d0
 dum3=0d0
@@ -95,8 +97,70 @@ end do
 dum2=dum2/dum3
 
 Print *,'Single Male labor supply is',dum2
+!Print *,'contribution to FCN is is',((dum2-0.260d0)/0.260d0)**2d0
+dum10=((dum2-0.260d0)/0.260d0)**2d0
 
-dum10=((dum2-0.281917216)/0.281917216)**2
+!Single male labor force participation
+
+dum2=0d0
+dum3=0d0
+
+do i=1,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1m(it2,it,i,10)<0.5) then
+        if(Sim1m(it2,it,i,4)>1d-3) then
+            dum2=dum2+(1d0)*WeightActive(i)
+        end if
+        dum3=dum3+1d0*WeightActive(i)
+    end if
+end do
+end do
+
+end do
+
+dum2=dum2/dum3
+
+dum10=dum10+((dum2-0.727d0)/0.727d0)**2d0
+
+Print *,'Single male labor force participation is',dum2
+!Print *,'contribution to FCN is is',((dum2-0.727d0)/0.727d0)**2d0
+
+YVAR=sqrt(-1.0)
+XVARS=sqrt(-1.0)
+
+do i=2,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1m(it2,it,i,10)<0.5) then
+        if(Sim1m(it2,it,i-1,4)>1d-3) then
+            XVARs((i-1)*it*it2+(it2-1)*it+it,1)=1d0
+        else
+            XVARs((i-1)*it*it2+(it2-1)*it+it,1)=0d0
+        end if    
+        if(Sim1m(it2,it,i,4)>1d-3) then
+            YVAR((i-1)*it*it2+(it2-1)*it+it)=1d0
+        else
+            YVAR((i-1)*it*it2+(it2-1)*it+it)=0d0
+        end if      
+    end if
+end do
+end do
+
+end do
+
+CALL RLSE (YVAR, XVARS, BREG, SST=SST, SSE=SSE)
+
+dum2=1d0-SSE/SST
+
+!dum10=dum10+((dum2-0.4081)/0.4081)**2
+
+!Print *,'BREG is',BREG
+
+Print *,'Single male LFP R2 is',dum2
+
 
 !Married Male Labor Supply
 
@@ -119,8 +183,70 @@ end do
 dum2=dum2/dum3
 
 Print *,'Married Male labor supply is',dum2
+!Print *,'contribution to FCN is is',((dum2-0.349d0)/0.349d0)**2d0
+dum10=dum10+((dum2-0.349d0)/0.349d0)**2d0
 
-dum10=dum10+((dum2-0.359934432)/0.359934432)**2
+
+!Married male labor force participation
+
+dum2=0d0
+dum3=0d0
+
+do i=1,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1m(it2,it,i,10)>0.5) then
+        if(Sim1m(it2,it,i,4)>1d-3) then
+            dum2=dum2+(1d0)*WeightActive(i)
+        end if
+        dum3=dum3+1d0*WeightActive(i)
+    end if
+end do
+end do
+
+end do
+
+dum2=dum2/dum3
+
+dum10=dum10+((dum2-0.871d0)/0.871d0)**2d0
+
+Print *,'Married male labor force participation is',dum2
+!Print *,'contribution to FCN is is',((dum2-0.871d0)/0.871d0)**2d0
+YVAR=sqrt(-1.0)
+XVARS=sqrt(-1.0)
+
+do i=2,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1m(it2,it,i,10)>0.5) then
+        if(Sim1m(it2,it,i-1,4)>1d-3) then
+            XVARs((i-1)*it*it2+(it2-1)*it+it,1)=1d0
+        else
+            XVARs((i-1)*it*it2+(it2-1)*it+it,1)=0d0
+        end if    
+        if(Sim1m(it2,it,i,4)>1d-3) then
+            YVAR((i-1)*it*it2+(it2-1)*it+it)=1d0
+        else
+            YVAR((i-1)*it*it2+(it2-1)*it+it)=0d0
+        end if      
+    end if
+end do
+end do
+
+end do
+
+CALL RLSE (YVAR, XVARS, BREG, SST=SST, SSE=SSE)
+
+dum2=1d0-SSE/SST
+
+!dum10=dum10+((dum2-0.4573)/0.4573)**2
+
+!Print *,'BREG is',BREG
+
+Print *,'Married male LFP R2 is',dum2
+
 
 !Female labor supply
 
@@ -164,8 +290,8 @@ end do
 dum2=dum2/dum3
 
 Print *,'Single female labor supply is',dum2
-
-dum10=dum10+((dum2-0.25116337)/0.25116337)**2
+!Print *,'contribution to FCN is is',((dum2-0.236d0)/0.236d0)**2d0
+dum10=dum10+((dum2-0.236d0)/0.236d0)**2d0
 
 !Variance of single female hours
 
@@ -185,88 +311,25 @@ dum4=dum4/dum3
 
 Print *,'Stdev single female labor supply is',SQRT(dum4)
 
-!Single female labor supply at age 42
-
-dum2=0d0
-dum3=0d0
-dum4=0d0
-
-do i=22,22
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)<0.5) then
-        dum2=dum2+Sim1f(it2,it,i,4)*WeightActive(i)
-        dum3=dum3+1d0*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'Single female labor supply at age 42 is',dum2
 
 !Variance of single female hours
-
-do i=22,22
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)<0.5) then
-        dum4=dum4+((Sim1f(it2,it,i,4)-dum2)**2)*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum4=dum4/dum3
-
-Print *,'Stdev single female labor at age 42 supply is',SQRT(dum4)
-
-!Single female labor supply at age 30
-
-dum2=0d0
-dum3=0d0
-dum4=0d0
-
-do i=10,10
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)<0.5) then
-        dum2=dum2+Sim1f(it2,it,i,4)*WeightActive(i)
-        dum3=dum3+1d0*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'Single female labor supply at age 30 is',dum2
-
-
-!Variance of single female hours
-
-do i=10,10
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)<0.5) then
-        dum4=dum4+((Sim1f(it2,it,i,4)-dum2)**2)*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum4=dum4/dum3
-
-Print *,'Stdev single female labor supply at age 30 is',SQRT(dum4)
+! >>>>>
+!do i=10,10
+!
+!do it2=1,nsim2
+!do it=1,nsim
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        dum4=dum4+((Sim1f(it2,it,i,4)-dum2)**2)*WeightActive(i)
+!    end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!Print *,'Stdev single female labor supply at age 30 is',SQRT(dum4)
+! >>>>>
 
 !Married female labor supply
 
@@ -290,8 +353,8 @@ end do
 dum2=dum2/dum3
 
 Print *,'Married female labor supply is',dum2
-
-dum10=dum10+((dum2-0.224398901)/0.224398901)**2
+!Print *,'contribution to FCN is is',((dum2-0.231d0)/0.231d0)**2d0
+dum10=dum10+((dum2-0.231d0)/0.231d0)**2d0
 
 !Variance of married female hours
 
@@ -310,89 +373,6 @@ end do
 dum4=dum4/dum3
 
 Print *,'Stdev married female labor supply is',SQRT(dum4)
-
-!Married female labor supply at age 30
-
-dum2=0d0
-dum3=0d0
-dum4=0d0
-
-do i=10,10
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)>0.5) then
-        dum2=dum2+Sim1f(it2,it,i,4)*WeightActive(i)
-        dum3=dum3+1d0*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'Married female labor supply at age 30 is',dum2
-
-
-!Variance of married female hours
-
-do i=10,10
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)>0.5) then
-        dum4=dum4+((Sim1f(it2,it,i,4)-dum2)**2)*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum4=dum4/dum3
-
-Print *,'Stdev married female labor supply at age 30 is',SQRT(dum4)
-
-!Married female labor supply at age 42
-
-dum2=0d0
-dum3=0d0
-dum4=0d0
-
-do i=22,22
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)>0.5) then
-        dum2=dum2+Sim1f(it2,it,i,4)*WeightActive(i)
-        dum3=dum3+1d0*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'Married female labor supply at age 42 is',dum2
-
-!Variance of married female hours at age 42
-
-do i=22,22
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)>0.5) then
-        dum4=dum4+((Sim1f(it2,it,i,4)-dum2)**2)*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum4=dum4/dum3
-
-Print *,'Stdev married female labor supply at age 42 is',SQRT(dum4)
 
 !Female labor force participation
 
@@ -439,8 +419,8 @@ end do
 dum2=dum2/dum3
 
 Print *,'Single female labor force participation is',dum2
-
-dum10=dum10+((dum2-0.7600114)/0.7600114)**2
+!Print *,'contribution to FCN is is',((dum2-0.694d0)/0.694d0)**2d0
+dum10=dum10+((dum2-0.694d0)/0.694d0)**2d0
 
 YVAR=sqrt(-1.0)
 XVARS=sqrt(-1.0)
@@ -470,36 +450,8 @@ CALL RLSE (YVAR, XVARS, BREG, SST=SST, SSE=SSE)
 
 dum2=1d0-SSE/SST
 
-dum10=dum10+((dum2-0.4633)/0.4633)**2
-
-!Print *,'BREG is',BREG
 
 Print *,'Single female LFP R2 is',dum2
-
-!Female participation changes 45-64
-
-dum2=0d0
-dum3=0d0
-
-do i=25,T
-
-do it2=1,nsim2
-do it=1,nsim
-        if((Sim1f(it2,it,i-1,4)>1d-3).AND.(Sim1f(it2,it,i,4)<1d-3)) then
-            dum2=dum2+(1d0)*WeightActive(i)
-        end if
-        if((Sim1f(it2,it,i-1,4)<1d-3).AND.(Sim1f(it2,it,i,4)>1d-3)) then
-            dum2=dum2+(1d0)*WeightActive(i)
-        end if
-        dum3=dum3+1d0*WeightActive(i)
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'% participation changes 45-64 is',dum2
 
 !Married female labor force participation
 
@@ -524,8 +476,8 @@ end do
 dum2=dum2/dum3
 
 Print *,'Married female labor force participation is',dum2
-
-dum10=dum10+((dum2-0.6755489)/0.6755489)**2
+!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
+dum10=dum10+((dum2-0.668d0)/0.668d0)**2d0
 
 YVAR=sqrt(-1.0)
 XVARS=sqrt(-1.0)
@@ -555,7 +507,7 @@ CALL RLSE (YVAR, XVARS, BREG, SST=SST, SSE=SSE)
 
 dum2=1d0-SSE/SST
 
-dum10=dum10+((dum2-0.5532)/0.5532)**2
+!dum10=dum10+((dum2-0.5532)/0.5532)**2
 
 !Print *,'BREG is',BREG
 
@@ -615,7 +567,7 @@ end do
 
 dum4=dum4/dum3
 
-Print *,'Variance of log male earnings is',dum4
+Print *,'Stdev of log male earnings is',SQRT(dum4)
 
 dum2=0d0
 dum3=0d0
@@ -652,20 +604,21 @@ end do
 
 dum4=dum4/dum3
 
-Print *,'Variance of log female earnings is',dum4
+Print *,'Stdev of log female earnings is',SQRT(dum4)
 
 !Variance of log male wage
 
 dum2=0d0
 dum3=0d0
-dum4=0d0
 
 do i=1,T
 
 do it2=1,nsim2
 do it=1,nsim
+    if(Sim1m(it2,it,i,5)>0d0) then
     dum2=dum2+log(Sim1m(it2,it,i,3))*WeightActive(i)
     dum3=dum3+1d0*WeightActive(i)
+    end if
 end do
 end do
 
@@ -675,17 +628,22 @@ dum2=dum2/dum3
 
 do i=1,T
 
-do it2=1,nsim2
+do it2=1,nsim2    
 do it=1,nsim
+    if(Sim1m(it2,it,i,5)>0d0) then
     dum4=dum4+((log(Sim1m(it2,it,i,3))-dum2)**2)*WeightActive(i)
+    end if
 end do
 end do
 
 end do
 
 dum4=dum4/dum3
+dum4=SQRT(dum4)
 
-Print *,'Variance of log male wage is',dum4
+Print *,'Stdev of log male wage is',dum4
+
+!dum10=dum10+((dum4-0.776d0)/0.776d0)**2d0
 
 dum2=0d0
 dum3=0d0
@@ -697,8 +655,10 @@ do i=1,T
 
 do it2=1,nsim2
 do it=1,nsim
-    dum2=dum2+log(Sim1f(it2,it,i,3))*WeightActive(i)
-    dum3=dum3+1d0*WeightActive(i)
+    if(Sim1f(it2,it,i,5)>1d-3) then
+        dum2=dum2+log(Sim1f(it2,it,i,3))*WeightActive(i)
+        dum3=dum3+1d0*WeightActive(i)
+    end if
 end do
 end do
 
@@ -710,7 +670,9 @@ do i=1,T
 
 do it2=1,nsim2
 do it=1,nsim
-    dum4=dum4+((log(Sim1f(it2,it,i,3))-dum2)**2)*WeightActive(i)
+    if(Sim1f(it2,it,i,5)>1d-3) then
+        dum4=dum4+((log(Sim1f(it2,it,i,3))-dum2)**2)*WeightActive(i)
+    end if
 end do
 end do
 
@@ -718,7 +680,28 @@ end do
 
 dum4=dum4/dum3
 
-Print *,'Variance of log female wage is',dum4
+dum4=SQRT(dum4)
+
+Print *,'Stdev of log female wage is',dum4
+
+!dum10=dum10+((dum4-0.724d0)/0.724d0)**2d0
+
+!Male experience
+
+dum2=0d0
+dum3=0d0
+dum4=0d0
+
+do it2=1,nsim2
+do it=1,nsim
+    dum2=dum2+1d0*(exp2m(it2,it,T+1,1)-1)
+    dum3=dum3+1d0
+end do
+end do
+
+dum2=dum2/dum3
+
+Print *,'Male experience at age 65 is',dum2
 
 !Female experience
 
@@ -785,6 +768,49 @@ Print *,'Average female wage is',dum2
 
 Print *,'Male_wage/Female_wage is',dum7/dum2
 
+Print *,'Average male wage is',dum2
+
+!Wages at 0.5AE and 2AE
+
+dum2=0d0
+dum3=0d0
+dum4=0d0
+dum5=0d0
+
+do i=1,T
+
+do it2=1,nsim2
+do it=1,nsim
+    
+    if((Sim1m(it2,it,i,5)>0.4d0).AND.(Sim1m(it2,it,i,5)<0.6d0)) then
+        dum2=dum2+Sim1m(it2,it,i,3)*WeightActive(i)
+        dum3=dum3+1d0*WeightActive(i)
+    end if
+    
+    if((Sim1f(it2,it,i,5)>0.4d0).AND.(Sim1f(it2,it,i,5)<0.6d0)) then
+        dum2=dum2+Sim1f(it2,it,i,3)*WeightActive(i)
+        dum3=dum3+1d0*WeightActive(i)
+    end if
+    
+    if((Sim1m(it2,it,i,5)>1.9d0).AND.(Sim1m(it2,it,i,5)<2.1d0)) then
+        dum4=dum4+Sim1m(it2,it,i,3)*WeightActive(i)
+        dum5=dum5+1d0*WeightActive(i)
+    end if
+    
+    if((Sim1f(it2,it,i,5)>1.9d0).AND.(Sim1f(it2,it,i,5)<2.1d0)) then
+        dum4=dum4+Sim1f(it2,it,i,3)*WeightActive(i)
+        dum5=dum5+1d0*WeightActive(i)
+    end if
+    
+end do
+end do
+
+end do
+
+
+Print *,'Wage rate of people making 0.5AE is',dum2/dum3
+Print *,'Wage rate of people making 2AE is',dum4/dum5
+
 !Male earnings
 
 dum2=0d0
@@ -805,7 +831,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Average married male earnings is',dum2
+Print *,'Average male earnings is',dum2
 
 dum7=dum2
 
@@ -831,11 +857,112 @@ dum2=dum2/dum3
 
 dum7=dum7/dum2
 
-Print *,'Average married female earnings is',dum2
+Print *,'Average female earnings is',dum2
 
 Print *,'Male_earnings/Female_earnings is',dum7
+!Print *,'contribution to FCN is is',((dum7-1.432d0)/1.432d0)**2d0
+dum10=dum10+((dum7-1.432d0)/1.432d0)**2d0
 
-dum10=dum10+((dum7-1.5689894)/1.5689894)**2
+!Male earnings Age 35-45
+
+dum2=0d0
+dum3=0d0
+! >>>>>
+!do i=16,26
+!
+!do it2=1,nsim2
+!do it=1,nsim
+!    if(Sim1m(it2,it,i,4)>1d-3) then
+!        dum2=dum2+Sim1m(it2,it,i,5)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!Print *,'Male earnings 35-45 is',dum2
+! >>>>>
+!Print *,'contribution to FCN is is',((dum2-1.258d0)/1.258d0)**2d0
+!dum10=dum10+((dum2-1.258d0)/1.258d0)**2d0
+
+!Male earnings Age 55-64
+
+dum2=0d0
+dum3=0d0
+
+do i=Tret,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1m(it2,it,i,4)>1d-3) then
+        dum2=dum2+Sim1m(it2,it,i,5)*WeightActive(i)
+        dum3=dum3+1d0*WeightActive(i)
+    end if
+end do
+end do
+
+end do
+
+dum2=dum2/dum3
+
+Print *,'Male earnings 55-64 is',dum2
+!Print *,'contribution to FCN is is',((dum2-1.289d0)/1.289d0)**2d0
+!dum10=dum10+((dum2-1.289d0)/1.289d0)**2d0
+
+
+!Female earnings age 35-45
+
+dum2=0d0
+dum3=0d0
+
+! >>>>>
+!do i=16,26
+!
+!do it2=1,nsim2
+!do it=1,nsim
+!    if(Sim1f(it2,it,i,4)>1d-3) then
+!        dum2=dum2+Sim1f(it2,it,i,5)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!Print *,'Female earnings 35-45 is',dum2
+! >>>>>
+
+!Print *,'contribution to FCN is is',((dum2-0.87d0)/0.87d0)**2d0
+!dum10=dum10+((dum2-0.87d0)/0.87d0)**2d0
+
+!Female earnings age 55-64
+
+dum2=0d0
+dum3=0d0
+
+do i=Tret,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1f(it2,it,i,4)>1d-3) then
+        dum2=dum2+Sim1f(it2,it,i,5)*WeightActive(i)
+        dum3=dum3+1d0*WeightActive(i)
+    end if
+end do
+end do
+
+end do
+
+dum2=dum2/dum3
+
+Print *,'Female earnings 55-64 is',dum2
+!Print *,'contribution to FCN is is',((dum2-0.868d0)/0.868d0)**2d0
+!dum10=dum10+((dum2-0.868d0)/0.868d0)**2d0
 
 !Correlation in spousal ability
 it4=0
@@ -879,6 +1006,34 @@ end do
 CALL D_CORVC(NVAR, Spousewage, COV, ICOPT=ICOPT)
 
 Print *,'Correlation of spousal ability is',COV(1,2)
+
+!Correlation in spousal education
+
+it4=0
+
+do i=1,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1m(it2,it,i,10)>0.5) then
+        
+        it3=exp1m(it2,it,i,4)
+        !if((Sim1m(it2,it,i,4)>0.001).AND.(Sim1f(it3,it,i,4)>0.001d0)) then
+            it4=it4+1
+            Spousewage(it4,1)=exp1m(it2,it,i,2)*1d0
+            Spousewage(it4,2)=exp1f(it2,it3,i,2)*1d0
+        !end if
+    end if
+end do
+end do
+
+end do
+
+CALL D_CORVC(NVAR, Spousewage, COV, ICOPT=ICOPT)
+
+Print *,'Correlation of spousal education is',COV(1,2)
+!Print *,'contribution to FCN is is',((COV(1,2)-0.646)/0.646)**2
+dum10=dum10+((COV(1,2)-0.646)/0.646)**2
 
 it4=0
 
@@ -925,7 +1080,32 @@ CALL D_CORVC(NVAR, Spousewage2, COV, ICOPT=ICOPT)
 Print *,'Correlation of spousal wages is',COV(1,2)
 
 
-dum10=dum10+((COV(1,2)-0.4070)/0.4070)**2
+!dum10=dum10+((COV(1,2)-0.4070)/0.4070)**2
+
+it4=0
+
+do i=1,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1m(it2,it,i,10)>0.5) then
+        
+        it3=exp1m(it2,it,i,4)
+        if((Sim1m(it2,it,i,4)>0.001).AND.(Sim1f(it2,it3,i,4)>0.001d0)) then
+            it4=it4+1
+            Spousewage2(it4,1)=Sim1m(it2,it,i,5)
+            Spousewage2(it4,2)=Sim1f(it2,it3,i,5)
+        end if
+    end if
+end do
+end do
+
+end do
+
+CALL D_CORVC(NVAR, Spousewage2, COV, ICOPT=ICOPT)
+
+Print *,'Correlation of spousal earnings is',COV(1,2)
+
 
 !Total labor income taxes and tax revenue
 
@@ -960,14 +1140,16 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
+    
+r_ret=((1d0+r)/OmegaRet2(i))-1d0
 
 do it2=1,nsim2
 do it=1,nsim
     dum5=dum5+2d0*WeightRet(i)
-    dum3=dum3+SimR1m(it2,it,i,3)*WeightRet(i)+SimR1m(it2,it,i,1)*WeightRet(i)*r*tk
+    dum3=dum3+SimR1m(it2,it,i,3)*WeightRet(i)+SimR1m(it2,it,i,1)*WeightRet(i)*r_ret*tk
     if(Sim1f(it2,it,T,10)<0.5d0) then
-        dum3=dum3+SimR1f(it2,it,i,3)*WeightRet(i)+SimR1f(it2,it,i,1)*WeightRet(i)*r*tk
+        dum3=dum3+SimR1f(it2,it,i,3)*WeightRet(i)+SimR1f(it2,it,i,1)*WeightRet(i)*r_ret*tk
     end if
 end do
 end do
@@ -982,6 +1164,7 @@ Print *,'Tax revenue per capita including TSS is',dum3/dum5
 
 !Print *,'Social security tax per capita is',dum15/dum5
 
+
 !Social security
 
 dum2=0d0
@@ -995,34 +1178,54 @@ do i=1,T
 
 do it2=1,nsim2
 do it=1,nsim
+    dum3=dum3+2d0*WeightActive(i)
     dum4=dum4+Sim1m(it2,it,i,9)*WeightActive(i)
     
     if(Sim1f(it2,it,i,10)<0.5d0) then
         dum4=dum4+Sim1f(it2,it,i,9)*WeightActive(i)
     end if
+    
 end do
 end do
 
 end do
+    
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
-    dum5=dum5+1d0*WeightRet(i)
+    
+    if(SimR1m(it2,it,i,5)<1d-3) then
+         dum2=dum2+1d0*WeightRet(i)
+         dum5=dum5+SimR1m(it2,it,i,14)*WeightRet(i)
+    end if
+    
+    if(SimR1f(it2,it,i,5)<1d-3) then
+         dum2=dum2+1d0*WeightRet(i)
+         dum5=dum5+SimR1f(it2,it,i,14)*WeightRet(i)
+    end if
+    
 end do
 end do
 
 end do
 
-dum4=dum4/dum5
+dum4=dum4/dum2
+Print *,'SS tax per retiree is',dum4
+Print *,'Average pension is',dum5/dum2
 
-Print *,'Net Social Security income per retired individual',dum4/2d0
-Print *,'Pension',Psi_pension/2d0
+dum5=dum5/dum3
 
-epsilon=Psi_pension-dum4
+ss_expense=dum5
 
-Psi_pension=Psi_pension-0.5d0*(Psi_pension-dum4)
+Print *,'Social Security expenses per capita is',dum5
+!Print *,'Pension',Psi_pension/2d0
+
+epsilon=Psi0-dum4
+
+epsilon=0d0
+Psi0=Psi0-0.1d0*(Psi0-dum4)
 
 !Savings
 
@@ -1045,7 +1248,7 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
@@ -1066,50 +1269,6 @@ Print *,'Savings per capita is',dum2
 dum6=dum2
 
 ! Assets for redistribution
-
-dum2=0d0
-dum3=0d0
-
-do i=1,T
-
-do it2=1,nsim2
-do it=1,nsim
-    dum2=dum2+Sim1m(it2,it,i+1,1)*WeightActive(i)*(1d0-OmegaActive(i))
-    dum3=dum3+1d0*WeightActive(i)
-    
-    if(Sim1f(it2,it,i,10)<0.5d0) then
-        dum2=dum2+Sim1f(it2,it,i+1,1)*WeightActive(i)*(1d0-OmegaActive(i))
-    end if
-    
-end do
-end do
-
-end do
-
-do i=1,36
-
-do it2=1,nsim2
-do it=1,nsim
-    dum2=dum2+SimR1m(it2,it,i+1,1)*WeightRet(i)*(1d0-OmegaRet(i))
-    dum3=dum3+1d0*WeightRet(i)
-    
-    if(Sim1f(it2,it,T,10)<0.5d0) then
-        dum2=dum2+SimR1f(it2,it,i+1,1)*WeightRet(i)*(1d0-OmegaRet(i))
-    end if
-    
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'Assets per capita to be redistributed',dum2/2d0
-Print *,'Gamma_redistr',Gamma_redistr/2d0
-
-epsilon2=Gamma_redistr-dum2
-
-Gamma_redistr=Gamma_redistr-0.5d0*(Gamma_redistr-dum2)
 
 ! Capital tax
 
@@ -1132,15 +1291,17 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
 
+r_ret=((1d0+r)/OmegaRet2(i))-1d0    
+    
 do it2=1,nsim2
 do it=1,nsim
-    dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)*r*tk
+    dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)*r_ret*tk
     dum3=dum3+2d0*WeightRet(i)
     
     if(Sim1f(it2,it,T,10)<0.5d0) then
-        dum2=dum2+SimR1f(it2,it,i,1)*WeightRet(i)*r*tk
+        dum2=dum2+SimR1f(it2,it,i,1)*WeightRet(i)*r_ret*tk
     end if
     
 end do
@@ -1175,7 +1336,7 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
@@ -1216,7 +1377,7 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
@@ -1256,16 +1417,7 @@ end do
 end do
 
 end do
-
-do i=1,36
-
-do it2=1,nsim2
-do it=1,nsim
-    dum5=dum5+2d0*WeightRet(i)
-end do
-end do
-
-end do
+ 
 
 dum4=dum4/dum5
 
@@ -1292,15 +1444,6 @@ end do
 
 end do
 
-do i=1,36
-
-do it2=1,nsim2
-do it=1,nsim
-    dum3=dum3+2d0*WeightRet(i)
-end do
-end do
-
-end do
 
 dum15=dum15/dum3
 
@@ -1323,33 +1466,31 @@ end do
 
 end do
 
+    
+    
 !Print *,'Ltot is',dum9
 
 dum3=((ratio*dum9)**alpha)*(dum9**(1-alpha))/dum3
 
 Print *,'GDP per capita is',dum3
 
+Print *,'Lumpsum is',lumpsum/2d0
+
+
 !Government Budget
 
-lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-dum15-(r*debttoGDP*dum3+2*milspendtoGDP*dum3)
+lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+2d0*milspendtoGDP*dum3)
+
+Print *,'Net revenue is',lumpsumdum
 
 lumpsumdum=lumpsumdum*2d0
 
-!lumpsumdum=(dum5+dum7)-(lumpsum/2d0)-dum15-(2*milspendtoGDP*dum3)
-!
-!Print *,'Debt per capita is',lumpsumdum/(r-mu)
-!
-!Print *,'Debt to GDP is',(lumpsumdum/(r-mu))/dum3
-
-!debttoGDP=(lumpsumdum/(r-mu))/dum3
-
-Print *,'Net revenue is',lumpsumdum/2d0
-Print *,'Lumpsum is',lumpsum/2d0
-
 epsilon3=lumpsum-lumpsumdum
 
-!epsilon3=0d0
-lumpsum=lumpsum-0.5d0*(lumpsum-lumpsumdum)
+epsilon3=0d0
+lumpsum=lumpsum-0.3d0*(lumpsum-lumpsumdum)
+
+
 
 !Labor income tax level
 
@@ -1363,24 +1504,11 @@ do i=1,T
 do it2=1,nsim2
 do it=1,nsim
     dum2=dum2+Sim1m(it2,it,i,6)*WeightActive(i)
+    dum4=dum4+Sim1m(it2,it,i,7)*WeightActive(i)
     dum3=dum3+2d0*WeightActive(i)
     
     if(Sim1f(it2,it,i,10)<0.5d0) then
         dum2=dum2+Sim1f(it2,it,i,6)*WeightActive(i)
-    end if
-    
-end do
-end do
-
-end do
-
-do i=1,T
-
-do it2=1,nsim2
-do it=1,nsim
-    dum4=dum4+Sim1m(it2,it,i,7)*WeightActive(i)
-    
-    if(Sim1f(it2,it,i,10)<0.5d0) then
         dum4=dum4+Sim1f(it2,it,i,7)*WeightActive(i)
     end if
     
@@ -1389,6 +1517,7 @@ end do
 
 end do
 
+    
 Print *,'Average labor income tax rate is',dum4/dum2
 
 Print *,'Average individual earnings is',dum2/dum3
@@ -1400,8 +1529,10 @@ do i=1,T
 
 do it2=1,nsim2
 do it=1,nsim
-    dum2=dum2+Sim1m(it2,it,i,5)*WeightActive(i)
-    dum3=dum3+WeightActive(i)
+    if(Sim1m(it2,it,i,4)>0.001) then
+        dum2=dum2+Sim1m(it2,it,i,5)*WeightActive(i)
+        dum3=dum3+WeightActive(i)
+    end if
     if(Sim1f(it2,it,i,4)>0.001) then
         dum2=dum2+Sim1f(it2,it,i,5)*WeightActive(i)
         dum3=dum3+WeightActive(i)
@@ -1411,14 +1542,106 @@ end do
 
 end do
 
+    
 Print *,'Average individual earnings for working people is',dum2/dum3
 
-epsilon5=AE-dum2/dum3
+Print *,'AE is',AE
+!Print *,'contribution to FCN is is',((dum2/dum3-1d0)/1d0)**2
+dum10=dum10+((dum2/dum3-1d0)/1d0)**2
 
-AE=dum2/dum3
+!epsilon5=AE-dum2/dum3
 
-Unemp_benefit=0.201795*AE
+!AE=AE-0.2d0*(AE-dum2/dum3)
+
+!Unemp_benefit=0.201795*AE
+
+!Filling the average earnings matrix to be used for pensions
+
+
+do ia=1,na
+
+dum2=0d0
+dum3=0d0
+dum4=0d0
+dum5=0d0
+
+do i=11,T
+
+do it2=1,nsim2
+do it=1,nsim
+
+if(exp1m(it2,it,i,2)==ia) then
+    if(Sim1m(it2,it,i,10)>0.5) then    
+        if(Sim1m(it2,it,i,4)>0.001) then
+            dum2=dum2+Sim1m(it2,it,i,5)*WeightActive(i)
+            dum3=dum3+WeightActive(i)
+        end if
+    end if
+end if
     
+if(exp1f(it2,it,i,2)==ia) then
+    if(Sim1f(it2,it,i,10)>0.5) then
+        if(Sim1f(it2,it,i,4)>0.001) then
+            dum4=dum4+Sim1f(it2,it,i,5)*WeightActive(i)
+            dum5=dum5+WeightActive(i)
+        end if
+    end if
+end if
+    
+    
+end do
+end do
+
+end do
+
+!av_earnings(1,1,ia)=dum2/dum3
+!av_earnings(2,1,ia)=dum4/dum5
+
+end do
+
+
+do ia=1,na
+
+dum2=0d0
+dum3=0d0
+dum4=0d0
+dum5=0d0
+
+do i=11,T
+
+do it2=1,nsim2
+do it=1,nsim
+
+if(exp1m(it2,it,i,2)==ia) then
+    if(Sim1m(it2,it,i,10)<0.5) then    
+        if(Sim1m(it2,it,i,4)>0.001) then
+            dum2=dum2+Sim1m(it2,it,i,5)*WeightActive(i)
+            dum3=dum3+WeightActive(i)
+        end if
+    end if
+end if
+    
+if(exp1f(it2,it,i,2)==ia) then
+    if(Sim1f(it2,it,i,10)<0.5) then
+        if(Sim1f(it2,it,i,4)>0.001) then
+            dum4=dum4+Sim1f(it2,it,i,5)*WeightActive(i)
+            dum5=dum5+WeightActive(i)
+        end if
+    end if
+end if
+    
+    
+end do
+end do
+
+end do
+
+!av_earnings(1,2,ia)=dum2/dum3
+!av_earnings(2,2,ia)=dum4/dum5
+
+end do
+
+
 !Prices
 
 dum2=0d0
@@ -1439,14 +1662,14 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
-    dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)
+    dum2=dum2+(SimR1m(it2,it,i,1)/OmegaRet2(i))*WeightRet(i)
     
     if(Sim1f(it2,it,T,10)<0.5d0) then
-        dum2=dum2+SimR1f(it2,it,i,1)*WeightRet(i)
+        dum2=dum2+(SimR1f(it2,it,i,1)/OmegaRet2(i))*WeightRet(i)
     end if
     
 end do
@@ -1469,8 +1692,8 @@ Print *,'Wage is',w
 Print *,'Interest is',r
 
 Print *,'K/Y is',ratiodum**(1d0-alpha)
-
-dum10=dum10+(((ratiodum**(1d0-alpha))-2.6399)/2.6399)**2
+!Print *,'contribution to FCN is is',(((ratiodum**(1d0-alpha))-2.683d0)/2.683d0)**2d0
+dum10=dum10+(((ratiodum**(1d0-alpha))-2.683d0)/2.683d0)**2d0
 
 Print *,'FCN is',dum10
 
@@ -1595,19 +1818,39 @@ if((Sim1m(it2,it,i,10)<0.5).AND.(ia2==exp1m(it2,it,i,2))) then
     dum2=Sim1m(it2,it,i,1)
     ia=ia2
     iu=exp1m(it2,it,i,3)
+    ifc=exp1m(it2,it,i,6)
+    dum5=exp2m(it2,it,i,1)
+    
+    if(i==1) then
+        ix=1
+    end if
+    
+    if(dum5<exp_grid(2,i)/2d0) then
+        ix=1
+    end if
+    
+    do ik=2,nexp-1  
+    if(((exp_grid(ik,i)-(exp_grid(ik,i)-exp_grid(ik-1,i))/2d0)<dum5).AND.(dum5<(exp_grid(ik,i)+(exp_grid(ik+1,i)-exp_grid(ik,i))/2d0))) then
+        ix=ik
+    end if
+    end do
+
+    if(dum5>(exp_grid(nexp,i)-(exp_grid(nexp,i)-exp_grid(nexp-1,i))/2d0)) then
+        ix=nexp
+    end if
     
     if(dum2<k_grid(2)/2d0) then
-        mpartnerdum(1,ia,iu,i)=mpartnerdum(1,ia,iu,i)+1d0
+        mpartnerdum(1,ix,ia,iu,i,ifc)=mpartnerdum(1,ix,ia,iu,i,ifc)+1d0
     end if
     
     do ik=2,nk-1  
     if(((k_grid(ik)-(k_grid(ik)-k_grid(ik-1))/2d0)<dum2).AND.(dum2<(k_grid(ik)+(k_grid(ik+1)-k_grid(ik))/2d0))) then
-        mpartnerdum(ik,ia,iu,i)=mpartnerdum(ik,ia,iu,i)+1d0
+        mpartnerdum(ik,ix,ia,iu,i,ifc)=mpartnerdum(ik,ix,ia,iu,i,ifc)+1d0
     end if
     end do
 
     if(dum2>(k_grid(nk)-(k_grid(nk)-k_grid(nk-1))/2d0)) then
-        mpartnerdum(nk,ia,iu,i)=mpartnerdum(nk,ia,iu,i)+1d0
+        mpartnerdum(nk,ix,ia,iu,i,ifc)=mpartnerdum(nk,ix,ia,iu,i,ifc)+1d0
     end if
     
     dum3=dum3+1d0
@@ -1616,7 +1859,7 @@ end if
 end do
 end do
 
-mpartnerdum(:,ia2,:,i)=mpartnerdum(:,ia2,:,i)/dum3
+mpartnerdum(:,:,ia2,:,i,:)=mpartnerdum(:,:,ia2,:,i,:)/dum3
 
 end do
 
@@ -1695,41 +1938,46 @@ epsilon6=max(maxval(fpartnerdum2),maxval(mpartnerdum2))
 
 Print *,'max distance between distribution of singles is',epsilon6
 
-if(iter>12) then
+!if(iter>5) then
     epsilon6=0d0
-end if
+!end if
 
 fpartner=fpartnerdum
 
 mpartner=mpartnerdum
 
 dum2=0d0
+! >>>>>
+!do ifc=1,nfc
+!do ik=1,nk
+!    do ia=1,na
+!        do ix=1,nexp
+!            do iu=1,nu
+!                dum2=dum2+fpartner(ik,ix,ia,iu,30,ifc)
+!            end do
+!        end do
+!    end do
+!end do
+!end do
+!
+!Print *,'sum fpartner is',dum2
+! >>>>>
 
-do ifc=1,nfc
-do ik=1,nk
-    do ia=1,na
-        do ix=1,T
-            do iu=1,nu
-                dum2=dum2+fpartner(ik,ix,ia,iu,30,ifc)
-            end do
-        end do
-    end do
-end do
-end do
-
-Print *,'sum fpartner is',dum2
-
-dum2=0d0
-
-do ik=1,nk
-    do ia=1,na
-            do iu=1,nu
-                dum2=dum2+mpartner(ik,ia,iu,30)
-            end do
-    end do
-end do
-
-Print *,'sum mpartner is',dum2
+!dum2=0d0
+!
+!do ifc=1,nfcm
+!do ik=1,nk
+!    do ia=1,na
+!        do ix=1,nexp
+!            do iu=1,nu
+!                dum2=dum2+mpartner(ik,ix,ia,iu,30,ifc)
+!            end do
+!        end do
+!    end do
+!end do
+!end do
+!
+!Print *,'sum mpartner is',dum2
 
 !Here we are computing the matrix of  probabilities for marrying someone of ability a' if you have probability a.
 
@@ -1931,54 +2179,59 @@ do i=1,T
 
 do it2=1,nsim2
 do it=1,nsim
+
+if(Sim1m(it2,it,i,10)<0.5) then
     dum7=dum7+1d0*WeightActive(i)
-    if(exp1f(it2,it,i,6)==1) then
+    if(exp1m(it2,it,i,6)==1) then
         dum2=dum2+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==2) then
+    elseif(exp1m(it2,it,i,6)==2) then
         dum3=dum3+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==3) then
+    elseif(exp1m(it2,it,i,6)==3) then
         dum4=dum4+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==4) then
+    elseif(exp1m(it2,it,i,6)==4) then
         dum5=dum5+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==5) then
+    elseif(exp1m(it2,it,i,6)==5) then
         dum6=dum6+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==6) then
+    elseif(exp1m(it2,it,i,6)==6) then
         dum8=dum8+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==7) then
+    elseif(exp1m(it2,it,i,6)==7) then
         dum9=dum9+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==8) then
+    elseif(exp1m(it2,it,i,6)==8) then
         dum10=dum10+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==9) then
+    elseif(exp1m(it2,it,i,6)==9) then
         dum11=dum11+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==10) then
+    elseif(exp1m(it2,it,i,6)==10) then
         dum12=dum12+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==11) then
+    elseif(exp1m(it2,it,i,6)==11) then
         dum13=dum13+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==12) then
+    elseif(exp1m(it2,it,i,6)==12) then
         dum14=dum14+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==13) then
+    elseif(exp1m(it2,it,i,6)==13) then
         dum15=dum15+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==14) then
+    elseif(exp1m(it2,it,i,6)==14) then
         dum16=dum16+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==15) then
+    elseif(exp1m(it2,it,i,6)==15) then
         dum17=dum17+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==16) then
+    elseif(exp1m(it2,it,i,6)==16) then
         dum18=dum18+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==17) then
+    elseif(exp1m(it2,it,i,6)==17) then
         dum19=dum19+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==18) then
+    elseif(exp1m(it2,it,i,6)==18) then
         dum20=dum20+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==19) then
+    elseif(exp1m(it2,it,i,6)==19) then
         dum21=dum21+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==20) then
+    elseif(exp1m(it2,it,i,6)==20) then
         dum22=dum22+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==21) then
+    elseif(exp1m(it2,it,i,6)==21) then
         dum23=dum23+1d0*WeightActive(i)
-    elseif(exp1f(it2,it,i,6)==22) then
+    elseif(exp1m(it2,it,i,6)==22) then
         dum24=dum24+1d0*WeightActive(i)
     else
         dum25=dum25+1d0*WeightActive(i)
     end if
+
+end if
+
 end do
 end do
 
@@ -2010,7 +2263,7 @@ dum25=dum25/dum7
 
 
 
-Print *,'Distribution of female fixed cost shock is',dum2,dum3,dum4,dum5,dum6,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25
+Print *,'Distribution of single male fixed cost shock is',dum2,dum3,dum4,dum5,dum6,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25
 
 ! Taxes by demographic group
 
@@ -2046,18 +2299,20 @@ end do
 
 
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
     
+    r_ret=((1d0+r)/OmegaRet2(i))-1d0
+    
     if(Sim1m(it2,it,T,10)<0.5d0) then
-        dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)*r*tk
+        dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)*r_ret*tk
         dum3=dum3+1d0*WeightRet(i)
     end if
     
     if(Sim1f(it2,it,T,10)<0.5d0) then
-        dum4=dum4+SimR1f(it2,it,i,1)*WeightRet(i)*r*tk
+        dum4=dum4+SimR1f(it2,it,i,1)*WeightRet(i)*r_ret*tk
         dum5=dum5+1d0*WeightRet(i)
     end if
     
@@ -2104,7 +2359,7 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
@@ -2164,7 +2419,7 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
@@ -2227,13 +2482,15 @@ end do
 
 
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
     
+    r_ret=((1d0+r)/OmegaRet2(i))-1d0
+    
     if(Sim1m(it2,it,T,10)>0.5d0) then
-        dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)*r*tk
+        dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)*r_ret*tk
         dum3=dum3+2d0*WeightRet(i)
     end if
     
@@ -2272,7 +2529,7 @@ end do
 end do
 
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
@@ -2312,7 +2569,7 @@ end do
 
 end do
 
-do i=1,36
+do i=1,Tret
 
 do it2=1,nsim2
 do it=1,nsim
@@ -2334,6 +2591,7 @@ Print *,'Labor income tax for married is',dum2
 Print *,'Labor income tax rate for married is',dum2/dum12
 
 Print *,'Total tax revenue for married is',dum2+dum6
+
 
 !STOP
 

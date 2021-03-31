@@ -7,23 +7,23 @@ subroutine simulation(ik)
     implicit none
 
     integer, INTENT(IN) :: ik
-    integer :: i,iam,ium,iaf,iuf,um,uf,it2,it3,it4,it5,j,count2,ifc,iu2,ixm
-    real(8) :: ix,dum2,dum3,dum4,dum5,dum6, mixm(nsim,2), mixf(nsim,2),mixdum(nsim,2),mixdum2(nsim,2),pnt1(2)
+    integer :: i,iam,ium,iaf,iuf,um,uf,it2,it3,it4,it5,j,count2,count3,ifc,ifcm,iu2,iu3
+    real(8) :: d1,d2,ix,ixm,dum2,dum3,dum4,dum5,dum6,dum7,dum8,mixm(nsim,2), mixf(nsim,2),mixdum(nsim,2),mixdum2(nsim,2),pnt1(2),pnt12(2),pnt2(3),exp_grid_dum(nexp),exp_grid_dum2(nexp),INTERP2D(nk,nexp),INTERP3D(nk,nexp,nexp)
     
     
     dum2=0.0
     !Print *,'Simulation',dum2
 
 
-    !This vectors will hold various statistics
+    !These vectors will hold various statistics
 
     Sim1m(ik,:,:,:)=0d0
-    Sim1m(ik,:,:,:)=0d0
+    Sim1f(ik,:,:,:)=0d0
 
     !Assigning the asset level for 20-year olds
 
-    Sim1m(ik,:,1,1)=0.440852*AE
-    Sim1f(ik,:,1,1)=0.440852*AE
+    !Sim1m(ik,:,1,1)=AE
+    !Sim1f(ik,:,1,1)=AE
 
     !This vector will hold the level of experience for women, abilit2y and the idiosyncratic shock
 
@@ -110,27 +110,30 @@ mixm(it2,2)=it2*1d0
 exp1m(ik,it2,1,4)=0
 Sim1m(ik,it2,1,10)=0d0
 
-if(marstatm_init(ik,it2)<0.1259) then
+if(marstatm_init(ik,it2)<0.0475256d0) then
     count2=count2+1
     mixm(it2,1)=marstatm_init(ik,it2)+match*A(1,exp1m(ik,it2,1,2))+1000d0
 end if
 
 end do
 
-it3=0
+count3=0
+
 do it2=1,nsim
     
 !Single women
-it3=it3+1
 exp1f(ik,it2,1,4)=0
 Sim1f(ik,it2,1,10)=0d0
 mixf(it2,2)=it2*1d0
 
-if(it3<count2+1) then
+if(marstatf_init(ik,it2)<0.0475256d0) then
+    count3=count3+1
     mixf(it2,1)=marstatf_init(ik,it2)+match*A(2,exp1f(ik,it2,1,2))+1000d0
 end if
 
 end do
+
+count2=min(count2,count3)
 
 !Sorting single men and women by marriage shock
 
@@ -235,39 +238,15 @@ end do
         exp1f(ik,it2,:,6)=iu2
     end do
 
-    !do it2=1,nsim
-    !    if(Partshock(ik,it2,1)<Prob_fc(1,1)) then
-    !        exp1f(ik,it2,:,6)=1
-    !    elseif((Prob_fc(1,1)<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)))) then
-    !        exp1f(ik,it2,:,6)=2
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)))) then
-    !        exp1f(ik,it2,:,6)=3
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)))) then
-    !        exp1f(ik,it2,:,6)=4
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)))) then
-    !        exp1f(ik,it2,:,6)=5
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)))) then
-    !        exp1f(ik,it2,:,6)=6
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)))) then
-    !        exp1f(ik,it2,:,6)=7
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)))) then
-    !        exp1f(ik,it2,:,6)=8
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)))) then
-    !        exp1f(ik,it2,:,6)=9
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10)))) then
-    !        exp1f(ik,it2,:,6)=10
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10)+Prob_fc(1,11)))) then
-    !        exp1f(ik,it2,:,6)=11
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10)+Prob_fc(1,11))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10)+Prob_fc(1,11)+Prob_fc(1,12)))) then
-    !        exp1f(ik,it2,:,6)=12
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10)+Prob_fc(1,11)+Prob_fc(1,12))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10)+Prob_fc(1,11)+Prob_fc(1,12)+Prob_fc(1,13)))) then
-    !        exp1f(ik,it2,:,6)=13
-    !    elseif(((Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10)+Prob_fc(1,11)+Prob_fc(1,12)+Prob_fc(1,13))<Partshock(ik,it2,1)).AND.(Partshock(ik,it2,1)<(Prob_fc(1,1)+Prob_fc(1,2)+Prob_fc(1,3)+Prob_fc(1,4)+Prob_fc(1,5)+Prob_fc(1,6)+Prob_fc(1,7)+Prob_fc(1,8)+Prob_fc(1,9)+Prob_fc(1,10)+Prob_fc(1,11)+Prob_fc(1,12)+Prob_fc(1,13)+Prob_fc(1,14)))) then
-    !        exp1f(ik,it2,:,6)=14
-    !    else
-    !        exp1f(ik,it2,:,6)=15
-    !    end if
-    !end do
+   do it2=1,nsim
+        iu2=1
+        dum5=Prob_fcm(1,iu2)
+        do while((dum5<Partshock2(ik,it2,1)).AND.(iu2<nfc))
+            iu2=iu2+1
+            dum5=dum5+Prob_fcm(1,iu2)
+        end do
+        exp1m(ik,it2,:,6)=iu2
+    end do
     
     !do it2=1,100
     !    Print *,exp1(ik,it2,1,3)
@@ -295,43 +274,45 @@ end do
                 dum2=Sim1m(ik,it2,i,1)
                 iam=exp1m(ik,it2,i,2)
                 ium=exp1m(ik,it2,i,3)
+                ixm=exp2m(ik,it2,i,1)
+                ifcm=exp1m(ik,it2,i,6)
                 iaf=exp1f(ik,it3,i,2)
                 iuf=exp1f(ik,it3,i,3)
                 ix=exp2f(ik,it3,i,1)
                 ifc=exp1f(ik,it3,i,6)
-                pnt1 = (/dum2, ix/)
+                pnt2 = (/dum2, ix, ixm/)
     
                 !Next period's capital
-                INTERP2D=k(:,:,iam,ium,iaf,iuf,i,ifc)
-                Sim1m(ik,it2,i+1,1) = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                INTERP3D=k(:,:,:,iam,ium,iaf,iuf,i,ifc,ifcm)
+                Sim1m(ik,it2,i+1,1) = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                 Sim1f(ik,it3,i+1,1) = Sim1m(ik,it2,i+1,1)
     
                 !This period's consumption
-                INTERP2D=c(:,:,iam,ium,iaf,iuf,i,ifc)
-                dum4 = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                INTERP3D=c(:,:,:,iam,ium,iaf,iuf,i,ifc,ifcm)
+                dum4 = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                 Sim1m(ik,it2,i,2) = dum4
                 Sim1f(ik,it3,i,2) = dum4
     
                 ! Male wage, work hours and earnings
-                Sim1m(ik,it2,i,3) = wage(1,a(1,iam),dble(i),u(1,ium))/(1d0+t_employer)
-                INTERP2D=nm(:,:,iam,ium,iaf,iuf,i,ifc)
-                dum5=bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                Sim1m(ik,it2,i,3) = wage(1,a(1,iam),dble(ixm),u(1,ium))/(1d0+t_employer)
+                INTERP3D=nm(:,:,:,iam,ium,iaf,iuf,i,ifc,ifcm)
+                dum5=trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                 dum5=max(dum5,0d0)
                 Sim1m(ik,it2,i,4) = dum5
-                Sim1m(ik,it2,i,5) = dum5*wage(1,a(1,iam),dble(i),u(1,ium))/(1d0+t_employer)
+                Sim1m(ik,it2,i,5) = dum5*wage(1,a(1,iam),dble(ixm),u(1,ium))/(1d0+t_employer)
     
                 ! Female wage, work hours and earnings
     
                 Sim1f(ik,it3,i,3) = wage(2,a(2,iaf),dble(ix),u(2,iuf))/(1d0+t_employer)
-                INTERP2D=nf(:,:,iam,ium,iaf,iuf,i,ifc)
-                dum6=bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                INTERP3D=nf(:,:,:,iam,ium,iaf,iuf,i,ifc,ifcm)
+                dum6=trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                 dum6=max(dum6,0d0)
                 Sim1f(ik,it3,i,4) = dum6
                 Sim1f(ik,it3,i,5) = dum6*wage(2,a(2,iaf),dble(ix),u(2,iuf))/(1d0+t_employer)
     
                 !Household income and taxes
     
-                dum3=dum5*wage(1,a(1,iam),dble(i),u(1,ium))/(1d0+t_employer)+dum6*wage(2,a(2,iaf),dble(ix),u(2,iuf))/(1d0+t_employer)
+                dum3=dum5*wage(1,a(1,iam),dble(ixm),u(1,ium))/(1d0+t_employer)+dum6*wage(2,a(2,iaf),dble(ix),u(2,iuf))/(1d0+t_employer)
                 Sim1m(ik,it2,i,6) = dum3
                 Sim1f(ik,it3,i,6) = dum3
                 if(dum3>0d0) then
@@ -342,8 +323,8 @@ end do
                     Sim1f(ik,it3,i,7)= 0d0
                 end if
     
-                if (isnan(Sim1f(ik,it2,i,3))) then
-                    print *, 'Sim1f(ik,it2,i,3) in eqSys = NaN'
+                if (isnan(Sim1f(ik,it3,i,3))) then
+                    print *, 'Sim1f(ik,it3,i,3) in eqSys = NaN'
                     ! Print *,'it2 is',it2
                     ! Print *,'i is',i
                     ! Print *,'female wage is',Sim1(ik,it2,i,3)
@@ -367,33 +348,49 @@ end do
                 else
                     exp2f(ik,it3,i+1,1)=exp2f(ik,it3,i,1)*(1d0-deltaexp)
                 end if
+                
+                if(Sim1m(ik,it2,i,4)>1d-3) then
+                    exp2m(ik,it2,i+1,1)=exp2m(ik,it2,i,1)+1d0
+                else
+                    exp2m(ik,it2,i+1,1)=exp2m(ik,it2,i,1)*(1d0-deltaexp)
+                end if
     
+                !Social Welfare
+                INTERP3D=V(:,:,:,iam,ium,iaf,iuf,i,ifc,ifcm)
+                dum3 = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
+                Sim1m(ik,it2,i,11) = dum3
+                Sim1f(ik,it3,i,11) = dum3
+                
             else
     
                 dum2=Sim1m(ik,it2,i,1)
                 iam=exp1m(ik,it2,i,2)
                 ium=exp1m(ik,it2,i,3)
-                ixm=1
+                ixm=exp2m(ik,it2,i,1)
+                ifcm=exp1m(ik,it2,i,6)
                 j=1
-                ifc=1
+                pnt1 = (/dum2, ixm/)
     
                 !Next period's capital
-                Sim1m(ik,it2,i+1,1) = LinInterp(dum2,k_grid,ks(j,:,ixm,iam,ium,i,ifc),nk)
+                INTERP2D=ks(j,:,:,iam,ium,i,ifcm)
+                Sim1m(ik,it2,i+1,1)=bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
     
                 !This period's consumption
-                dum4 = LinInterp(dum2,k_grid,cs(j,:,ixm,iam,ium,i,ifc),nk)
+                INTERP2D=cs(j,:,:,iam,ium,i,ifcm)
+                dum4 = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
                 Sim1m(ik,it2,i,2) = dum4
     
                 ! Male wage, work hours and earnings
-                Sim1m(ik,it2,i,3) = wage(1,a(1,iam),dble(i),u(1,ium))/(1d0+t_employer)
-                dum5=LinInterp(dum2,k_grid,ns(j,:,ixm,iam,ium,i,ifc),nk)
+                Sim1m(ik,it2,i,3) = wage(1,a(1,iam),dble(ixm),u(1,ium))/(1d0+t_employer)
+                INTERP2D=ns(j,:,:,iam,ium,i,ifcm)
+                dum5=bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
                 dum5=max(dum5,0d0)
                 Sim1m(ik,it2,i,4) = dum5
-                Sim1m(ik,it2,i,5) = dum5*wage(1,a(1,iam),dble(i),u(1,ium))/(1d0+t_employer)
+                Sim1m(ik,it2,i,5) = dum5*wage(1,a(1,iam),dble(ixm),u(1,ium))/(1d0+t_employer)
     
                 !Household income and taxes
     
-                dum3=dum5*wage(1,a(1,iam),dble(i),u(1,ium))/(1d0+t_employer)
+                dum3=dum5*wage(1,a(1,iam),dble(ixm),u(1,ium))/(1d0+t_employer)
                 Sim1m(ik,it2,i,6) = dum3
                 if(dum3>0d0) then
                     Sim1m(ik,it2,i,7)= tax_labors(dum3)*dum3
@@ -403,6 +400,17 @@ end do
     
                 Sim1m(ik,it2,i,8)= dum4*tc
                 Sim1m(ik,it2,i,9)=dum3*t_employee+t_employer*dum3
+                
+                if(Sim1m(ik,it2,i,4)>1d-3) then
+                    exp2m(ik,it2,i+1,1)=exp2m(ik,it2,i,1)+1d0
+                else
+                    exp2m(ik,it2,i+1,1)=exp2m(ik,it2,i,1)*(1d0-deltaexp)
+                end if
+                
+                !Social welfare
+                INTERP2D=Vs(j,:,:,iam,ium,i,ifcm)
+                dum3 = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                Sim1m(ik,it2,i,11) = dum3
     
             end if
     
@@ -454,6 +462,11 @@ end do
                 else
                     exp2f(ik,it2,i+1,1)=exp2f(ik,it2,i,1)*(1d0-deltaexp)
                 end if
+                
+                !Social Welfare
+                INTERP2D=Vs(j,:,:,iam,ium,i,ifc)
+                dum3=bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                Sim1f(ik,it2,i,11) = dum3
     
             end if
     
@@ -478,7 +491,7 @@ end do
         !print *, i
     
         !Uppdating the idiosyncratic wage shock
-    
+     
         do it2=1,nsim
             um=exp1m(ik,it2,i,3)
             if(Random3m(ik,it2,i)<trans_u(1,um,1)) then
@@ -494,6 +507,7 @@ end do
             end if
         end do
     
+        
         do it2=1,nsim
             uf=exp1f(ik,it2,i,3)
             if(Random3f(ik,it2,i)<trans_u(2,uf,1)) then
@@ -573,20 +587,22 @@ end if
     
         end do
     
-it3=0
+count3=0
 do it2=1,nsim
     !Single women
    
     if(Sim1f(ik,it2,i,10)<0.5d0) then
-        it3=it3+1
         exp1f(ik,it2,i+1,4)=0
         Sim1f(ik,it2,i+1,10)=0d0
-        if(it3<count2+1) then
+        if(marstatf(ik,it2,i)<Probm(i)) then
             mixf(it2,2)=it2*1d0
             mixf(it2,1)=marstatf(ik,it2,i)+match*A(2,exp1f(ik,it2,i,2))+1000d0
+            count3=count3+1
         end if
     end if
 end do
+
+count2=min(count2,count3)
     
 !Sorting single men and women by marriage shock Mn
 
@@ -697,47 +713,188 @@ end do
     !Beginning the simulation for retired households
     
     SimR1m(ik,:,1,1)=Sim1m(ik,:,T+1,1)
+    SimR1m(ik,:,1,12)=exp2m(ik,:,T+1,1)
+    expR1m(ik,:,1,2)=exp1m(ik,:,T+1,3)
+    expR1m(ik,:,1,3)=2
     SimR1f(ik,:,1,1)=Sim1f(ik,:,T+1,1)
+    SimR1f(ik,:,1,12)=exp2f(ik,:,T+1,1)
+    expR1f(ik,:,1,2)=exp1f(ik,:,T+1,3)
+    expR1f(ik,:,1,3)=2
     
-    do i=1,36
+    do i=1,Tret
+        expR1m(ik,:,i,4)=exp1m(ik,:,T+1,6)
+        expR1m(ik,:,i,1)=exp1m(ik,:,T+1,2)
+        expR1f(ik,:,i,4)=exp1f(ik,:,T+1,6)
+        expR1f(ik,:,i,1)=exp1f(ik,:,T+1,2)
+    end do
     
+    
+    do i=1,Tret
+        
+        exp_grid_dum=exp_grid(:,T+i)
+        if(i<Tret) then
+            exp_grid_dum2=exp_grid(:,T+i+1)
+        end if
+            
         do it2=1,nsim
     
             if(Sim1m(ik,it2,T,10)>0.5) then
     
-                it3=exp1m(ik,it2,T,4)  
+                it3=exp1m(ik,it2,T,4)
                 dum2=SimR1m(ik,it2,i,1)
+                ixm=SimR1m(ik,it2,i,12)
+                iam=expR1m(ik,it2,i,1)
+                ix=SimR1f(ik,it3,i,12)
+                iaf=expR1f(ik,it3,i,1)
+                pnt2 = (/dum2, ix, ixm/)
     
-                SimR1m(ik,it2,i+1,1) = LinInterp(dum2,k_grid,k_ret(:,i),nk)
-                SimR1f(ik,it3,i+1,1) = LinInterp(dum2,k_grid,k_ret(:,i),nk)
-                dum4 = LinInterp(dum2,k_grid,c_ret(:,i),nk)
+                !Next period's capital
+                INTERP3D=k_ret(:,:,:,iam,iaf,i)
+                SimR1m(ik,it2,i+1,1) = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
+                SimR1f(ik,it3,i+1,1) = SimR1m(ik,it2,i+1,1)
+                
+                !Next periods's consumption
+                INTERP3D=c_ret(:,:,:,iam,iaf,i)
+                dum4 = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                 SimR1m(ik,it2,i,2) = dum4
                 SimR1f(ik,it3,i,2) = dum4
                 SimR1m(ik,it2,i,3)= dum4*tc
                 SimR1f(ik,it3,i,3)= dum4*tc
+                
     
+                !Social Security
+                
+                
+                SimR1m(ik,it2,i+1,12)=SimR1m(ik,it2,i,12)
+                !Pension depends on expected wage conditional on ability and experience
+                !SimR1m(ik,it2,i,14)=psi0+psi1*av_earnings(1,1,iam)*min(1d0,dble(ixm)/35d0)
+                SimR1m(ik,it2,i,14)=psi0
+                
+                SimR1f(ik,it3,i+1,12)=SimR1f(ik,it3,i,12)
+                !SimR1f(ik,it3,i,14)=psi0+psi1*av_earnings(2,1,iaf)*min(1d0,dble(ix)/35d0)
+                SimR1f(ik,it3,i,14)=psi0
+                
+                !Social welfare
+                INTERP3D=v_ret(:,:,:,iam,iaf,i)
+                dum3 = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
+                SimR1m(ik,it2,i,11) = dum3
+                SimR1f(ik,it3,i,11) = dum3
+                
             else
     
                 dum2=SimR1m(ik,it2,i,1)
-                SimR1m(ik,it2,i+1,1) = LinInterp(dum2,k_grid,ks_ret(:,i),nk)
-                dum4 = LinInterp(dum2,k_grid,cs_ret(:,i),nk)
+                ixm=SimR1m(ik,it2,i,12)
+                iam=expR1m(ik,it2,i,1)
+                j=1
+                pnt1 = (/dum2, ixm/)
+                
+                !Next period's capital
+                INTERP2D=ks_ret(j,:,:,iam,i)
+                SimR1m(ik,it2,i+1,1) = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                
+                !This periods's consumption
+                INTERP2D=cs_ret(j,:,:,iam,i)
+                dum4 = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
                 SimR1m(ik,it2,i,2) = dum4
                 SimR1m(ik,it2,i,3)= dum4*tc
-    
+                
+                
+                SimR1m(ik,it2,i+1,12)=SimR1m(ik,it2,i,12)
+                !SimR1m(ik,it2,i,14)=psi0+psi1*av_earnings(1,2,iam)*min(1d0,dble(ixm)/35d0)
+                SimR1m(ik,it2,i,14)=psi0
+                
+                !Social welfare
+                INTERP2D=vs_ret(j,:,:,iam,i)
+                dum3 = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                SimR1m(ik,it2,i,11) = dum3
+                
+                !Euler error
+                if(i>2) then
+                    !pnt12 = (/SimR1m(ik,it2,i+1,1), SimR1m(ik,it2,i+1,12)/)
+                    !INTERP2D=cs_ret(irm,j,:,:,iam,ium,i+1,ifcm)
+                    !SimR1m(ik,it2,i,13) = dUc(dum4)-beta*OmegaRet(i)*((1d0+r*(1d0-tk))/(1d0+mu))*dUc(bilin_interp(k_grid, exp_grid_dum2, INTERP2D, nk, nexp, pnt12))
+                    dum8=SimR1m(ik,it2,i-1,2)
+                    SimR1m(ik,it2,i,13) = dUc(dum8)-beta*OmegaRet(i)*((1d0+r*(1d0-tk))/(1d0+mu))*dUc(dum4)
+                end if
+                    
             end if
     
+            
+            !Single women
             if(Sim1f(ik,it2,T,10)<0.5) then
     
                 dum2=SimR1f(ik,it2,i,1)
-                SimR1f(ik,it2,i+1,1) = LinInterp(dum2,k_grid,ks_ret(:,i),nk)
-                dum4 = LinInterp(dum2,k_grid,cs_ret(:,i),nk)
+                ix=SimR1f(ik,it2,i,12)
+                iaf=expR1f(ik,it2,i,1)
+                j=2
+                pnt1 = (/dum2, ix/)
+                
+                !Next period's capital
+                INTERP2D=ks_ret(j,:,:,iaf,i)
+                SimR1f(ik,it2,i+1,1) = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                
+                !Next periods's consumption
+                INTERP2D=cs_ret(j,:,:,iaf,i)
+                dum4 = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
                 SimR1f(ik,it2,i,2) = dum4
                 SimR1f(ik,it2,i,3)= dum4*tc
+                
+                
+                SimR1f(ik,it2,i+1,12)=SimR1f(ik,it2,i,12)
+                !SimR1f(ik,it2,i,14)=psi0+psi1*av_earnings(2,2,iaf)*min(1d0,dble(ix)/35d0)
+                SimR1f(ik,it2,i,14)=psi0
+                
+                !Social welfare
+                INTERP2D=vs_ret(j,:,:,iaf,i)
+                dum3 = bilin_interp(k_grid, exp_grid_dum, INTERP2D, nk, nexp, pnt1)
+                SimR1f(ik,it2,i,11) = dum3
     
+                !Euler error
+                if(i>2) then
+                    !pnt12 = (/SimR1f(ik,it2,i+1,1), SimR1f(ik,it2,i+1,12)/)
+                    !INTERP2D=cs_ret(irm,j,:,:,iaf,iuf,i+1,ifc)
+                    !dum8=bilin_interp(k_grid, exp_grid_dum2, INTERP2D, nk, nexp, pnt12)
+                    !dum7=dUc(dum4)-beta*OmegaRet(i)*((1d0+r*(1d0-tk))/(1d0+mu))*dUc(dum8)
+                    dum8=SimR1f(ik,it2,i-1,2)
+                    SimR1f(ik,it2,i,13) = dUc(dum8)-beta*OmegaRet(i)*((1d0+r*(1d0-tk))/(1d0+mu))*dUc(dum4)
+                end if
+                
             end if
     
+            
+            
         end do
     
+    !    do it2=1,nsim
+    !        um=expR1m(ik,it2,i,2)
+    !        if(Random3m(ik,it2,T+i)<trans_u(1,um,1)) then
+    !            expR1m(ik,it2,i+1,2)=1
+    !        elseif((trans_u(1,um,1)<Random3m(ik,it2,T+i)).AND.(Random3m(ik,it2,T+i)<(trans_u(1,um,1)+trans_u(1,um,2)))) then
+    !            expR1m(ik,it2,i+1,2)=2
+    !        elseif(((trans_u(1,um,1)+trans_u(1,um,2))<Random3m(ik,it2,T+i)).AND.(Random3m(ik,it2,T+i)<(trans_u(1,um,1)+trans_u(1,um,2)+trans_u(1,um,3)))) then
+    !            expR1m(ik,it2,i+1,2)=3
+    !        elseif(((trans_u(1,um,1)+trans_u(1,um,2)+trans_u(1,um,3))<Random3m(ik,it2,T+i)).AND.(Random3m(ik,it2,T+i)<(trans_u(1,um,1)+trans_u(1,um,2)+trans_u(1,um,3)+trans_u(1,um,4)))) then
+    !            expR1m(ik,it2,i+1,2)=4
+    !        else
+    !            expR1m(ik,it2,i+1,2)=5
+    !        end if
+    !    end do
+    !
+    !    do it2=1,nsim
+    !        uf=expR1f(ik,it2,i,2)
+    !        if(Random3f(ik,it2,T+i)<trans_u(2,uf,1)) then
+    !            expR1f(ik,it2,i+1,2)=1
+    !        elseif((trans_u(2,uf,1)<Random3f(ik,it2,T+i)).AND.(Random3f(ik,it2,T+i)<(trans_u(2,uf,1)+trans_u(2,uf,2)))) then
+    !            expR1f(ik,it2,i+1,2)=2
+    !        elseif(((trans_u(2,uf,1)+trans_u(2,uf,2))<Random3f(ik,it2,T+i)).AND.(Random3f(ik,it2,T+i)<(trans_u(2,uf,1)+trans_u(2,uf,2)+trans_u(2,uf,3)))) then
+    !            expR1f(ik,it2,i+1,2)=3
+    !        elseif(((trans_u(2,uf,1)+trans_u(2,uf,2)+trans_u(2,uf,3))<Random3f(ik,it2,T+i)).AND.(Random3f(ik,it2,T+i)<(trans_u(2,uf,1)+trans_u(2,uf,2)+trans_u(2,uf,3)+trans_u(2,uf,4)))) then
+    !            expR1f(ik,it2,i+1,2)=4
+    !        else
+    !            expR1f(ik,it2,i+1,2)=5
+    !        end if
+    !    end do
+        
     end do
 
 end subroutine Simulation
