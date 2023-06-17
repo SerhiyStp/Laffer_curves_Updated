@@ -65,32 +65,52 @@ subroutine simulation(ik)
     
     !Initialzing the distribution of abilit2ies
     
-    do it2=1,nsim
-        if(Random2m(ik,it2)<Prob_a(1,1)) then
-            exp1m(ik,it2,:,2)=1
-        elseif((Prob_a(1,1)<Random2m(ik,it2)).AND.(Random2m(ik,it2)<(Prob_a(1,1)+Prob_a(1,2)))) then
-            exp1m(ik,it2,:,2)=2
-        elseif(((Prob_a(1,1)+Prob_a(1,2))<Random2m(ik,it2)).AND.(Random2m(ik,it2)<(Prob_a(1,1)+Prob_a(1,2)+Prob_a(1,3)))) then
-            exp1m(ik,it2,:,2)=3
-        elseif(((Prob_a(1,1)+Prob_a(1,2)+Prob_a(1,3))<Random2m(ik,it2)).AND.(Random2m(ik,it2)<(Prob_a(1,1)+Prob_a(1,2)+Prob_a(1,3)+Prob_a(1,4)))) then
-            exp1m(ik,it2,:,2)=4
-        else
-            exp1m(ik,it2,:,2)=5
-        end if
-    end do
+    !do it2=1,nsim
+    !    if(Random2m(ik,it2)<Prob_a(1,1)) then
+    !        exp1m(ik,it2,:,2)=1
+    !    elseif((Prob_a(1,1)<Random2m(ik,it2)).AND.(Random2m(ik,it2)<(Prob_a(1,1)+Prob_a(1,2)))) then
+    !        exp1m(ik,it2,:,2)=2
+    !    elseif(((Prob_a(1,1)+Prob_a(1,2))<Random2m(ik,it2)).AND.(Random2m(ik,it2)<(Prob_a(1,1)+Prob_a(1,2)+Prob_a(1,3)))) then
+    !        exp1m(ik,it2,:,2)=3
+    !    elseif(((Prob_a(1,1)+Prob_a(1,2)+Prob_a(1,3))<Random2m(ik,it2)).AND.(Random2m(ik,it2)<(Prob_a(1,1)+Prob_a(1,2)+Prob_a(1,3)+Prob_a(1,4)))) then
+    !        exp1m(ik,it2,:,2)=4
+    !    else
+    !        exp1m(ik,it2,:,2)=5
+    !    end if
+    !end do
+    !
+    !do it2=1,nsim
+    !    if(Random2f(ik,it2)<Prob_a(2,1)) then
+    !        exp1f(ik,it2,:,2)=1
+    !    elseif((Prob_a(2,1)<Random2f(ik,it2)).AND.(Random2f(ik,it2)<(Prob_a(2,1)+Prob_a(2,2)))) then
+    !        exp1f(ik,it2,:,2)=2
+    !    elseif(((Prob_a(2,1)+Prob_a(2,2))<Random2f(ik,it2)).AND.(Random2f(ik,it2)<(Prob_a(2,1)+Prob_a(2,2)+Prob_a(2,3)))) then
+    !        exp1f(ik,it2,:,2)=3
+    !    elseif(((Prob_a(2,1)+Prob_a(2,2)+Prob_a(2,3))<Random2f(ik,it2)).AND.(Random2f(ik,it2)<(Prob_a(2,1)+Prob_a(2,2)+Prob_a(2,3)+Prob_a(2,4)))) then
+    !        exp1f(ik,it2,:,2)=4
+    !    else
+    !        exp1f(ik,it2,:,2)=5
+    !    end if
+    !end do
     
     do it2=1,nsim
-        if(Random2f(ik,it2)<Prob_a(2,1)) then
-            exp1f(ik,it2,:,2)=1
-        elseif((Prob_a(2,1)<Random2f(ik,it2)).AND.(Random2f(ik,it2)<(Prob_a(2,1)+Prob_a(2,2)))) then
-            exp1f(ik,it2,:,2)=2
-        elseif(((Prob_a(2,1)+Prob_a(2,2))<Random2f(ik,it2)).AND.(Random2f(ik,it2)<(Prob_a(2,1)+Prob_a(2,2)+Prob_a(2,3)))) then
-            exp1f(ik,it2,:,2)=3
-        elseif(((Prob_a(2,1)+Prob_a(2,2)+Prob_a(2,3))<Random2f(ik,it2)).AND.(Random2f(ik,it2)<(Prob_a(2,1)+Prob_a(2,2)+Prob_a(2,3)+Prob_a(2,4)))) then
-            exp1f(ik,it2,:,2)=4
-        else
-            exp1f(ik,it2,:,2)=5
-        end if
+        iu2=1
+        dum5=Prob_a(2,iu2)
+        do while((dum5<Random2f(ik,it2)).AND.(iu2<na))
+            iu2=iu2+1
+            dum5=dum5+Prob_a(2,iu2)
+        end do
+        exp1f(ik,it2,:,2)=iu2
+    end do
+
+   do it2=1,nsim
+        iu2=1
+        dum5=Prob_a(1,iu2)
+        do while((dum5<Random2m(ik,it2)).AND.(iu2<na))
+            iu2=iu2+1
+            dum5=dum5+Prob_a(1,iu2)
+        end do
+        exp1m(ik,it2,:,2)=iu2
     end do
     
 !Initializing marital status and partner number

@@ -94,13 +94,13 @@ subroutine SolveActiveLife(counter)
                             if(dum2<0.0001d0) then
                                 V2=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
-                                V2=Uc(P2)+Ul(dum4,dum5)-fc(1,ifc)-fcm(1,ifcm)
+                                V2=Uc(P2)+Ul(dum4,dum5)-(fc(1,ifc)+fcage(1,1)*(T-it)+fcage(1,2)*(T-it)**(2d0))-fcm(1,ifcm)
                                 pnt2=(/dum2, exp_grid(ix,T-it)+1d0, exp_grid(ixm,T-it)+1d0/)
                                 INTERP3D=ev(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm)
                                 vnext = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                                 V2=V2+beta*OmegaActive(T-it)*vnext
                             else
-                                V2=Uc(P2)+Ul(dum4,dum5)-fc(1,ifc)-fcm(1,ifcm)
+                                V2=Uc(P2)+Ul(dum4,dum5)-(fc(1,ifc)+fcage(1,1)*(T-it)+fcage(1,2)*(T-it)**(2d0))-fcm(1,ifcm)
                                 !vnext = D_BS3VL(dum2,exp_grid(ix,T-it)+1d0,exp_grid(ixm,T-it)+1d0, KORDER, EXPORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1-it),EXP_KNOT(:,T+1-it), nk, nexp, nexp, ev_spln_coefs(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm))
                                 call db3val(dum2,exp_grid(ix,T-it)+1d0,exp_grid(ixm,T-it)+1d0,idx,idy,idz,&
                                     tx,ty(:,T+1-it),tz(:,T+1-it),&
@@ -123,13 +123,13 @@ subroutine SolveActiveLife(counter)
                             if(dum2<0.0001d0) then
                                 V3=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
-                                V3=Uc(P3)+Ul(dum4,dum5)-fc(1,ifc)-fcm(1,ifcm)
+                                V3=Uc(P3)+Ul(dum4,dum5)-(fc(1,ifc)+fcage(1,1)*(T-it)+fcage(1,2)*(T-it)**(2d0))-fcm(1,ifcm)
                                 pnt2=(/dum2, exp_grid(ix,T-it)+1d0, exp_grid(ixm,T-it)+1d0/)
                                 INTERP3D=ev(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm)
                                 vnext = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                                 V3=V3+beta*OmegaActive(T-it)*vnext
                             else
-                                V3=Uc(P3)+Ul(dum4,dum5)-fc(1,ifc)-fcm(1,ifcm)
+                                V3=Uc(P3)+Ul(dum4,dum5)-(fc(1,ifc)+fcage(1,1)*(T-it)+fcage(1,2)*(T-it)**(2d0))-fcm(1,ifcm)
                                 !vnext = D_BS3VL(dum2,exp_grid(ix,T-it)+1d0,exp_grid(ixm,T-it)+1d0, KORDER, EXPORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1-it),EXP_KNOT(:,T+1-it), nk, nexp, nexp, ev_spln_coefs(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm))
                                 call db3val(dum2,exp_grid(ix,T-it)+1d0,exp_grid(ixm,T-it)+1d0,idx,idy,idz,&
                                     tx,ty(:,T+1-it),tz(:,T+1-it),&
@@ -260,13 +260,13 @@ subroutine SolveActiveLife(counter)
                             if(dum2<0.0001d0) then
                                 V2=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
-                                V2=Uc(P2)+Ul(0d0,dum4)-fc(1,ifc)
+                                V2=Uc(P2)+Ul(0d0,dum4)-(fc(1,ifc)+fcage(1,1)*(T-it)+fcage(1,2)*(T-it)**(2d0))
                                 pnt2=(/dum2, exp_grid(ix,T-it)+1d0, exp_grid(ixm,T-it)*(1d0-deltaexp)/)
                                 INTERP3D=ev(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm)
                                 vnext = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                                 V2=V2+beta*OmegaActive(T-it)*vnext
                             else
-                                V2=Uc(P2)+Ul(0d0,dum4)-fc(1,ifc)
+                                V2=Uc(P2)+Ul(0d0,dum4)-(fc(1,ifc)+fcage(1,1)*(T-it)+fcage(1,2)*(T-it)**(2d0))
                                 !vnext = D_BS3VL(dum2,exp_grid(ix,T-it)+1d0,exp_grid(ixm,T-it)*(1d0-deltaexp), KORDER, EXPORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1-it),EXP_KNOT(:,T+1-it), nk, nexp, nexp, ev_spln_coefs(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm))
                                 call db3val(dum2,exp_grid(ix,T-it)+1d0,exp_grid(ixm,T-it)*(1d0-deltaexp),idx,idy,idz,&
                                     tx,ty(:,T+1-it),tz(:,T+1-it),&
@@ -286,14 +286,14 @@ subroutine SolveActiveLife(counter)
                             if(dum2<0.0001d0) then
                                 V3=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
-                                V3=Uc(P3)+Ul(0d0,dum4)-fc(1,ifc)
+                                V3=Uc(P3)+Ul(0d0,dum4)-(fc(1,ifc)+fcage(1,1)*(T-it)+fcage(1,2)*(T-it)**(2d0))
                                 dum2=max(dum2,0d0)
                                 pnt2=(/dum2, exp_grid(ix,T-it)+1d0, exp_grid(ixm,T-it)*(1d0-deltaexp)/)
                                 INTERP3D=ev(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm)
                                 vnext = trilin_interp(k_grid, exp_grid_dum, exp_grid_dum, INTERP3D, nk, nexp, nexp, pnt2)
                                 V3=V3+beta*OmegaActive(T-it)*vnext
                             else
-                                V3=Uc(P3)+Ul(0d0,dum4)-fc(1,ifc)
+                                V3=Uc(P3)+Ul(0d0,dum4)-(fc(1,ifc)+fcage(1,1)*(T-it)+fcage(1,2)*(T-it)**(2d0))
                                 !vnext = D_BS3VL(dum2,exp_grid(ix,T-it)+1d0,exp_grid(ixm,T-it)*(1d0-deltaexp), KORDER, EXPORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1-it),EXP_KNOT(:,T+1-it), nk, nexp, nexp, ev_spln_coefs(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm))
                                 call db3val(dum2,exp_grid(ix,T-it)+1d0,exp_grid(ixm,T-it)*(1d0-deltaexp),idx,idy,idz,&
                                     tx,ty(:,T+1-it),tz(:,T+1-it),&

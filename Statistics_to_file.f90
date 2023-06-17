@@ -1,4 +1,4 @@
-subroutine Statistics
+subroutine Statistics_to_file(file_id)
 
 !This subroutine computes aggregate statistics from the simulation
 
@@ -8,6 +8,7 @@ use Utilities
 USE RLSE_INT
 use CORVC_int
 implicit none
+integer, intent(in) :: file_id
 integer :: i,country,ia,ia2,iu,ix,um,it2,ik,ifc, NVAR=2,it3,it4,ICOPT=2,ik2
 real(8) :: dum2,dum3,dum4,dum5,dum6,dum7,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,SST,SSE,COV(2,2)
 real(8) :: dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25,r_ret,ss_tax,ss_expense
@@ -19,7 +20,7 @@ allocate(XVARS(nsim2*nsim*T,1))
 allocate(YVAR(nsim2*nsim*T))
 allocate(BREG(2))
 
-!Print *,'Gamma_redistr',Gamma_redistr/2d0
+!write(file_id, *)'Gamma_redistr',Gamma_redistr/2d0
 
 !Computing the weight of each generation
 
@@ -54,7 +55,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Labor supply below 65 is',dum2
+write(file_id, *)'Labor supply below 65 is',dum2
 
 
 
@@ -76,7 +77,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Male labor supply is',dum2
+write(file_id, *)'Male labor supply is',dum2
 
 !Single Male Labor Supply
 
@@ -98,8 +99,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Single Male labor supply is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.260d0)/0.260d0)**2d0
+write(file_id, *)'Single Male labor supply is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.260d0)/0.260d0)**2d0
 dum10=((dum2-0.260d0)/0.260d0)**2d0
 
 !Single male labor force participation
@@ -126,8 +127,8 @@ dum2=dum2/dum3
 
 dum10=dum10+((dum2-0.727d0)/0.727d0)**2d0
 
-Print *,'Single male labor force participation is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.727d0)/0.727d0)**2d0
+write(file_id, *)'Single male labor force participation is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.727d0)/0.727d0)**2d0
 
 YVAR=sqrt(-1.0)
 XVARS=sqrt(-1.0)
@@ -159,9 +160,9 @@ dum2=1d0-SSE/SST
 
 dum10=dum10+((dum2-0.408)/0.408)**2
 
-Print *,'Persistence of single male LFP is',BREG(2)
+write(file_id, *)'Persistence of single male LFP is',BREG(2)
 
-Print *,'Single male LFP R2 is',dum2
+write(file_id, *)'Single male LFP R2 is',dum2
 
 
 !Married Male Labor Supply
@@ -184,8 +185,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Married Male labor supply is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.349d0)/0.349d0)**2d0
+write(file_id, *)'Married Male labor supply is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.349d0)/0.349d0)**2d0
 dum10=dum10+((dum2-0.349d0)/0.349d0)**2d0
 
 
@@ -213,8 +214,8 @@ dum2=dum2/dum3
 
 dum10=dum10+((dum2-0.871d0)/0.871d0)**2d0
 
-Print *,'Married male labor force participation is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.871d0)/0.871d0)**2d0
+write(file_id, *)'Married male labor force participation is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.871d0)/0.871d0)**2d0
 YVAR=sqrt(-1.0)
 XVARS=sqrt(-1.0)
 
@@ -245,9 +246,9 @@ dum2=1d0-SSE/SST
 
 dum10=dum10+((dum2-0.457)/0.457)**2
 
-Print *,'Persistence of married male LFP is',BREG(2)
+write(file_id, *)'Persistence of married male LFP is',BREG(2)
 
-Print *,'Married male LFP R2 is',dum2
+write(file_id, *)'Married male LFP R2 is',dum2
 
 
 !Female labor supply
@@ -268,7 +269,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Female labor supply is',dum2
+write(file_id, *)'Female labor supply is',dum2
 
 !Single female labor supply
 
@@ -291,8 +292,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Single female labor supply is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.236d0)/0.236d0)**2d0
+write(file_id, *)'Single female labor supply is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.236d0)/0.236d0)**2d0
 dum10=dum10+((dum2-0.236d0)/0.236d0)**2d0
 
 !Variance of single female hours
@@ -311,7 +312,7 @@ end do
 
 dum4=dum4/dum3
 
-Print *,'Stdev single female labor supply is',SQRT(dum4)
+write(file_id, *)'Stdev single female labor supply is',SQRT(dum4)
 
 
 !Variance of single female hours
@@ -330,7 +331,7 @@ Print *,'Stdev single female labor supply is',SQRT(dum4)
 !
 !dum4=dum4/dum3
 !
-!Print *,'Stdev single female labor supply at age 30 is',SQRT(dum4)
+!write(file_id, *)'Stdev single female labor supply at age 30 is',SQRT(dum4)
 ! >>>>>
 
 !Married female labor supply
@@ -354,8 +355,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Married female labor supply is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.231d0)/0.231d0)**2d0
+write(file_id, *)'Married female labor supply is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.231d0)/0.231d0)**2d0
 dum10=dum10+((dum2-0.231d0)/0.231d0)**2d0
 
 !Variance of married female hours
@@ -374,7 +375,7 @@ end do
 
 dum4=dum4/dum3
 
-Print *,'Stdev married female labor supply is',SQRT(dum4)
+write(file_id, *)'Stdev married female labor supply is',SQRT(dum4)
 
 !Female labor force participation
 
@@ -396,7 +397,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Female labor force participation is',dum2
+write(file_id, *)'Female labor force participation is',dum2
 
 !Single female labor force participation
 
@@ -420,8 +421,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Single female labor force participation is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.694d0)/0.694d0)**2d0
+write(file_id, *)'Single female labor force participation is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.694d0)/0.694d0)**2d0
 dum10=dum10+((dum2-0.694d0)/0.694d0)**2d0
 
 YVAR=sqrt(-1.0)
@@ -454,9 +455,9 @@ dum2=1d0-SSE/SST
 
 dum10=dum10+((dum2-0.463)/0.463)**2
 
-Print *,'Persistence of single female LFP is',BREG(2)
+write(file_id, *)'Persistence of single female LFP is',BREG(2)
 
-Print *,'Single female LFP R2 is',dum2
+write(file_id, *)'Single female LFP R2 is',dum2
 
 !Married female labor force participation
 
@@ -480,57 +481,9 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Married female labor force participation is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
+write(file_id, *)'Married female labor force participation is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
 dum10=dum10+((dum2-0.668d0)/0.668d0)**2d0
-
-dum2=0d0
-dum3=0d0
-
-do i=6,15
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)>0.5) then
-        if(Sim1f(it2,it,i,4)>1d-3) then
-            dum2=dum2+(1d0)*WeightActive(i)
-        end if
-        dum3=dum3+1d0*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'Married female labor force participation 25-34',dum2
-!!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
-dum10=dum10+((dum2-0.661d0)/0.661d0)**2d0
-
-dum2=0d0
-dum3=0d0
-
-do i=36,T
-
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)>0.5) then
-        if(Sim1f(it2,it,i,4)>1d-3) then
-            dum2=dum2+(1d0)*WeightActive(i)
-        end if
-        dum3=dum3+1d0*WeightActive(i)
-    end if
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'Married female labor force participation 55-64',dum2
-!!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
-dum10=dum10+((dum2-0.597d0)/0.597d0)**2d0
 
 YVAR=sqrt(-1.0)
 XVARS=sqrt(-1.0)
@@ -562,9 +515,9 @@ dum2=1d0-SSE/SST
 
 dum10=dum10+((dum2-0.553)/0.553)**2
 
-Print *,'Persistence of married female LFP is',BREG(2)
+write(file_id, *)'Persistence of married female LFP is',BREG(2)
 
-Print *,'Married female LFP R2 is',dum2
+write(file_id, *)'Married female LFP R2 is',dum2
 
 dum2=0d0
 dum3=0d0
@@ -584,7 +537,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Female intensive margin is',dum2
+write(file_id, *)'Female intensive margin is',dum2
 
 !Variance of log male earnings
 
@@ -620,7 +573,7 @@ end do
 
 dum4=dum4/dum3
 
-Print *,'Stdev of log male earnings is',SQRT(dum4)
+write(file_id, *)'Stdev of log male earnings is',SQRT(dum4)
 
 dum2=0d0
 dum3=0d0
@@ -657,7 +610,7 @@ end do
 
 dum4=dum4/dum3
 
-Print *,'Stdev of log female earnings is',SQRT(dum4)
+write(file_id, *)'Stdev of log female earnings is',SQRT(dum4)
 
 !Variance of log male wage
 
@@ -694,7 +647,7 @@ end do
 dum4=dum4/dum3
 dum4=SQRT(dum4)
 
-Print *,'Stdev of log male wage is',dum4
+write(file_id, *)'Stdev of log male wage is',dum4
 
 !dum10=dum10+((dum4-0.776d0)/0.776d0)**2d0
 
@@ -735,7 +688,7 @@ dum4=dum4/dum3
 
 dum4=SQRT(dum4)
 
-Print *,'Stdev of log female wage is',dum4
+write(file_id, *)'Stdev of log female wage is',dum4
 
 !dum10=dum10+((dum4-0.724d0)/0.724d0)**2d0
 
@@ -754,7 +707,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Male experience at age 65 is',dum2
+write(file_id, *)'Male experience at age 65 is',dum2
 
 !Female experience
 
@@ -771,7 +724,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Female experience at age 65 is',dum2
+write(file_id, *)'Female experience at age 65 is',dum2
 
 !Male wage
 
@@ -793,7 +746,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Average male wage is',dum2
+write(file_id, *)'Average male wage is',dum2
 
 dum7=dum2
 
@@ -817,11 +770,11 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Average female wage is',dum2
+write(file_id, *)'Average female wage is',dum2
 
-Print *,'Male_wage/Female_wage is',dum7/dum2
+write(file_id, *)'Male_wage/Female_wage is',dum7/dum2
 
-Print *,'Average male wage is',dum2
+write(file_id, *)'Average male wage is',dum2
 
 !Wages at 0.5AE and 2AE
 
@@ -861,8 +814,8 @@ end do
 end do
 
 
-Print *,'Wage rate of people making 0.5AE is',dum2/dum3
-Print *,'Wage rate of people making 2AE is',dum4/dum5
+write(file_id, *)'Wage rate of people making 0.5AE is',dum2/dum3
+write(file_id, *)'Wage rate of people making 2AE is',dum4/dum5
 
 !Male earnings
 
@@ -884,7 +837,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Average male earnings is',dum2
+write(file_id, *)'Average male earnings is',dum2
 
 dum7=dum2
 
@@ -910,10 +863,10 @@ dum2=dum2/dum3
 
 dum7=dum7/dum2
 
-Print *,'Average female earnings is',dum2
+write(file_id, *)'Average female earnings is',dum2
 
-Print *,'Male_earnings/Female_earnings is',dum7
-!Print *,'contribution to FCN is is',((dum7-1.432d0)/1.432d0)**2d0
+write(file_id, *)'Male_earnings/Female_earnings is',dum7
+!write(file_id, *)'contribution to FCN is is',((dum7-1.432d0)/1.432d0)**2d0
 dum10=dum10+((dum7-1.432d0)/1.432d0)**2d0
 
 !Male earnings Age 35-45
@@ -936,9 +889,9 @@ dum3=0d0
 !
 !dum2=dum2/dum3
 !
-!Print *,'Male earnings 35-45 is',dum2
+!write(file_id, *)'Male earnings 35-45 is',dum2
 ! >>>>>
-!Print *,'contribution to FCN is is',((dum2-1.258d0)/1.258d0)**2d0
+!write(file_id, *)'contribution to FCN is is',((dum2-1.258d0)/1.258d0)**2d0
 !dum10=dum10+((dum2-1.258d0)/1.258d0)**2d0
 
 !Male earnings Age 55-64
@@ -961,8 +914,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Male earnings 55-64 is',dum2
-!Print *,'contribution to FCN is is',((dum2-1.289d0)/1.289d0)**2d0
+write(file_id, *)'Male earnings 55-64 is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-1.289d0)/1.289d0)**2d0
 !dum10=dum10+((dum2-1.289d0)/1.289d0)**2d0
 
 
@@ -987,10 +940,10 @@ dum3=0d0
 !
 !dum2=dum2/dum3
 !
-!Print *,'Female earnings 35-45 is',dum2
+!write(file_id, *)'Female earnings 35-45 is',dum2
 ! >>>>>
 
-!Print *,'contribution to FCN is is',((dum2-0.87d0)/0.87d0)**2d0
+!write(file_id, *)'contribution to FCN is is',((dum2-0.87d0)/0.87d0)**2d0
 !dum10=dum10+((dum2-0.87d0)/0.87d0)**2d0
 
 !Female earnings age 55-64
@@ -1013,8 +966,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Female earnings 55-64 is',dum2
-!Print *,'contribution to FCN is is',((dum2-0.868d0)/0.868d0)**2d0
+write(file_id, *)'Female earnings 55-64 is',dum2
+!write(file_id, *)'contribution to FCN is is',((dum2-0.868d0)/0.868d0)**2d0
 !dum10=dum10+((dum2-0.868d0)/0.868d0)**2d0
 
 !Correlation in spousal ability
@@ -1058,7 +1011,7 @@ end do
 
 CALL D_CORVC(NVAR, Spousewage, COV, ICOPT=ICOPT)
 
-Print *,'Correlation of spousal ability is',COV(1,2)
+write(file_id, *)'Correlation of spousal ability is',COV(1,2)
 
 !Correlation in spousal education
 
@@ -1084,8 +1037,8 @@ end do
 
 CALL D_CORVC(NVAR, Spousewage, COV, ICOPT=ICOPT)
 
-Print *,'Correlation of spousal education is',COV(1,2)
-!Print *,'contribution to FCN is is',((COV(1,2)-0.646)/0.646)**2
+write(file_id, *)'Correlation of spousal education is',COV(1,2)
+!write(file_id, *)'contribution to FCN is is',((COV(1,2)-0.646)/0.646)**2
 !dum10=dum10+((COV(1,2)-0.646)/0.646)**2
 
 it4=0
@@ -1130,7 +1083,7 @@ end do
 
 CALL D_CORVC(NVAR, Spousewage2, COV, ICOPT=ICOPT)
 !
-Print *,'Correlation of spousal wages is',COV(1,2)
+write(file_id, *)'Correlation of spousal wages is',COV(1,2)
 
 
 dum10=dum10+((COV(1,2)-0.287)/0.287)**2
@@ -1157,7 +1110,7 @@ dum10=dum10+((COV(1,2)-0.287)/0.287)**2
 !
 !CALL D_CORVC(NVAR, Spousewage2, COV, ICOPT=ICOPT)
 !
-!Print *,'Correlation of spousal earnings is',COV(1,2)
+!write(file_id, *)'Correlation of spousal earnings is',COV(1,2)
 
 !Fractions of 2- and 1- earner households
 
@@ -1192,10 +1145,10 @@ end do
 
 end do
 
-Print *,'Fraction of married households with 2 earners',dum2/dum3
-Print *,'Fraction of married households with only male earner',dum4/dum3
-Print *,'Fraction of married households with only female earner',dum5/dum3
-Print *,'Fraction of married households with no earners',dum7/dum3
+write(file_id, *)'Fraction of married households with 2 earners',dum2/dum3
+write(file_id, *)'Fraction of married households with only male earner',dum4/dum3
+write(file_id, *)'Fraction of married households with only female earner',dum5/dum3
+write(file_id, *)'Fraction of married households with no earners',dum7/dum3
 
 !Total labor income taxes and tax revenue
 
@@ -1246,13 +1199,13 @@ end do
 
 end do
 
-Print *,'Labor income tax rate including TSS is',dum4/dum2
+write(file_id, *)'Labor income tax rate including TSS is',dum4/dum2
 
-Print *,'Tax revenue per capita including TSS is',dum3/dum5
+write(file_id, *)'Tax revenue per capita including TSS is',dum3/dum5
 
-!Print *,'Labor Income tax per capita is',dum7/dum5
+!write(file_id, *)'Labor Income tax per capita is',dum7/dum5
 
-!Print *,'Social security tax per capita is',dum15/dum5
+!write(file_id, *)'Social security tax per capita is',dum15/dum5
 
 
 !Social security
@@ -1302,20 +1255,20 @@ end do
 end do
 
 dum4=dum4/dum2
-Print *,'SS tax per retiree is',dum4
-Print *,'Average pension is',dum5/dum2
+write(file_id, *)'SS tax per retiree is',dum4
+write(file_id, *)'Average pension is',dum5/dum2
 
 dum5=dum5/dum3
 
 ss_expense=dum5
 
-Print *,'Social Security expenses per capita is',dum5
-!Print *,'Pension',Psi_pension/2d0
+write(file_id, *)'Social Security expenses per capita is',dum5
+!write(file_id, *)'Pension',Psi_pension/2d0
 
 epsilon=Psi0-dum4
 
 !epsilon=0d0
-Psi0=Psi0-0.2d0*(Psi0-dum4)
+Psi0=Psi0-0.1d0*(Psi0-dum4)
 
 !Savings
 
@@ -1355,7 +1308,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Savings per capita is',dum2
+write(file_id, *)'Savings per capita is',dum2
 dum6=dum2
 
 ! Assets for redistribution
@@ -1397,8 +1350,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Assets per capita to be redistributed',dum2/2d0
-Print *,'Gamma_redistr',Gamma_redistr/2d0
+write(file_id, *)'Assets per capita to be redistributed',dum2/2d0
+write(file_id, *)'Gamma_redistr',Gamma_redistr/2d0
 
 epsilon2=Gamma_redistr-dum2
 !epsilon2=0d0
@@ -1445,7 +1398,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Capital tax per capita is',dum2
+write(file_id, *)'Capital tax per capita is',dum2
 
 dum7=dum2
 
@@ -1488,7 +1441,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Consumption per capita is',dum2
+write(file_id, *)'Consumption per capita is',dum2
 
 dum2=0d0
 dum3=0d0
@@ -1529,7 +1482,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Consumption tax per capita is',dum2
+write(file_id, *)'Consumption tax per capita is',dum2
 
 !Labor income tax
 
@@ -1555,9 +1508,9 @@ end do
 
 dum4=dum4/dum5
 
-Print *,'Labor income tax per capita is',dum4
+write(file_id, *)'Labor income tax per capita is',dum4
 
-Print *,'Tax revenue per capita is',dum4+dum2+dum7
+write(file_id, *)'Tax revenue per capita is',dum4+dum2+dum7
 
 dum5=dum4+dum2
 
@@ -1602,27 +1555,27 @@ end do
 
     
     
-!Print *,'Ltot is',dum9
+!write(file_id, *)'Ltot is',dum9
 
 dum3=((ratio*dum9)**alpha)*(dum9**(1-alpha))/dum3
 
-Print *,'GDP per capita is',dum3
+write(file_id, *)'GDP per capita is',dum3
 
-Print *,'Lumpsum is',lumpsum/2d0
+write(file_id, *)'Lumpsum is',lumpsum/2d0
 
 
 !Government Budget
 
 lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+2d0*milspendtoGDP*dum3)
 
-Print *,'Net revenue is',lumpsumdum
+write(file_id, *)'Net revenue is',lumpsumdum
 
 lumpsumdum=lumpsumdum*2d0
 
 epsilon3=lumpsum-lumpsumdum
 
 !epsilon3=0d0
-lumpsum=lumpsum-0.2d0*(lumpsum-lumpsumdum)
+lumpsum=lumpsum-0.1d0*(lumpsum-lumpsumdum)
 
 
 
@@ -1652,9 +1605,9 @@ end do
 end do
 
     
-Print *,'Average labor income tax rate is',dum4/dum2
+write(file_id, *)'Average labor income tax rate is',dum4/dum2
 
-Print *,'Average individual earnings is',dum2/dum3
+write(file_id, *)'Average individual earnings is',dum2/dum3
 
 dum2=0d0
 dum3=0d0
@@ -1677,15 +1630,15 @@ end do
 end do
 
     
-Print *,'Average individual earnings for working people is',dum2/dum3
+write(file_id, *)'Average individual earnings for working people is',dum2/dum3
 
-Print *,'AE is',AE
-!Print *,'contribution to FCN is is',((dum2/dum3-1d0)/1d0)**2
+write(file_id, *)'AE is',AE
+!write(file_id, *)'contribution to FCN is is',((dum2/dum3-1d0)/1d0)**2
 dum10=dum10+((dum2/dum3-1d0)/1d0)**2
 
 epsilon5=AE-dum2/dum3
 
-AE=AE-0.2d0*(AE-dum2/dum3)
+AE=AE-0.1d0*(AE-dum2/dum3)
 
 Unemp_benefit=0.201795*AE
 
@@ -1813,23 +1766,23 @@ end do
 
 dum6=dum2-debttoGDP*((ratio*dum9)**(alpha))*(dum9**(1d0-alpha))
 
-!Print *,'Ktot is',dum6
+!write(file_id, *)'Ktot is',dum6
 
 ratiodum=dum6/dum9
 
-Print *,'Ratio between capital and labor is',ratiodum
+write(file_id, *)'Ratio between capital and labor is',ratiodum
 
-Print *,'Implied wage is',(1d0-alpha)*ratiodum**alpha
-Print *,'Implied interest is',alpha*ratiodum**(alpha-1d0)-delta
+write(file_id, *)'Implied wage is',(1d0-alpha)*ratiodum**alpha
+write(file_id, *)'Implied interest is',alpha*ratiodum**(alpha-1d0)-delta
 
-Print *,'Wage is',w
-Print *,'Interest is',r
+write(file_id, *)'Wage is',w
+write(file_id, *)'Interest is',r
 
-Print *,'K/Y is',ratiodum**(1d0-alpha)
-!Print *,'contribution to FCN is is',(((ratiodum**(1d0-alpha))-2.683d0)/2.683d0)**2d0
+write(file_id, *)'K/Y is',ratiodum**(1d0-alpha)
+!write(file_id, *)'contribution to FCN is is',(((ratiodum**(1d0-alpha))-2.683d0)/2.683d0)**2d0
 dum10=dum10+(((ratiodum**(1d0-alpha))-2.683d0)/2.683d0)**2d0
 
-Print *,'FCN is',dum10
+write(file_id, *)'FCN is',dum10
 
 ! beta=1.00251
 ! Fw=0.0125
@@ -1837,13 +1790,13 @@ Print *,'FCN is',dum10
 ! gamma0=0.3288d0
 ! FCN=0.00000559
 
-!Print *,'I/Y is',delta*ratiodum**(1d0-alpha)
+!write(file_id, *)'I/Y is',delta*ratiodum**(1d0-alpha)
 
 dum9=max(maxval(Sim1m(:,:,:,1)),maxval(Sim1f(:,:,:,1)))
 
 dum9=max(dum9,maxval(SimR1m(:,:,:,1)),maxval(SimR1f(:,:,:,1)))
 
-Print *,'Max savings is',dum9
+write(file_id, *)'Max savings is',dum9
 
 dum2=0d0
 
@@ -1860,7 +1813,7 @@ end do
 
 end do
 
-Print *,'Fraction of Married females is',dum2/(1d0*T*nsim2*nsim)
+write(file_id, *)'Fraction of Married females is',dum2/(1d0*T*nsim2*nsim)
 
 dum2=0d0
 
@@ -1877,7 +1830,7 @@ end do
 
 end do
 
-Print *,'Fraction of Married males is',dum2/(1d0*T*nsim2*nsim)
+write(file_id, *)'Fraction of Married males is',dum2/(1d0*T*nsim2*nsim)
 
 !dum2=0d0
 !dum3=0d0
@@ -1903,9 +1856,9 @@ Print *,'Fraction of Married males is',dum2/(1d0*T*nsim2*nsim)
 !
 !end do
 !
-!Print *,'Fraction of married fixed cost 1 is',dum2/dum5
-!Print *,'Fraction of married fixed cost 2 is',dum3/dum5
-!Print *,'Fraction of married fixed cost 3 is',dum4/dum5
+!write(file_id, *)'Fraction of married fixed cost 1 is',dum2/dum5
+!write(file_id, *)'Fraction of married fixed cost 2 is',dum3/dum5
+!write(file_id, *)'Fraction of married fixed cost 3 is',dum4/dum5
 !
 !dum2=0d0
 !dum3=0d0
@@ -1931,9 +1884,9 @@ Print *,'Fraction of Married males is',dum2/(1d0*T*nsim2*nsim)
 !
 !end do
 !
-!Print *,'Fraction of single fixed cost 1 is',dum2/dum5
-!Print *,'Fraction of single fixed cost 2 is',dum3/dum5
-!Print *,'Fraction of single fixed cost 3 is',dum4/dum5
+!write(file_id, *)'Fraction of single fixed cost 1 is',dum2/dum5
+!write(file_id, *)'Fraction of single fixed cost 2 is',dum3/dum5
+!write(file_id, *)'Fraction of single fixed cost 3 is',dum4/dum5
 
 
 mpartnerdum=0d0
@@ -2070,7 +2023,7 @@ mpartnerdum2=abs(mpartnerdum-mpartner)
 
 epsilon6=max(maxval(fpartnerdum2),maxval(mpartnerdum2))
 
-Print *,'max distance between distribution of singles is',epsilon6
+write(file_id, *)'max distance between distribution of singles is',epsilon6
 
 !if(iter>5) then
     epsilon6=0d0
@@ -2094,7 +2047,7 @@ dum2=0d0
 !end do
 !end do
 !
-!Print *,'sum fpartner is',dum2
+!write(file_id, *)'sum fpartner is',dum2
 ! >>>>>
 
 !dum2=0d0
@@ -2111,7 +2064,7 @@ dum2=0d0
 !end do
 !end do
 !
-!Print *,'sum mpartner is',dum2
+!write(file_id, *)'sum mpartner is',dum2
 
 !Here we are computing the matrix of  probabilities for marrying someone of ability a' if you have probability a.
 
@@ -2145,7 +2098,7 @@ ability_prob(ia,:)=ability_prob(ia,:)/dum3
 
 end do
 
-Print *,'ability_prob is',ability_prob(2,:)
+write(file_id, *)'ability_prob is',ability_prob(2,:)
 
 !dum2=0d0
 !dum3=0d0
@@ -2179,7 +2132,7 @@ Print *,'ability_prob is',ability_prob(2,:)
 !dum5=dum5/dum7
 !dum6=dum6/dum7
 !
-!Print *,'Distribution of male ability',dum2,dum3,dum4,dum5,dum6
+!write(file_id, *)'Distribution of male ability',dum2,dum3,dum4,dum5,dum6
 !
 !dum2=0d0
 !dum3=0d0
@@ -2213,7 +2166,7 @@ Print *,'ability_prob is',ability_prob(2,:)
 !dum5=dum5/dum7
 !dum6=dum6/dum7
 !
-!Print *,'Distribution of male idiosyncraic shock',dum2,dum3,dum4,dum5,dum6
+!write(file_id, *)'Distribution of male idiosyncraic shock',dum2,dum3,dum4,dum5,dum6
 !
 !dum2=0d0
 !dum3=0d0
@@ -2247,7 +2200,7 @@ Print *,'ability_prob is',ability_prob(2,:)
 !dum5=dum5/dum7
 !dum6=dum6/dum7
 !
-!Print *,'Distribution of female ability',dum2,dum3,dum4,dum5,dum6
+!write(file_id, *)'Distribution of female ability',dum2,dum3,dum4,dum5,dum6
 !
 !dum2=0d0
 !dum3=0d0
@@ -2281,7 +2234,7 @@ Print *,'ability_prob is',ability_prob(2,:)
 !dum5=dum5/dum7
 !dum6=dum6/dum7
 !
-!Print *,'Distribution of female idiosyncraic shock',dum2,dum3,dum4,dum5,dum6
+!write(file_id, *)'Distribution of female idiosyncraic shock',dum2,dum3,dum4,dum5,dum6
 
 dum2=0d0
 dum3=0d0
@@ -2397,7 +2350,7 @@ dum25=dum25/dum7
 
 
 
-Print *,'Distribution of single male fixed cost shock is',dum2,dum3,dum4,dum5,dum6,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25
+write(file_id, *)'Distribution of single male fixed cost shock is',dum2,dum3,dum4,dum5,dum6,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25
 
 ! Taxes by demographic group
 
@@ -2458,9 +2411,9 @@ end do
 dum2=dum2/dum3
 dum4=dum4/dum5
 
-Print *,'Capital tax for singles is',(dum2+dum4)/2d0
-Print *,'Capital tax for single men is',dum2
-Print *,'Capital tax for single women is',dum4
+write(file_id, *)'Capital tax for singles is',(dum2+dum4)/2d0
+write(file_id, *)'Capital tax for single men is',dum2
+write(file_id, *)'Capital tax for single women is',dum4
 
 dum6=dum2
 dum7=dum4
@@ -2516,9 +2469,9 @@ end do
 dum2=dum2/dum3
 dum4=dum4/dum5
 
-Print *,'Consumption tax for singles is',(dum2+dum4)/2d0
-Print *,'Consumption tax for single men is',dum2
-Print *,'Consumption tax for single women is',dum4
+write(file_id, *)'Consumption tax for singles is',(dum2+dum4)/2d0
+write(file_id, *)'Consumption tax for single men is',dum2
+write(file_id, *)'Consumption tax for single women is',dum4
 
 dum6=dum6+dum2
 dum7=dum7+dum4
@@ -2577,17 +2530,17 @@ dum4=dum4/dum5
 dum10=dum10/dum3
 dum11=dum11/dum5
 
-Print *,'Labor income tax for singles is',(dum2+dum4)/2d0
-Print *,'Labor income tax for single men is',dum2
-Print *,'Labor income tax for single women is',dum4
+write(file_id, *)'Labor income tax for singles is',(dum2+dum4)/2d0
+write(file_id, *)'Labor income tax for single men is',dum2
+write(file_id, *)'Labor income tax for single women is',dum4
 
-Print *,'Labor income tax rate for singles is',(dum2+dum4)/(dum10+dum11)
-Print *,'Labor income tax rate for single men is',dum2/dum10
-Print *,'Labor income tax rate for single women is',dum4/dum11
+write(file_id, *)'Labor income tax rate for singles is',(dum2+dum4)/(dum10+dum11)
+write(file_id, *)'Labor income tax rate for single men is',dum2/dum10
+write(file_id, *)'Labor income tax rate for single women is',dum4/dum11
 
-Print *,'Total tax revenue for singles is',(dum2+dum4+dum6+dum7)/2d0
-Print *,'Total tax revenueor single men is',dum2+dum6
-Print *,'Total tax revenue for single women is',dum4+dum7
+write(file_id, *)'Total tax revenue for singles is',(dum2+dum4+dum6+dum7)/2d0
+write(file_id, *)'Total tax revenueor single men is',dum2+dum6
+write(file_id, *)'Total tax revenue for single women is',dum4+dum7
 
 !Married
 
@@ -2635,7 +2588,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Capital tax for married is',dum2
+write(file_id, *)'Capital tax for married is',dum2
 
 dum6=dum2
 
@@ -2680,7 +2633,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Consumption tax for married is',dum2+dum4
+write(file_id, *)'Consumption tax for married is',dum2+dum4
 
 dum6=dum6+dum2
 
@@ -2720,11 +2673,11 @@ end do
 dum2=dum2/dum3
 dum12=dum12/dum3
 
-Print *,'Labor income tax for married is',dum2
+write(file_id, *)'Labor income tax for married is',dum2
 
-Print *,'Labor income tax rate for married is',dum2/dum12
+write(file_id, *)'Labor income tax rate for married is',dum2/dum12
 
-Print *,'Total tax revenue for married is',dum2+dum6
+write(file_id, *)'Total tax revenue for married is',dum2+dum6
 
 !Social Welfare
 
@@ -2758,7 +2711,7 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Social welfare of everyone is',dum2
+write(file_id, *)'Social welfare of everyone is',dum2
 
 dum2=0d0
 dum3=0d0
@@ -2776,8 +2729,8 @@ end do
 
 dum2=dum2/dum3
 
-Print *,'Social welfare of 20-year olds is',dum2
+write(file_id, *)'Social welfare of 20-year olds is',dum2
 
 !STOP
 
-end subroutine Statistics
+end subroutine Statistics_to_file

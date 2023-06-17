@@ -42,14 +42,17 @@ subroutine SolveInRetirement(counter)
     ix=int(dum3)+1
     iam=counter-(ik-1)*nexp*na-(ix-1)*na
 
-    r_ret=((1d0+r)/OmegaRet2(Tret+1-it))-1d0
-    if(it>1) then
-        r_ret_next=((1d0+r)/OmegaRet2(Tret+2-it))-1d0
-    end if
-
+    !r_ret=((1d0+r)/OmegaRet2(Tret+1-it))-1d0
+    !if(it>1) then
+    !    r_ret_next=((1d0+r)/OmegaRet2(Tret+2-it))-1d0
+    !end if
+    
     if(it>1) then
         exp_grid_dum=exp_grid(:,T+Tret+2-it)
     end if
+    
+    r_ret=r
+    r_ret_next=r
 
     !Married    
 
