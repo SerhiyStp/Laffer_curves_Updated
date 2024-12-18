@@ -11,11 +11,11 @@ SUBROUTINE labors (X, F, N)
     if(ind2==1) then
         Y1=dum
         X(1)=max(X(1),0.0001d0)
-        F(1)=wagem*(1d0-(tax_labors(wagem*X(1))+tSS_employee(wagem*X(1))))-(1d0/AE)*(wagem**2)*X(1)*thetas(1)*thetas(2)*((wagem*X(1))*(1d0/AE))**(-1d0-thetas(2))-chims*(X(1)**etam)*Y1*(1d0+tc)
+        F(1)=wagem*(1d0-( tax_labors(wagem*X(1)) + DtSS_employee(wagem*X(1)) ))-(1d0/AE)*(wagem**2d0)*X(1)*thetas(1)*thetas(2)*((wagem*X(1))*(1d0/AE))**(-1d0-thetas(2))-chims*(X(1)**etam)*Y1*(1d0+tc)
     else
         Y1=dum
         X(1)=max(X(1),0.0001d0)
-        F(1)=wagem*(1d0-(tax_labors(wagem*X(1))+tSS_employee(wagem*X(1))))-(1d0/AE)*(wagem**2)*X(1)*thetas(1)*thetas(2)*((wagem*X(1))*(1d0/AE))**(-1d0-thetas(2))-chifs*(X(1)**etaf)*Y1*(1d0+tc)
+        F(1)=wagem*(1d0-( tax_labors(wagem*X(1)) + DtSS_employee(wagem*X(1)) ))-(1d0/AE)*(wagem**2)*X(1)*thetas(1)*thetas(2)*((wagem*X(1))*(1d0/AE))**(-1d0-thetas(2))-chifs*(X(1)**etaf)*Y1*(1d0+tc)
     end if
     
 end subroutine labors

@@ -1,5 +1,5 @@
 subroutine partest(counter)
-    !This subroutine computes optimal policies at age 64
+    !This subroutine computes the expected value function of getting married for a single female
     use Model_Parameters
     use PolicyFunctions
     use glob0
@@ -67,7 +67,7 @@ subroutine partest(counter)
 end subroutine partest
     
 subroutine partest2(counter)
-    !This subroutine computes optimal policies at age 64
+    !This subroutine computes the expected value function of getting married for a single male
     use Model_Parameters
     use PolicyFunctions
     use glob0
@@ -123,9 +123,9 @@ subroutine partest2(counter)
                                                     v_bspl(iam,iu2,iaf,iuf,ifc,ifcm)%coefs,vnext,iflag,&
                                                     inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.true.)   
                                             
-                                            evm(j,ik,ixm,iam,ium,T-it,:)=evm(j,ik,ixm,iam,ium,T-it,:)+trans_u(1,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*vnext
+                                            evm(j,ik,ixm,iam,ium,T-it,ifcm)=evm(j,ik,ixm,iam,ium,T-it,ifcm)+trans_u(1,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*vnext
                                         else
-                                            evm(j,ik,ixm,iam,ium,T-it,:)=evm(j,ik,ixm,iam,ium,T-it,:)+trans_u(1,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*LinInterp(dum,k_grid,v(:,ix,ixm,iam,iu2,iaf,iuf,T-it,ifc,ifcm),nk)
+                                            evm(j,ik,ixm,iam,ium,T-it,ifcm)=evm(j,ik,ixm,iam,ium,T-it,ifcm)+trans_u(1,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*LinInterp(dum,k_grid,v(:,ix,ixm,iam,iu2,iaf,iuf,T-it,ifc,ifcm),nk)
                                         end if
                                     end do
                             end do

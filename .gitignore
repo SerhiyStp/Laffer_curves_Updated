@@ -4,6 +4,7 @@
 *.sln
 *.vfproj
 *.obj
+*.png
 Debug/
 x64/
 Release/

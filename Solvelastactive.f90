@@ -88,11 +88,11 @@ subroutine Solvelastactive(counter)
                         wagem = wage(1,a(1,iam),exp_grid(ixm,T),u(1,ium))/(1d0+t_employer)
                         wagef = wage(2,a(2,iaf),exp_grid(ix,T),u(2,iuf))/(1d0+t_employer)
                         P1=0.01d0
-                        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+(wagem+wagef)*(1d0-tax_labor(wagem+wagef)-tSS_employee(wagem+wagef)))/(1d0+tc))
+                        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+(wagem+wagef)*(1d0-tax_labor(wagem+wagef))-tSS_employee(wagem)-tSS_employee(wagef))/(1d0+tc))
                         dd1 = (k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))
-                        dd2 = tax_labor(wagem+wagef)
-                        dd3 = wagem+wagef
-                        dd4 = tSS_employee(wagem+wagef)
+                        !dd2 = tax_labor(wagem+wagef)
+                        !dd3 = wagem+wagef
+                        !dd4 = tSS_employee(wagem+wagef)
                         do
                             P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
                             P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -101,7 +101,7 @@ subroutine Solvelastactive(counter)
                             dum4 = min(max(trilin_interp(c_grid, wage_grid, wage_grid, laborm, nc, nw, nw, pnt2),1d-10),1d0)
                             dum5 = min(max(trilin_interp(c_grid, wage_grid, wage_grid, laborf, nc, nw, nw, pnt2),1d-10),1d0)
                             y=dum4*wagem+dum5*wagef
-                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+y*(1d0-tax_labor(y)-tSS_employee(y))-P2*(1d0+tc))/(1d0+mu)
+                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+y*(1d0-tax_labor(y))-tSS_employee(dum4*wagem)-tSS_employee(dum5*wagef)-P2*(1d0+tc))/(1d0+mu)
                             if(dum2<0.0001d0) then
                                 V2=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
@@ -128,7 +128,7 @@ subroutine Solvelastactive(counter)
                             dum4 = min(max(trilin_interp(c_grid, wage_grid, wage_grid, laborm, nc, nw, nw, pnt2),1d-10),1d0)
                             dum5 = min(max(trilin_interp(c_grid, wage_grid, wage_grid, laborf, nc, nw, nw, pnt2),1d-10),1d0)
                             y=dum4*wagem+dum5*wagef
-                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+y*(1d0-tax_labor(y)-tSS_employee(y))-P3*(1d0+tc))/(1d0+mu)
+                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+y*(1d0-tax_labor(y))-tSS_employee(dum4*wagem)-tSS_employee(dum5*wagef)-P3*(1d0+tc))/(1d0+mu)
                             if(dum2<0.0001d0) then
                                 V3=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
@@ -194,7 +194,7 @@ subroutine Solvelastactive(counter)
                         !If female unemployed
 
                         P1=0.01d0
-                        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+(wagem)*(1d0-tax_labor(wagem)-tSS_employee(wagem)))/(1d0+tc))
+                        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+(wagem)*(1d0-tax_labor(wagem))-tSS_employee(wagem))/(1d0+tc))
                         do
                             P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
                             P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -202,7 +202,7 @@ subroutine Solvelastactive(counter)
                             pnt1 = (/P2, wagem/)
                             dum4 = min(max(bilin_interp(c_grid, wage_grid, labormwork, nc, nw, pnt1),0d0),1d0)
                             y=dum4*wagem
-                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+y*(1d0-tax_labor(y)-tSS_employee(y))-P2*(1d0+tc))/(1d0+mu)
+                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+y*(1d0-tax_labor(y))-tSS_employee(y)-P2*(1d0+tc))/(1d0+mu)
                             if(dum2<0.0001d0) then
                                 V2=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
@@ -228,7 +228,7 @@ subroutine Solvelastactive(counter)
                             pnt1 = (/P3, wagem/)
                             dum4 = min(max(bilin_interp(c_grid, wage_grid, labormwork, nc, nw, pnt1),0d0),1d0)
                             y=dum4*wagem
-                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+y*(1d0-tax_labor(y)-tSS_employee(y))-P3*(1d0+tc))/(1d0+mu)
+                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+y*(1d0-tax_labor(y))-tSS_employee(y)-P3*(1d0+tc))/(1d0+mu)
                             if(dum2<0.0001d0) then
                                 V3=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
@@ -292,7 +292,7 @@ subroutine Solvelastactive(counter)
                         !If male unemployed
 
                         P1=0.01d0
-                        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+(wagef)*(1d0-tax_labor(wagef)-tSS_employee(wagef)))/(1d0+tc))
+                        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+(wagef)*(1d0-tax_labor(wagef))-tSS_employee(wagef))/(1d0+tc))
                         do
                             P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
                             P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -300,7 +300,7 @@ subroutine Solvelastactive(counter)
                             pnt1 = (/P2, wagef/)
                             dum4 = min(max(bilin_interp(c_grid, wage_grid, laborfwork, nc, nw, pnt1),0d0),1d0)
                             y=dum4*wagef
-                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+y*(1d0-tax_labor(y)-tSS_employee(y))-P2*(1d0+tc))/(1d0+mu)
+                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+y*(1d0-tax_labor(y))-tSS_employee(y)-P2*(1d0+tc))/(1d0+mu)
                             if(dum2<0.0001d0) then
                                 V2=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
@@ -326,7 +326,7 @@ subroutine Solvelastactive(counter)
                             pnt1 = (/P3, wagef/)
                             dum4 = min(max(bilin_interp(c_grid, wage_grid, laborfwork, nc, nw, pnt1),0d0),1d0)
                             y=dum4*wagef
-                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+y*(1d0-tax_labor(y)-tSS_employee(y))-P3*(1d0+tc))/(1d0+mu)
+                            dum2=((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+y*(1d0-tax_labor(y))-tSS_employee(y)-P3*(1d0+tc))/(1d0+mu)
                             if(dum2<0.0001d0) then
                                 V3=-999999999d0
                             elseif(dum2>k_grid(nk)-0.001d0) then
@@ -490,7 +490,7 @@ subroutine Solvelastactive(counter)
         !Finding optimal capital by golden search
         wagef = wage(2,a(2,iam),exp_grid(ix,T),u(2,ium))/(1d0+t_employer)
         P1=0.01d0
-        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+wagef*(1d0-tax_labors(wagef)-tSS_employee(wagef)))/(1d0+tc))
+        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+wagef*(1d0-tax_labors(wagef))-tSS_employee(wagef))/(1d0+tc))
         do
             P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
             P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -498,7 +498,7 @@ subroutine Solvelastactive(counter)
             pnt1 = (/P2, wagef/)
             dum4 = min(max(bilin_interp(c_grid, wage_grid, laborsinglef, nc, nw, pnt1),0d0),1d0)
             y=dum4*wagef
-            dum2=((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+y*(1d0-tax_labors(y)-tSS_employee(y))-P2*(1d0+tc))/(1d0+mu)
+            dum2=((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+y*(1d0-tax_labors(y))-tSS_employee(y)-P2*(1d0+tc))/(1d0+mu)
             if(dum2<0.0001d0) then
                 V2=-999999999d0
             elseif(dum2>k_grid(nk)) then
@@ -523,7 +523,7 @@ subroutine Solvelastactive(counter)
             pnt1 = (/P3, wagef/)
             dum4 = min(max(bilin_interp(c_grid, wage_grid, laborsinglef, nc, nw, pnt1),0d0),1d0)
             y=dum4*wagef
-            dum2=((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+y*(1d0-tax_labors(y)-tSS_employee(y))-P3*(1d0+tc))/(1d0+mu)
+            dum2=((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+y*(1d0-tax_labors(y))-tSS_employee(y)-P3*(1d0+tc))/(1d0+mu)
             if(dum2<0.0001d0) then
                 V3=-999999999d0
             elseif(dum2>k_grid(nk)) then
@@ -652,7 +652,7 @@ subroutine Solvelastactive(counter)
         !Finding optimal capital by golden search
         wagem = wage(1,a(1,iam),exp_grid(ix,T),u(1,ium))/(1d0+t_employer)
         P1=0.01d0
-        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+wagem*(1d0-tax_labors(wagem)-tSS_employee(wagem)))/(1d0+tc))
+        P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+wagem*(1d0-tax_labors(wagem))-tSS_employee(wagem))/(1d0+tc))
         do
             P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
             P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -660,7 +660,7 @@ subroutine Solvelastactive(counter)
             pnt1 = (/P2, wagem/)
             dum4 = min(max(bilin_interp(c_grid, wage_grid, laborsinglem, nc, nw, pnt1),0d0),1d0)
             y=dum4*wagem
-            dum2=((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+y*(1d0-tax_labors(y)-tSS_employee(y))-P2*(1d0+tc))/(1d0+mu)
+            dum2=((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+y*(1d0-tax_labors(y))-tSS_employee(y)-P2*(1d0+tc))/(1d0+mu)
             if(dum2<0.0001d0) then
                 V2=-999999999d0
             elseif(dum2>k_grid(nk)) then
@@ -685,7 +685,7 @@ subroutine Solvelastactive(counter)
             pnt1 = (/P3, wagem/)
             dum4 = min(max(bilin_interp(c_grid, wage_grid, laborsinglem, nc, nw, pnt1),0d0),1d0)
             y=dum4*wagem
-            dum2=((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+y*(1d0-tax_labors(y)-tSS_employee(y))-P3*(1d0+tc))/(1d0+mu)
+            dum2=((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+y*(1d0-tax_labors(y))-tSS_employee(y)-P3*(1d0+tc))/(1d0+mu)
             if(dum2<0.0001d0) then
                 V3=-999999999d0
             elseif(dum2>k_grid(nk)) then

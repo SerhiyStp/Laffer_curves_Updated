@@ -3,6 +3,7 @@ subroutine simulation(ik)
     use Model_Parameters
     use PolicyFunctions
     use Utilities
+    !use glob0, only: tss
 
     implicit none
 
@@ -360,8 +361,8 @@ end do
     
                 Sim1m(ik,it2,i,8)= dum4*tc
                 Sim1f(ik,it3,i,8)= dum4*tc
-                Sim1m(ik,it2,i,9)=dum3*t_employee+t_employer*dum3
-                Sim1f(ik,it3,i,9)=dum3*t_employee+t_employer*dum3
+                Sim1m(ik,it2,i,9)= tSS_employee(Sim1m(ik,it2,i,5))+tSS_employee(Sim1f(ik,it3,i,5))
+                Sim1f(ik,it3,i,9)= tSS_employee(Sim1m(ik,it2,i,5))+tSS_employee(Sim1f(ik,it3,i,5))
     
                 if(Sim1f(ik,it3,i,4)>1d-3) then
                     exp2f(ik,it3,i+1,1)=exp2f(ik,it3,i,1)+1d0
@@ -419,7 +420,7 @@ end do
                 end if
     
                 Sim1m(ik,it2,i,8)= dum4*tc
-                Sim1m(ik,it2,i,9)=dum3*t_employee+t_employer*dum3
+                Sim1m(ik,it2,i,9)= tSS_employee(dum3)
                 
                 if(Sim1m(ik,it2,i,4)>1d-3) then
                     exp2m(ik,it2,i+1,1)=exp2m(ik,it2,i,1)+1d0
@@ -475,7 +476,7 @@ end do
                 end if
     
                 Sim1f(ik,it2,i,8)= dum4*tc
-                Sim1f(ik,it2,i,9)=dum3*t_employee+t_employer*dum3
+                Sim1f(ik,it2,i,9)= tSS_employee(dum3)
     
                 if(Sim1f(ik,it2,i,4)>1d-3) then
                     exp2f(ik,it2,i+1,1)=exp2f(ik,it2,i,1)+1d0

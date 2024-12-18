@@ -7,12 +7,15 @@ use PolicyFunctions
 use Utilities
 USE RLSE_INT
 use CORVC_int
+USE EQTIL_INT
 implicit none
 integer :: i,country,ia,ia2,iu,ix,um,it2,ik,ifc, NVAR=2,it3,it4,ICOPT=2,ik2
+integer, parameter :: NQPROP=3
 real(8) :: dum2,dum3,dum4,dum5,dum6,dum7,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,SST,SSE,COV(2,2)
-real(8) :: dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25,r_ret,ss_tax,ss_expense
+real(8) :: dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25,r_ret,ss_tax,ss_expense,population_mass,mass_working,savings,GDP
 real(8), dimension (:,:), allocatable :: XVARS
 real(8), dimension (:), allocatable :: YVAR, BREG
+real(8) :: QPROP(NQPROP), XEMP(NQPROP), XHI(NQPROP), XLO(NQPROP)
 real(8), allocatable :: spousewage(:,:), spousewage2(:,:)
 
 allocate(XVARS(nsim2*nsim*T,1))
@@ -32,6 +35,33 @@ WeightRet(1)=WeightActive(T)*OmegaActive(T)
 do i=2,Tret
     WeightRet(i)=WeightRet(i-1)*OmegaRet(i-1)
 end do
+
+dum3=0d0
+
+do i=1,T
+
+do it2=1,nsim2
+do it=1,nsim
+    dum3=dum3+2d0*WeightActive(i)
+end do
+end do
+
+end do
+
+mass_working=dum3
+
+do i=1,Tret
+
+do it2=1,nsim2
+do it=1,nsim
+    dum3=dum3+2d0*WeightRet(i)
+end do
+end do
+
+end do
+
+population_mass=dum3
+
 
 dum2=0d0
 dum3=0d0
@@ -102,6 +132,121 @@ Print *,'Single Male labor supply is',dum2
 !Print *,'contribution to FCN is is',((dum2-0.260d0)/0.260d0)**2d0
 dum10=((dum2-0.260d0)/0.260d0)**2d0
 
+!Single male labor supply participation by age and ability
+
+!do ia=1,na
+!
+!dum2=0d0
+!dum3=0d0
+!dum4=0d0
+!dum5=0d0
+!dum6=0d0
+!dum7=0d0
+!
+!do i=1,9
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        dum2=dum2+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!dum3=0d0
+!
+!do i=10,18
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        dum4=dum4+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!dum3=0d0
+!
+!do i=19,27
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        dum5=dum5+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum5=dum5/dum3
+!
+!dum3=0d0
+!
+!do i=28,36
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        dum6=dum6+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum6=dum6/dum3
+!
+!dum3=0d0
+!
+!do i=37,45
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        dum7=dum7+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum7=dum7/dum3
+!
+!
+!Print *,'Single male labor supply by age for ability',ia*1d0, dum2, dum4, dum5, dum6, dum7
+!
+!end do
+
+
 !Single male labor force participation
 
 dum2=0d0
@@ -157,12 +302,137 @@ CALL RLSE (YVAR, XVARS, BREG, SST=SST, SSE=SSE)
 
 dum2=1d0-SSE/SST
 
-dum10=dum10+((dum2-0.408)/0.408)**2
+!dum10=dum10+((dum2-0.408)/0.408)**2
+
+dum10=dum10+((BREG(2)-0.678)/0.678)**2
 
 Print *,'Persistence of single male LFP is',BREG(2)
 
 Print *,'Single male LFP R2 is',dum2
 
+!Single male labor force participation by age and ability
+
+!do ia=1,na
+!
+!dum2=0d0
+!dum3=0d0
+!dum4=0d0
+!dum5=0d0
+!dum6=0d0
+!dum7=0d0
+!
+!do i=1,9
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum2=dum2+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!dum3=0d0
+!
+!do i=10,18
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum4=dum4+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!dum3=0d0
+!
+!do i=19,27
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum5=dum5+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum5=dum5/dum3
+!
+!dum3=0d0
+!
+!do i=28,36
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum6=dum6+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum6=dum6/dum3
+!
+!dum3=0d0
+!
+!do i=37,45
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)<0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum7=dum7+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum7=dum7/dum3
+!
+!
+!Print *,'Single male labor force participation by age for ability',ia*1d0, dum2, dum4, dum5, dum6, dum7
+!
+!end do
 
 !Married Male Labor Supply
 
@@ -187,6 +457,120 @@ dum2=dum2/dum3
 Print *,'Married Male labor supply is',dum2
 !Print *,'contribution to FCN is is',((dum2-0.349d0)/0.349d0)**2d0
 dum10=dum10+((dum2-0.349d0)/0.349d0)**2d0
+
+!Married male labor supply by age and ability
+
+!do ia=1,na
+!
+!dum2=0d0
+!dum3=0d0
+!dum4=0d0
+!dum5=0d0
+!dum6=0d0
+!dum7=0d0
+!
+!do i=1,9
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        dum2=dum2+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!dum3=0d0
+!
+!do i=10,18
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        dum4=dum4+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!dum3=0d0
+!
+!do i=19,27
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        dum5=dum5+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum5=dum5/dum3
+!
+!dum3=0d0
+!
+!do i=28,36
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        dum6=dum6+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum6=dum6/dum3
+!
+!dum3=0d0
+!
+!do i=37,45
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        dum7=dum7+Sim1m(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum7=dum7/dum3
+!
+!
+!Print *,'Married male labor supply by age for ability',ia*1d0, dum2, dum4, dum5, dum6, dum7
+!
+!end do
 
 
 !Married male labor force participation
@@ -243,12 +627,137 @@ CALL RLSE (YVAR, XVARS, BREG, SST=SST, SSE=SSE)
 
 dum2=1d0-SSE/SST
 
-dum10=dum10+((dum2-0.457)/0.457)**2
+!dum10=dum10+((dum2-0.457)/0.457)**2
+
+dum10=dum10+((BREG(2)-0.741)/0.741)**2
 
 Print *,'Persistence of married male LFP is',BREG(2)
 
 Print *,'Married male LFP R2 is',dum2
 
+!Married male labor force participation by age and ability
+
+!do ia=1,na
+!
+!dum2=0d0
+!dum3=0d0
+!dum4=0d0
+!dum5=0d0
+!dum6=0d0
+!dum7=0d0
+!
+!do i=1,9
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum2=dum2+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!dum3=0d0
+!
+!do i=10,18
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum4=dum4+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!dum3=0d0
+!
+!do i=19,27
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum5=dum5+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum5=dum5/dum3
+!
+!dum3=0d0
+!
+!do i=28,36
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum6=dum6+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum6=dum6/dum3
+!
+!dum3=0d0
+!
+!do i=37,45
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1m(it2,it,i,2)==ia)then
+!    if(Sim1m(it2,it,i,10)>0.5) then
+!        if(Sim1m(it2,it,i,4)>1d-3) then
+!            dum7=dum7+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum7=dum7/dum3
+!
+!
+!Print *,'Married male labor force participation by age for ability',ia*1d0, dum2, dum4, dum5, dum6, dum7
+!
+!end do
 
 !Female labor supply
 
@@ -333,6 +842,121 @@ Print *,'Stdev single female labor supply is',SQRT(dum4)
 !Print *,'Stdev single female labor supply at age 30 is',SQRT(dum4)
 ! >>>>>
 
+!Single female labor supply by age and ability
+
+!do ia=1,na
+!
+!dum2=0d0
+!dum3=0d0
+!dum4=0d0
+!dum5=0d0
+!dum6=0d0
+!dum7=0d0
+!
+!do i=1,9
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        dum2=dum2+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!dum3=0d0
+!
+!do i=10,18
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        dum4=dum4+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!dum3=0d0
+!
+!do i=19,27
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        dum5=dum5+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum5=dum5/dum3
+!
+!dum3=0d0
+!
+!do i=28,36
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        dum6=dum6+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum6=dum6/dum3
+!
+!dum3=0d0
+!
+!do i=37,45
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        dum7=dum7+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum7=dum7/dum3
+!
+!
+!Print *,'Single female labor supply by age for ability',ia*1d0, dum2, dum4, dum5, dum6, dum7
+!
+!end do
+
+
 !Married female labor supply
 
 dum2=0d0
@@ -375,6 +999,121 @@ end do
 dum4=dum4/dum3
 
 Print *,'Stdev married female labor supply is',SQRT(dum4)
+
+!Married female labor supply by age and ability
+
+!do ia=1,na
+!
+!dum2=0d0
+!dum3=0d0
+!dum4=0d0
+!dum5=0d0
+!dum6=0d0
+!dum7=0d0
+!
+!do i=1,9
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        dum2=dum2+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!dum3=0d0
+!
+!do i=10,18
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        dum4=dum4+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!dum3=0d0
+!
+!do i=19,27
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        dum5=dum5+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum5=dum5/dum3
+!
+!dum3=0d0
+!
+!do i=28,36
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        dum6=dum6+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum6=dum6/dum3
+!
+!dum3=0d0
+!
+!do i=37,45
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        dum7=dum7+Sim1f(it2,it,i,4)*WeightActive(i)
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum7=dum7/dum3
+!
+!
+!Print *,'Married female labor supply by age for ability',ia*1d0, dum2, dum4, dum5, dum6, dum7
+!
+!end do
+
 
 !Female labor force participation
 
@@ -452,11 +1191,138 @@ CALL RLSE (YVAR, XVARS, BREG, SST=SST, SSE=SSE)
 
 dum2=1d0-SSE/SST
 
-dum10=dum10+((dum2-0.463)/0.463)**2
+!dum10=dum10+((dum2-0.463)/0.463)**2
+
+dum10=dum10+((BREG(2)-0.718)/0.718)**2
 
 Print *,'Persistence of single female LFP is',BREG(2)
 
 Print *,'Single female LFP R2 is',dum2
+
+!Single female labor force participation by age and ability
+
+!do ia=1,na
+!
+!dum2=0d0
+!dum3=0d0
+!dum4=0d0
+!dum5=0d0
+!dum6=0d0
+!dum7=0d0
+!
+!do i=1,9
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum2=dum2+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!dum3=0d0
+!
+!do i=10,18
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum4=dum4+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!dum3=0d0
+!
+!do i=19,27
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum5=dum5+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum5=dum5/dum3
+!
+!dum3=0d0
+!
+!do i=28,36
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum6=dum6+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum6=dum6/dum3
+!
+!dum3=0d0
+!
+!do i=37,45
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)<0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum7=dum7+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum7=dum7/dum3
+!
+!
+!Print *,'Single female labor force participation by age for ability',ia*1d0, dum2, dum4, dum5, dum6, dum7
+!
+!end do
+
 
 !Married female labor force participation
 
@@ -529,6 +1395,7 @@ end do
 dum2=dum2/dum3
 
 Print *,'Married female labor force participation 55-64',dum2
+
 !!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
 dum10=dum10+((dum2-0.597d0)/0.597d0)**2d0
 
@@ -560,7 +1427,9 @@ CALL RLSE (YVAR, XVARS, BREG, SST=SST, SSE=SSE)
 
 dum2=1d0-SSE/SST
 
-dum10=dum10+((dum2-0.553)/0.553)**2
+!dum10=dum10+((dum2-0.553)/0.553)**2
+
+dum10=dum10+((BREG(2)-0.743)/0.743)**2
 
 Print *,'Persistence of married female LFP is',BREG(2)
 
@@ -585,6 +1454,131 @@ end do
 dum2=dum2/dum3
 
 Print *,'Female intensive margin is',dum2
+
+!Married female labor force participation by age and ability
+
+!do ia=1,na
+!
+!dum2=0d0
+!dum3=0d0
+!dum4=0d0
+!dum5=0d0
+!dum6=0d0
+!dum7=0d0
+!
+!do i=1,9
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum2=dum2+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum2=dum2/dum3
+!
+!dum3=0d0
+!
+!do i=10,18
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum4=dum4+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum4=dum4/dum3
+!
+!dum3=0d0
+!
+!do i=19,27
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum5=dum5+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum5=dum5/dum3
+!
+!dum3=0d0
+!
+!do i=28,36
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum6=dum6+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum6=dum6/dum3
+!
+!dum3=0d0
+!
+!do i=37,45
+!    
+!do it2=1,nsim2
+!do it=1,nsim
+!    
+!if (exp1f(it2,it,i,2)==ia)then
+!    if(Sim1f(it2,it,i,10)>0.5) then
+!        if(Sim1f(it2,it,i,4)>1d-3) then
+!            dum7=dum7+(1d0)*WeightActive(i)
+!        end if
+!        dum3=dum3+1d0*WeightActive(i)
+!    end if
+!end if
+!end do
+!end do
+!
+!end do
+!
+!dum7=dum7/dum3
+!
+!
+!Print *,'Married female labor force participation by age for ability',ia*1d0, dum2, dum4, dum5, dum6, dum7
+!
+!end do
+
 
 !Variance of log male earnings
 
@@ -1248,11 +2242,81 @@ end do
 
 Print *,'Labor income tax rate including TSS is',dum4/dum2
 
-Print *,'Tax revenue per capita including TSS is',dum3/dum5
+!Savings
+
+dum2=0d0
+
+do i=1,T
+
+do it2=1,nsim2
+do it=1,nsim
+    dum2=dum2+Sim1m(it2,it,i,1)*WeightActive(i)
+    
+    if(Sim1f(it2,it,i,10)<0.5d0) then
+        dum2=dum2+Sim1f(it2,it,i,1)*WeightActive(i)
+    end if
+    
+end do
+end do
+
+end do
+
+do i=1,Tret
+
+do it2=1,nsim2
+do it=1,nsim
+    dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)
+    
+    if(Sim1f(it2,it,T,10)<0.5d0) then
+        dum2=dum2+SimR1f(it2,it,i,1)*WeightRet(i)
+    end if
+end do
+end do
+
+end do
+
+dum2=dum2/population_mass
+
+Print *,'Savings per capita is',dum2
+savings=dum2
+
+!GDP per capita
+
+dum9=0d0
+
+
+do i=1,T
+
+do it2=1,nsim2
+do it=1,nsim
+    dum9=dum9+(Sim1m(it2,it,i,6)*(1d0+t_employer)/w)*WeightActive(i)
+    
+    if(Sim1f(it2,it,i,10)<0.5d0) then
+        dum9=dum9+(Sim1f(it2,it,i,6)*(1d0+t_employer)/w)*WeightActive(i)
+    end if
+    
+end do
+end do
+
+end do
+
+    
+!Print *,'Ltot is',dum9
+
+GDP=((ratio*dum9)**alpha)*(dum9**(1-alpha))/population_mass
+
+
+!Find capital inflow or outflow in the open economy and it's tax revenue
+
+dum6=(GDP*2.68260224785269d0-(savings+Gamma_redistr))*r*tk
+
+Print *,'Tax revenue per capita including TSS is',(dum3/dum5)+dum6
 
 !Print *,'Labor Income tax per capita is',dum7/dum5
 
 !Print *,'Social security tax per capita is',dum15/dum5
+
+
 
 
 !Social security
@@ -1286,15 +2350,11 @@ do i=1,Tret
 do it2=1,nsim2
 do it=1,nsim
     
-    if(SimR1m(it2,it,i,5)<1d-3) then
-         dum2=dum2+1d0*WeightRet(i)
-         dum5=dum5+SimR1m(it2,it,i,14)*WeightRet(i)
-    end if
-    
-    if(SimR1f(it2,it,i,5)<1d-3) then
-         dum2=dum2+1d0*WeightRet(i)
-         dum5=dum5+SimR1f(it2,it,i,14)*WeightRet(i)
-    end if
+    dum2=dum2+1d0*WeightRet(i)
+    dum5=dum5+SimR1m(it2,it,i,14)*WeightRet(i)
+
+    dum2=dum2+1d0*WeightRet(i)
+    dum5=dum5+SimR1f(it2,it,i,14)*WeightRet(i)
     
 end do
 end do
@@ -1305,58 +2365,19 @@ dum4=dum4/dum2
 Print *,'SS tax per retiree is',dum4
 Print *,'Average pension is',dum5/dum2
 
-dum5=dum5/dum3
+dum5=dum5/population_mass
 
 ss_expense=dum5
 
 Print *,'Social Security expenses per capita is',dum5
 !Print *,'Pension',Psi_pension/2d0
 
-epsilon=Psi0-dum4
+!epsilon=Psi0-dum4
 
-!epsilon=0d0
-Psi0=Psi0-0.2d0*(Psi0-dum4)
+epsilon=0d0
+!Psi0=Psi0-0.2d0*(Psi0-dum4)
 
-!Savings
 
-dum2=0d0
-dum3=0d0
-
-do i=1,T
-
-do it2=1,nsim2
-do it=1,nsim
-    dum2=dum2+Sim1m(it2,it,i,1)*WeightActive(i)
-    dum3=dum3+2d0*WeightActive(i)
-    
-    if(Sim1f(it2,it,i,10)<0.5d0) then
-        dum2=dum2+Sim1f(it2,it,i,1)*WeightActive(i)
-    end if
-    
-end do
-end do
-
-end do
-
-do i=1,Tret
-
-do it2=1,nsim2
-do it=1,nsim
-    dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)
-    dum3=dum3+2d0*WeightRet(i)
-    
-    if(Sim1f(it2,it,T,10)<0.5d0) then
-        dum2=dum2+SimR1f(it2,it,i,1)*WeightRet(i)
-    end if
-end do
-end do
-
-end do
-
-dum2=dum2/dum3
-
-Print *,'Savings per capita is',dum2
-dum6=dum2
 
 ! Assets for redistribution
 
@@ -1443,7 +2464,7 @@ end do
 
 end do
 
-dum2=dum2/dum3
+dum2=(dum2/dum3)+dum6
 
 Print *,'Capital tax per capita is',dum2
 
@@ -1553,7 +2574,7 @@ end do
 end do
  
 
-dum4=dum4/dum5
+dum4=dum4/population_mass
 
 Print *,'Labor income tax per capita is',dum4
 
@@ -1579,51 +2600,32 @@ end do
 end do
 
 
-dum15=dum15/dum3
+dum15=dum15/population_mass
 
 !GDP per capita
-
-dum9=0d0
-
-do i=1,T
-
-do it2=1,nsim2
-do it=1,nsim
-    dum9=dum9+(Sim1m(it2,it,i,6)*(1d0+t_employer)/w)*WeightActive(i)
-    
-    if(Sim1f(it2,it,i,10)<0.5d0) then
-        dum9=dum9+(Sim1f(it2,it,i,6)*(1d0+t_employer)/w)*WeightActive(i)
-    end if
-    
-end do
-end do
-
-end do
-
-    
     
 !Print *,'Ltot is',dum9
 
-dum3=((ratio*dum9)**alpha)*(dum9**(1-alpha))/dum3
+dum3=GDP
 
 Print *,'GDP per capita is',dum3
+
 
 Print *,'Lumpsum is',lumpsum/2d0
 
 
 !Government Budget
 
-lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+2d0*milspendtoGDP*dum3)
+lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+lumpsum*0.5d0)
 
 Print *,'Net revenue is',lumpsumdum
 
 lumpsumdum=lumpsumdum*2d0
 
-epsilon3=lumpsum-lumpsumdum
+!epsilon3=lumpsum-lumpsumdum
 
-!epsilon3=0d0
-lumpsum=lumpsum-0.2d0*(lumpsum-lumpsumdum)
-
+epsilon3=0d0
+!lumpsum=lumpsum-0.1d0*(lumpsum-lumpsumdum)
 
 
 !Labor income tax level

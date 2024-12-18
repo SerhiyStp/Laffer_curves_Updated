@@ -1,10 +1,13 @@
 module Utilities
     
-        use Model_Parameters
+    use Model_Parameters
         
-        implicit none
+    implicit none
+        
+    real(8), parameter :: c_sigm = 14d0 !12d0 !10d0 
+    real(8) :: C0ss != (t_employee1-t_employee2)*(SocSecCap*AE + log(2.0d0)/c_sigm)
     
-    contains
+contains
     
     function wage(gender,aval,x,uval)
         integer :: i,gender
@@ -44,12 +47,37 @@ module Utilities
         
     end function tSS_employer
     
+    function DtSS_employee(y)
+        use glob0, only: tss
+        real(8) :: y
+        real(8) :: DtSS_employee
+        !real(8) :: f, ff
+        
+        !f = 1.0d0/(1.0d0 + exp(c_sigm*(y - SocSecCap*AE)))
+        !ff = t_employee2 + (t_employee1-t_employee2)*f
+        !DtSS_employee = ff
+        if (y < x1_ss) then
+            DtSS_employee = t_employee1    
+        else if (y >= x1_ss .and. y < x2_ss) then
+            DtSS_employee = ss_coefs(2) + 2.0d0*ss_coefs(3)*y + 3.0d0*ss_coefs(4)*y**2.0d0    
+        else
+            DtSS_employee = t_employee2    
+        end if
+        
+    end function DtSS_employee
+    
     function tSS_employee(y)
         real(8) :: y
         real(8) :: tSS_employee
         
-        tSS_employee = t_employee
-        
+        !tSS_employee = t_employee2*y - (t_employee1-t_employee2)/c_sigm*log(abs(1.0d0 + exp(-c_sigm*(y - SocSecCap*AE)))) + C0ss
+        if (y < x1_ss) then
+            tSS_employee = t_employee1*y    
+        else if (y >= x1_ss .and. y < x2_ss) then
+            tSS_employee = ss_coefs(1) + ss_coefs(2)*y + ss_coefs(3)*y**2.0d0 + ss_coefs(4)*y**3.0d0    
+        else
+            tSS_employee = t_employee1*SocSecCap + t_employee2*(y - SocSecCap)    
+        end if
     end function tSS_employee
     
     function Uc(c)
@@ -213,4 +241,27 @@ module Utilities
     
     end function trilin_interp
     
-    end module Utilities
+    subroutine hist(dat, nbins, xbins, fhist)
+        real(8), intent(in) :: dat(:,:,:)
+        integer :: nbins
+        real(8), intent(out) :: xbins(nbins+1), fhist(nbins+1)
+        real(8) :: lo, hi
+        real(8) :: dx
+        integer :: i
+        integer :: ntot
+        
+        lo = minval(dat)
+        hi = maxval(dat) + 1d-6
+        dx = (lo-hi)/(nbins*1.0d0)
+        
+        xbins = [(dx*(i-1), i = 1, nbins+1)] 
+        ntot = size(dat)
+        do i = 1, nbins
+            fhist = count( dat >= xbins(i) .and. dat < xbins(i+1) )
+        end do
+        fhist = fhist/dble(ntot)
+        
+    end subroutine hist
+
+
+end module Utilities
