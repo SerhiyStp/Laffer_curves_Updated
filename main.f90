@@ -1,17 +1,4 @@
-include 'link_fnl_shared.h'
- 
-!
-! old:
-! include 'link_f90_dll_smp.h'
-      
-! Add this source to your project to correct the problem
-! that, for a Debug build for certain projects using the
-! IMSL Fortran libraries, the linker complains of an
-! unresolved external symbol __imp__MPIPRIV
-BLOCK DATA MPIPRIV_DEF
-COMMON /MPIPRIV/ DUMMY
-!DEC$ ATTRIBUTES ALIAS:"__imp__MPIPRIV" :: /MPIPRIV/
-END BLOCK DATA MPIPRIV_DEF
+!include 'link_fnl_shared.h'
     
 program Laffer
 
@@ -20,6 +7,8 @@ program Laffer
     use PolicyFunctions
     use Tauchen
     use hybrd_wrapper, only: setHybrParams
+    use, intrinsic :: iso_fortran_env, only: output_unit
+    
     implicit none
     integer :: ik,tprint,it2,it3,it4,it6,it7,it8,ium,iam,iuf,iaf,ix,j,iu2,ik2,ifc,counter,iter_ratio
     real(8) :: dum,dum2,dum3,dum4,dum5,dum6,epsilon_ratio=1d0,epsilon_ratio_old=1d0,step_ratio=0.05
@@ -28,8 +17,10 @@ program Laffer
     EXTERNAL labor1
     EXTERNAL labor3
     EXTERNAL labors
-    call OMP_SET_NUM_THREADS(106)
-
+    
+    !call OMP_SET_NUM_THREADS(106)
+    
+    write(output_unit, *) "Program started"
     call Initialize
     call setHybrParams(2)
 
@@ -299,7 +290,7 @@ program Laffer
                 !$OMP END DO    
                 !$OMP END PARALLEL
 
-                call Statistics
+                call Statistics_to_file(output_unit)
 
                 !open(1, file='singledist.txt')
                 !

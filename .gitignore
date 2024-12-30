@@ -5,6 +5,7 @@
 *.vfproj
 *.obj
 *.png
+*.i90
 Debug/
 x64/
 Release/
