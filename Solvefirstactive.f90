@@ -369,7 +369,6 @@ subroutine Solvefirstactive(counter)
                             V3=V3+beta*OmegaActive(T-it)*vnext
                         else
                             V3=Uc(P3)+Ul(0d0,0d0)
-                            !vnext = D_BS3VL(dum2,exp_grid(ix,T-it)*(1d0-deltaexp),exp_grid(ixm,T-it)*(1d0-deltaexp), KORDER, EXPORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1-it),EXP_KNOT(:,T+1-it), nk, nexp, nexp, ev_spln_coefs(:,:,:,iam,ium,iaf,iuf,T+1-it,ifc,ifcm))
                             call db3val(dum2,exp_grid(ix,T-it)*(1d0-deltaexp),exp_grid(ixm,T-it)*(1d0-deltaexp),idx,idy,idz,&
                                 tx,ty(:,T+1-it),tz(:,T+1-it),&
                                 nk,nexp,nexp,kx,ky,kz,&
@@ -453,7 +452,6 @@ subroutine Solvefirstactive(counter)
                 V2=V2+beta*OmegaActive(T-it)*Probm(T-it)*vnext
             else
                 V2=Uc(P2)-chifs*(dum4**(1d0+etaf))/(1d0+etaf)-fc(2,ifc)
-                !vnext = D_BS2VL(dum2, exp_grid(ix,T-it)+1d0, KORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T-it+1), nk, nexp,evs_spln_coefs(j,:,:,iam,ium,T+1-it,ifc))
                 call db2val(dum2,exp_grid(ix,T-it)+1d0,idx,idy,&
                     tx,ty(:,T-it+1),nk,nexp,kx,ky,&
                     evs_bspl(j,iam,ium,ifc)%coefs,vnext,iflag,&
@@ -462,7 +460,6 @@ subroutine Solvefirstactive(counter)
                     !print *, 'WARNING'
                 !end if
                 V2=V2+beta*OmegaActive(T-it)*(1d0-Probm(T-it))*vnext
-                !vnext = D_BS2VL(dum2, exp_grid(ix,T-it)+1d0, KORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T-it+1), nk, nexp,evm_spln_coefs(j,:,:,iam,ium,T+1-it,ifc))
                 call db2val(dum2,exp_grid(ix,T-it)+1d0,idx,idy,&
                     tx,ty(:,T-it+1),nk,nexp,kx,ky,&
                     evm_bspl(j,iam,ium,ifc)%coefs,vnext,iflag,&

@@ -339,14 +339,14 @@ contains
         allocate(k(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
         allocate(nm(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
         allocate(nf(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        allocate(ev_spln_coefs(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        allocate(v_spln_coefs(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        allocate(v_spln_coefs_kdim(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        allocate(vdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        allocate(cdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        allocate(gkdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        allocate(nmdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        allocate(nfdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        !allocate(ev_spln_coefs(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        !allocate(v_spln_coefs(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        !allocate(v_spln_coefs_kdim(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        !allocate(vdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        !allocate(cdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        !allocate(gkdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        !allocate(nmdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        !allocate(nfdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
 
         allocate(vs(2,nk,nexp,na,nu,T,nfc))
         allocate(evs(2,nk,nexp,na,nu,T,nfc))
@@ -356,11 +356,6 @@ contains
         allocate(Uprimes(2,nk,nexp,na,nu,T,nfc))
         allocate(ks(2,nk,nexp,na,nu,T,nfc))
         allocate(ns(2,nk,nexp,na,nu,T,nfc))
-        allocate(evs_spln_coefs(2,nk,nexp,na,nu,T,nfc))
-        allocate(vs_spln_coefs(2,nk,nexp,na,nu,T,nfc))
-        allocate(vs_spln_coefs_kdim(2,nk,nexp,na,nu,T,nfc))
-        allocate(edcs_spln_coefs(2,nk,nexp,na,nu,T,nfc))
-        allocate(evm_spln_coefs(2,nk,nexp,na,nu,T,nfc))
 
         allocate(Sim1m(nsim2,nsim,T+1,11))
         allocate(Sim1f(nsim2,nsim,T+1,11))
@@ -425,31 +420,20 @@ contains
         allocate(wage_grid(nw))
         allocate(k_grid(nk))
         allocate(exp_grid(nexp,T+Tret))
-        allocate(K_KNOT(nk+KORDER))
-        allocate(EXP_KNOT(nexp+EXPORDER,T+Tret))
-        allocate(ev_spln_coefs_ret(4,nk,Tret))
-        ! for testing only
-        allocate(p_ev_spln_coefs_ret(4,nk,Tret))
-
-        allocate(evs_spln_coefs_ret(4,nk,Tret))
-        ! for testing only
-        allocate(p_evs_spln_coefs_ret(4,nk,Tret))
+        !allocate(K_KNOT(nk+KORDER))
+        !allocate(EXP_KNOT(nexp+EXPORDER,T+Tret))
 
         allocate(c_ret(nk,nexp,nexp,na,na,Tret))
         allocate(edc_ret(nk,nexp,nexp,na,na,Tret))
-        allocate(edc_ret_spln_coefs(nk,nexp,nexp,na,na,Tret))
         allocate(Uprime_ret(nk,nexp,nexp,na,na,Tret))
         allocate(v_ret(nk,nexp,nexp,na,na,Tret))
         allocate(ev_ret(nk,nexp,nexp,na,na,Tret))
-        allocate(ev_ret_spln_coefs(nk,nexp,nexp,na,na,Tret))
         allocate(k_ret(nk,nexp,nexp,na,na,Tret))
         allocate(vs_ret(2,nk,nexp,na,Tret))
         allocate(evs_ret(2,nk,nexp,na,Tret))
-        allocate(evs_ret_spln_coefs(2,nk,nexp,na,Tret))
         allocate(cs_ret(2,nk,nexp,na,Tret))
         allocate(Eulers_ret(2,nk,nexp,na,Tret))
         allocate(edcs_ret(2,nk,nexp,na,Tret))
-        allocate(edcs_ret_spln_coefs(2,nk,nexp,na,Tret))
         allocate(Uprimes_ret(2,nk,nexp,na,Tret))
         allocate(ks_ret(2,nk,nexp,na,Tret))
         allocate(break(nk))
@@ -526,26 +510,15 @@ contains
 
         exp_grid=0d0
         do it2=2,T
-        call MakeGrid(nexp,exp_grid(:,it2),0d0,1d0*(it2-1),1d0)
+            call MakeGrid(nexp,exp_grid(:,it2),0d0,1d0*(it2-1),1d0)
         end do
 
         do it2=T+1,T+Tret
-        call MakeGrid(nexp,exp_grid(:,it2),0d0,1d0*T,1d0)
+            call MakeGrid(nexp,exp_grid(:,it2),0d0,1d0*T,1d0)
         end do
 
-        !CALL d_BSNAK(nk, k_grid, KORDER, K_KNOT)
-
-        !do it2=2,T+Tret
-        !
-        !    CALL d_BSNAK(nexp, exp_grid(:,it2), EXPORDER, EXP_KNOT(:,it2))
-        !
-        !end do
-
         exp_grid(:,1)=exp_grid(:,2)
-        EXP_KNOT(:,1)=EXP_KNOT(:,2)
 
-
-        !Print *,exp_grid(:,2)
 
         !STOP
 
