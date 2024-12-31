@@ -1,5 +1,3 @@
-!include 'link_fnl_shared.h'
-    
 program Laffer
 
     use Utilities
@@ -457,7 +455,7 @@ contains
         allocate(break(nk))
 
 
-        call init_Tax_ss(test=.false.)
+        call init_Tax_ss(test=.true.)
 
         !print *, t_employee1
         !print *, t_employee2
@@ -726,11 +724,11 @@ contains
         lda = n
         ldb = n
         call DGESV( N, NRHS, A, LDA, IPIV, B, LDB, INFO )
-        !if (info == 0) then
-        ss_coefs = B
-        !else
-        !    print *, 'WARNING: failed to find coefficients of the smoothing part of the t_ss function'
-        !end if
+        if (info == 0) then
+            ss_coefs = B
+        else
+            print *, 'WARNING: failed to find coefficients of the smoothing part of the t_ss function'
+        end if
     
         if (test == .true.) then
             ylo = 0.0d0

@@ -6,6 +6,9 @@
 *.obj
 *.png
 *.i90
+*.out
 Debug/
 x64/
+mod/
+obj/
 Release/
