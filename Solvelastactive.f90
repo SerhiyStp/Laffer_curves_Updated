@@ -5,8 +5,6 @@ subroutine Solvelastactive(counter)
     use PolicyFunctions
     use glob0
     use Utilities
-    !USE BS2VL_INT
-    !USE BS3VL_INT
     use bspline_sub_module
 
     implicit none
@@ -16,9 +14,9 @@ subroutine Solvelastactive(counter)
     real(8) :: ce,cu,ke,ku,nem,nef,num,nuf,ve,vu
     real(8) :: ces,cus,kes,kus,nes,nus,ves,vus
     real(8), dimension (:), allocatable :: Expdum
-    integer :: NEQ=0, IERSVR=0, IPACT=0, ISACT=0
+    !integer :: NEQ=0, IERSVR=0, IPACT=0, ISACT=0
     real(8) :: c2, MU2, d1, d2, vp(nu),dum3,dum4,dum5,dum6,y,r_ret_next
-    real(8) :: ACC=0.0001d0,ERREL=0.0001d0
+    !real(8) :: ACC=0.0001d0,ERREL=0.0001d0
     real(8) :: P1,P2,P3,P4,V2,V3,dum2,pnt2(3),pnt1(2)
     real(8) :: vnext, exp_grid_dum(nexp), INTERP2D(nk,nexp), INTERP3D(nk,nexp,nexp)
     real(8) :: dd1, dd2, dd3, dd4, dd5
@@ -31,6 +29,8 @@ subroutine Solvelastactive(counter)
     real(8) :: w1_d2(ky) 
     real(8) :: w0_d2(3*max(kx,ky)) 
     real(8) :: dd
+    
+    real(8) :: lfpm_e, lfpf_e, lfpm_u, lfpf_u
 
     idx=0
     idy=0
@@ -90,9 +90,6 @@ subroutine Solvelastactive(counter)
                         P1=0.01d0
                         P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+(wagem+wagef)*(1d0-tax_labor(wagem+wagef))-tSS_employee(wagem)-tSS_employee(wagef))/(1d0+tc))
                         dd1 = (k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))
-                        !dd2 = tax_labor(wagem+wagef)
-                        !dd3 = wagem+wagef
-                        !dd4 = tSS_employee(wagem+wagef)
                         do
                             P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
                             P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -112,15 +109,11 @@ subroutine Solvelastactive(counter)
                                 V2=V2+beta*OmegaActive(T)*vnext
                             else
                                 V2=Uc(P2)+Ul(dum4,dum5)-(fc(1,ifc)+fcage(1,1)*(T)+fcage(1,2)*(T)**(2d0))-fcm(1,ifcm)
-                                !vnext = D_BS3VL(dum2, exp_grid(ix,T)+1d0, exp_grid(ixm,T)+1d0, KORDER, EXPORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1),EXP_KNOT(:,T+1), nk, nexp, nexp, ev_ret_spln_coefs(:,:,:,iam,iaf,1))
                                 call db3val(dum2,exp_grid(ix,T)+1d0,exp_grid(ixm,T)+1d0,idx,idy,idz,&
                                     tx,ty(:,T+1),tz(:,T+1),&
                                     nk,nexp,nexp,kx,ky,kz,&
                                     ev_ret_bspl(iam,iaf)%coefs,vnext,iflag,&
-                                    inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.false.)
-                                !if (abs(vnext - vnext_test) > 1d-12) then
-                                !    print *, 'WARNING: db3val'
-                                !end if                                
+                                    inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.false.)                              
                                 V2=V2+beta*OmegaActive(T)*vnext
                             end if
 
@@ -139,16 +132,11 @@ subroutine Solvelastactive(counter)
                                 V3=V3+beta*OmegaActive(T)*vnext
                             else
                                 V3=Uc(P3)+Ul(dum4,dum5)-(fc(1,ifc)+fcage(1,1)*(T)+fcage(1,2)*(T)**(2d0))-fcm(1,ifcm)
-                                !vnext = D_BS3VL(dum2, exp_grid(ix,T)+1d0, exp_grid(ixm,T)+1d0, KORDER, EXPORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1),EXP_KNOT(:,T+1), nk, nexp, nexp, ev_ret_spln_coefs(:,:,:,iam,iaf,1))
                                 call db3val(dum2,exp_grid(ix,T)+1d0,exp_grid(ixm,T)+1d0,idx,idy,idz,&
                                     tx,ty(:,T+1),tz(:,T+1),&
                                     nk,nexp,nexp,kx,ky,kz,&
                                     ev_ret_bspl(iam,iaf)%coefs,vnext,iflag,&
-                                    inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.false.)
-                                !dd = abs(vnext-vnext_test)
-                                !if (dd > 1d-12) then
-                                !    print *, 'WARNING: db3val'
-                                !end if                                
+                                    inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.false.)                             
                                 V3=V3+beta*OmegaActive(T)*vnext
                             end if
 
@@ -189,6 +177,15 @@ subroutine Solvelastactive(counter)
                             Print *,'nef is',nef
                             pause
                         end if
+                        
+                        lfpm_e = 1d0
+                        lfpf_e = 1d0
+                        c_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F1)=ce
+                        k_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F1)=ke
+                        nm_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F1)=dum4
+                        nf_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F1)=dum5   
+                        v_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F1,MEN)=V2
+                        v_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F1,WOMEN)=V2                          
 
 
                         !If female unemployed
@@ -264,30 +261,16 @@ subroutine Solvelastactive(counter)
                         num=dum4
                         nuf=0d0
                         cu=P2
-
-                        if(num<0d0) then
-                            Print *,'ik is',ik
-                            Print *,'ix is',ix
-                            Print *,'iam is',iam
-                            Print *,'ium is',ium
-                            Print *,'iaf is',iaf
-                            Print *,'iuf is',iuf
-                            Print *,'num is',num
-                            Print *,'nuf is',nuf
-                            pause
-                        end if
-
-                        if(nuf<0d0) then
-                            Print *,'ik is',ik
-                            Print *,'ix is',ix
-                            Print *,'iam is',iam
-                            Print *,'ium is',ium
-                            Print *,'iaf is',iaf
-                            Print *,'iuf is',iuf
-                            Print *,'num is',num
-                            Print *,'nuf is',nuf
-                            pause
-                        end if
+                        
+                        lfpm_u=1d0
+                        lfpf_u=0d0
+                        c_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F0)=cu
+                        k_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F0)=ku  
+                        nm_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F0)=dum4
+                        nf_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F0)=0d0  
+                        v_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F0,MEN)=V2
+                        v_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M1,LFP_F0,WOMEN)=V2                         
+                        
 
                         !If male unemployed
 
@@ -363,32 +346,18 @@ subroutine Solvelastactive(counter)
                             num=0d0
                             nuf=dum4
                             cu=P2
+                            lfpm_u=0d0
+                            lfpf_u=1d0                               
                         end if
-
-                        if(num<0d0) then
-                            Print *,'ik is',ik
-                            Print *,'ix is',ix
-                            Print *,'iam is',iam
-                            Print *,'ium is',ium
-                            Print *,'iaf is',iaf
-                            Print *,'iuf is',iuf
-                            Print *,'num is',num
-                            Print *,'nuf is',nuf
-                            pause
-                        end if
-
-                        if(nuf<0d0) then
-                            Print *,'ik is',ik
-                            Print *,'ix is',ix
-                            Print *,'iam is',iam
-                            Print *,'ium is',ium
-                            Print *,'iaf is',iaf
-                            Print *,'iuf is',iuf
-                            Print *,'num is',num
-                            Print *,'nuf is',nuf
-                            pause
-                        end if
-
+                        c_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F1)=P2
+                        k_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F1)=dum2 
+                        nm_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F1)=0d0
+                        nf_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F1)=dum4    
+                        v_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F1,MEN)=V2
+                        v_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F1,WOMEN)=V2   
+                        
+                        
+                        
 
                         !If both spouses unemployed
 
@@ -432,15 +401,11 @@ subroutine Solvelastactive(counter)
                                 V3=V3+beta*OmegaActive(T)*vnext
                             else
                                 V3=Uc(P3)+Ul(0d0,0d0)
-                                !vnext = D_BS3VL(dum2, exp_grid(ix,T)*(1d0-deltaexp), exp_grid(ixm,T)*(1d0-deltaexp), KORDER, EXPORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1),EXP_KNOT(:,T+1), nk, nexp, nexp, ev_ret_spln_coefs(:,:,:,iam,iaf,1))
                                 call db3val(dum2,exp_grid(ix,T)*(1d0-deltaexp),exp_grid(ixm,T)*(1d0-deltaexp),idx,idy,idz,&
                                     tx,ty(:,T+1),tz(:,T+1),&
                                     nk,nexp,nexp,kx,ky,kz,&
                                     ev_ret_bspl(iam,iaf)%coefs,vnext,iflag,&
-                                    inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.false.)
-                                !if (abs(vnext - vnext_test) > 1d-12) then
-                                !    print *, 'WARNING: db3val'
-                                !end if                                   
+                                    inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.false.)                               
                                 V3=V3+beta*OmegaActive(T)*vnext
                             end if
 
@@ -458,7 +423,16 @@ subroutine Solvelastactive(counter)
                             num=0d0
                             nuf=0d0
                             cu=P2
+                            lfpm_u=0d0
+                            lfpf_u=0d0                             
                         end if
+                        
+                        c_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F0)=P2
+                        k_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F0)=dum2    
+                        nm_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F0)=0d0
+                        nf_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F0)=0d0   
+                        v_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F0,MEN)=V2
+                        v_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F0,WOMEN)=V2                           
 
 
                         if (ve >= vu) then
@@ -467,15 +441,21 @@ subroutine Solvelastactive(counter)
                             k(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=ke
                             nm(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=nem
                             nf(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=nef
+                            
+                            lfpm(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=lfpm_e
+                            lfpf(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=lfpf_e                               
                         else
                             v(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=vu
                             c(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=cu
                             k(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=ku
                             nm(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=num
                             nf(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=nuf
+                            
+                            lfpm(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=lfpm_u
+                            lfpf(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)=lfpf_u                                
                         end if
 
-
+                        v_aux(ik,ix,ixm,iam,ium,iaf,iuf,ifc,ifcm,:) = v(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm)
 
                     end do
                 end do
@@ -486,8 +466,7 @@ subroutine Solvelastactive(counter)
     !Singles    
     j=2
     do ifc=1,nfc
-        !Print *,'ix is',ix
-        !Finding optimal capital by golden search
+        !If single female employed
         wagef = wage(2,a(2,iam),exp_grid(ix,T),u(2,ium))/(1d0+t_employer)
         P1=0.01d0
         P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+wagef*(1d0-tax_labors(wagef))-tSS_employee(wagef))/(1d0+tc))
@@ -557,19 +536,14 @@ subroutine Solvelastactive(counter)
         kes=dum2
         nes=dum4
         ces=P2
+        
+        cs_lfp(j,ik,ix,iam,ium,T,ifc,LFP_1)=P2
+        ks_lfp(j,ik,ix,iam,ium,T,ifc,LFP_1)=dum2    
+        vs_lfp(j,ik,ix,iam,ium,T,ifc,LFP_1)=V2
+        ns_lfp(j,ik,ix,iam,ium,T,ifc,LFP_1)=dum4        
 
-        if(nes<0d0) then
-            Print *,'ik is',ik
-            Print *,'ix is',ix
-            Print *,'iam is',iam
-            Print *,'ium is',ium
-            Print *,'nes is',nes
-            pause
-        end if
 
         !If single female unemployed
-        !Print *,'ix is',ix
-        !Finding optimal capital by golden search
         P1=0.01d0
         P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+Unemp_benefit)/(1d0+tc))
         do
@@ -628,6 +602,11 @@ subroutine Solvelastactive(counter)
         kus=dum2
         nus=0d0
         cus=P2
+        
+        cs_lfp(j,ik,ix,iam,ium,T,ifc,LFP_0)=P2
+        ks_lfp(j,ik,ix,iam,ium,T,ifc,LFP_0)=dum2  
+        vs_lfp(j,ik,ix,iam,ium,T,ifc,LFP_0)=V2  
+        ns_lfp(j,ik,ix,iam,ium,T,ifc,LFP_0)=0d0        
 
         if (ves >= vus) then
             vs(j,ik,ix,iam,ium,T,ifc)=ves
@@ -635,12 +614,16 @@ subroutine Solvelastactive(counter)
             Uprimes(j,ik,ix,iam,ium,T,ifc)=dUc(ces)
             ks(j,ik,ix,iam,ium,T,ifc)=kes
             ns(j,ik,ix,iam,ium,T,ifc)=nes
+            
+            lfps(j,ik,ix,iam,ium,T,ifc)=1d0   
         else
             vs(j,ik,ix,iam,ium,T,ifc)=vus
             cs(j,ik,ix,iam,ium,T,ifc)=cus
             Uprimes(j,ik,ix,iam,ium,T,ifc)=dUc(cus)
             ks(j,ik,ix,iam,ium,T,ifc)=kus
             ns(j,ik,ix,iam,ium,T,ifc)=nus
+            
+            lfps(j,ik,ix,iam,ium,T,ifc)=0d0 
         end if
     end do
 
@@ -648,8 +631,7 @@ subroutine Solvelastactive(counter)
     !Men   
     j=1
     do ifc=1,nfcm
-        !Print *,'ix is',ix
-        !Finding optimal capital by golden search
+        !If single male employed
         wagem = wage(1,a(1,iam),exp_grid(ix,T),u(1,ium))/(1d0+t_employer)
         P1=0.01d0
         P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+wagem*(1d0-tax_labors(wagem))-tSS_employee(wagem))/(1d0+tc))
@@ -671,14 +653,11 @@ subroutine Solvelastactive(counter)
                 V2=V2+beta*OmegaActive(T)*vnext
             else
                 V2=Uc(P2)-chims*(dum4**(1d0+etam))/(1d0+etam)-fcm(2,ifc)
-                !vnext = D_BS2VL(dum2, exp_grid(ix,T)+1d0, KORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1), nk, nexp,evs_ret_spln_coefs(j,:,:,iam,1))
                 call db2val(dum2,exp_grid(ix,T)+1d0,idx,idy,&
                     tx,ty(:,T+1),nk,nexp,kx,ky,&
                     evs_ret_bspl(j,iam)%coefs,vnext,iflag,&
                     inbvx,inbvy,iloy,w1_d2,w0_d2,extrap=.false.)
-                !if (abs(vnext - vnext_test) > 1d-12) then
-                !    print *, 'WARNING: db2val'
-                !end if                
+       
                 V2=V2+beta*OmegaActive(T)*vnext
             end if
 
@@ -695,14 +674,10 @@ subroutine Solvelastactive(counter)
                 V3=Uc(P3)-chims*(dum4**(1d0+etam))/(1d0+etam)-fcm(2,ifc)
                 V3=V3+beta*OmegaActive(T)*vnext
             else
-                !vnext = D_BS2VL(dum2, exp_grid(ix,T)+1d0, KORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T+1), nk, nexp,evs_ret_spln_coefs(j,:,:,iam,1))
                 call db2val(dum2,exp_grid(ix,T)+1d0,idx,idy,&
                     tx,ty(:,T+1),nk,nexp,kx,ky,&
                     evs_ret_bspl(j,iam)%coefs,vnext,iflag,&
-                    inbvx,inbvy,iloy,w1_d2,w0_d2,extrap=.false.)
-                !if (abs(vnext - vnext_test) > 1d-12) then
-                !    print *, 'WARNING: db2val'
-                !end if                
+                    inbvx,inbvy,iloy,w1_d2,w0_d2,extrap=.false.)          
                 V3=Uc(P3)-chims*(dum4**(1d0+etam))/(1d0+etam)-fcm(2,ifc)
                 V3=V3+beta*OmegaActive(T)*vnext
             end if
@@ -719,10 +694,14 @@ subroutine Solvelastactive(counter)
         kes=dum2
         nes=dum4
         ces=P2
+        
+        cs_lfp(j,ik,ix,iam,ium,T,ifc,LFP_1)=P2
+        ks_lfp(j,ik,ix,iam,ium,T,ifc,LFP_1)=dum2  
+        vs_lfp(j,ik,ix,iam,ium,T,ifc,LFP_1)=V2     
+        ns_lfp(j,ik,ix,iam,ium,T,ifc,LFP_1)=dum4
+        
 
         !If single male unemployed
-        !Print *,'ix is',ix
-        !Finding optimal capital by golden search
         P1=0.01d0
         P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr*0.5d0)*(1d0+r*(1d0-tk))+lumpsum*0.5d0+Unemp_benefit)/(1d0+tc))
         do
@@ -785,6 +764,11 @@ subroutine Solvelastactive(counter)
         kus=dum2
         nus=0d0
         cus=P2
+        
+        cs_lfp(j,ik,ix,iam,ium,T,ifc,LFP_0)=P2
+        ks_lfp(j,ik,ix,iam,ium,T,ifc,LFP_0)=dum2  
+        vs_lfp(j,ik,ix,iam,ium,T,ifc,LFP_0)=V2  
+        ns_lfp(j,ik,ix,iam,ium,T,ifc,LFP_0)=0d0        
 
         if (ves >= vus) then
             vs(j,ik,ix,iam,ium,T,ifc)=ves
@@ -792,12 +776,14 @@ subroutine Solvelastactive(counter)
             Uprimes(j,ik,ix,iam,ium,T,ifc)=dUc(ces)
             ks(j,ik,ix,iam,ium,T,ifc)=kes
             ns(j,ik,ix,iam,ium,T,ifc)=nes
+            lfps(j,ik,ix,iam,ium,T,ifc)=1d0
         else
             vs(j,ik,ix,iam,ium,T,ifc)=vus
             cs(j,ik,ix,iam,ium,T,ifc)=cus
             Uprimes(j,ik,ix,iam,ium,T,ifc)=dUc(cus)
             ks(j,ik,ix,iam,ium,T,ifc)=kus
             ns(j,ik,ix,iam,ium,T,ifc)=nus
+            lfps(j,ik,ix,iam,ium,T,ifc)=0d0
         end if
     end do
 

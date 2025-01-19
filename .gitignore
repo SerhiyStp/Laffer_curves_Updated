@@ -7,6 +7,7 @@
 *.png
 *.i90
 *.out
+*.mod
 Debug/
 x64/
 mod/

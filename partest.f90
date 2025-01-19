@@ -17,6 +17,7 @@ subroutine partest(counter)
     integer :: idx, idy, idz, iloy, iloz
     integer :: inbvx, inbvy, inbvz
     real(8) :: ww2(ky,kz),ww1(kz),ww0(3*max(kx,ky,kz))  
+    real(8) :: exp_m_prime, exp_f_prime
     
     idx=0
     idy=0
@@ -37,25 +38,33 @@ subroutine partest(counter)
     iam=counter-(ik-1)*nexp*na*nu-(ix-1)*na*nu-(ium-1)*na
 
     j=2
+    exp_f_prime = exp_grid(ix,T-it)
     evm(j,ik,ix,iam,ium,T-it,:)=0d0
     do ifc=1,nfc
         do iu2=1,nu
             do ik2=1,nk
                 do ixm = 1, nexp
+                    exp_m_prime = exp_grid(ixm,T-it)
                     do iaf=1,na
                         do iuf=1,nu
                             do ifcm=1,nfcm
                                 dum=k_grid(ik)+k_grid(ik2)
-                                if(dum<k_grid(nk)-0.001d0) then
-                                    call db3val(dum,exp_grid(ix,T-it),exp_grid(ixm,T-it),idx,idy,idz,&
-                                            tx,ty(:,T-it),tz(:,T-it),&
-                                            nk,nexp,nexp,kx,ky,kz,&
-                                            v_bspl(iaf,iuf,iam,iu2,ifc,ifcm)%coefs,vnext,iflag,&
-                                            inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.true.)                                    
-                                    evm(j,ik,ix,iam,ium,T-it,ifc)=evm(j,ik,ix,iam,ium,T-it,ifc)+trans_u(2,ium,iu2)*ability_prob(iam,iaf)*mpartner(ik2,ixm,iaf,iuf,T-it,ifcm)*vnext
-                                else
-                                    evm(j,ik,ix,iam,ium,T-it,ifc)=evm(j,ik,ix,iam,ium,T-it,ifc)+trans_u(2,ium,iu2)*ability_prob(iam,iaf)*mpartner(ik2,ixm,iaf,iuf,T-it,ifcm)*LinInterp(dum,k_grid,v(:,ix,ixm,iaf,iuf,iam,iu2,T-it,ifc,ifcm),nk)
-                                end if
+                                vnext = pol_v_aux(iaf,iuf,iam,iu2,ifc,ifcm,WOMEN)%eval([dum,exp_f_prime,exp_m_prime])
+                                evm(j,ik,ix,iam,ium,T-it,ifc) = evm(j,ik,ix,iam,ium,T-it,ifc) + &
+                                                                trans_u(WOMEN,ium,iu2)*ability_prob(iam,iaf)*mpartner(ik2,ixm,iaf,iuf,T-it,ifcm)*vnext                                
+                                
+                                
+                                !if(dum<k_grid(nk)-0.001d0) then
+                                !    call db3val(dum,exp_grid(ix,T-it),exp_grid(ixm,T-it),idx,idy,idz,&
+                                !            tx,ty(:,T-it),tz(:,T-it),&
+                                !            nk,nexp,nexp,kx,ky,kz,&
+                                !            v_bspl(iaf,iuf,iam,iu2,ifc,ifcm)%coefs,vnext,iflag,&
+                                !            inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.true.)                                    
+                                !    evm(j,ik,ix,iam,ium,T-it,ifc)=evm(j,ik,ix,iam,ium,T-it,ifc)+trans_u(2,ium,iu2)*ability_prob(iam,iaf)*mpartner(ik2,ixm,iaf,iuf,T-it,ifcm)*vnext
+                                !else
+                                !    evm(j,ik,ix,iam,ium,T-it,ifc)=evm(j,ik,ix,iam,ium,T-it,ifc)+trans_u(2,ium,iu2)*ability_prob(iam,iaf)*mpartner(ik2,ixm,iaf,iuf,T-it,ifcm)*LinInterp(dum,k_grid,v(:,ix,ixm,iaf,iuf,iam,iu2,T-it,ifc,ifcm),nk)
+                                !end if
+                                
                             end do
                         end do
                     end do
@@ -86,6 +95,8 @@ subroutine partest2(counter)
     integer :: idx, idy, idz, iloy, iloz
     integer :: inbvx, inbvy, inbvz
     real(8) :: ww2(ky,kz),ww1(kz),ww0(3*max(kx,ky,kz))  
+    real(8) :: exp_m_prime, exp_f_prime
+
     
     idx=0
     idy=0
@@ -107,33 +118,40 @@ subroutine partest2(counter)
 
     
     j=1
+    exp_m_prime = exp_grid(ixm,T-it)
     evm(j,ik,ixm,iam,ium,T-it,:)=0d0
-        do ifcm=1,nfcm
-            do iu2=1,nu
-                do ik2=1,nk
-                    do ix=1,nexp
-                        do iaf=1,na
-                            do iuf=1,nu
-                                    do ifc=1,nfc
-                                        dum=k_grid(ik)+k_grid(ik2)
-                                        if(dum<k_grid(nk)-0.001d0) then
-                                            call db3val(dum,exp_grid(ix,T-it),exp_grid(ixm,T-it),idx,idy,idz,&
-                                                    tx,ty(:,T-it),tz(:,T-it),&
-                                                    nk,nexp,nexp,kx,ky,kz,&
-                                                    v_bspl(iam,iu2,iaf,iuf,ifc,ifcm)%coefs,vnext,iflag,&
-                                                    inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.true.)   
-                                            
-                                            evm(j,ik,ixm,iam,ium,T-it,ifcm)=evm(j,ik,ixm,iam,ium,T-it,ifcm)+trans_u(1,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*vnext
-                                        else
-                                            evm(j,ik,ixm,iam,ium,T-it,ifcm)=evm(j,ik,ixm,iam,ium,T-it,ifcm)+trans_u(1,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*LinInterp(dum,k_grid,v(:,ix,ixm,iam,iu2,iaf,iuf,T-it,ifc,ifcm),nk)
-                                        end if
-                                    end do
+    do ifcm=1,nfcm
+        do iu2=1,nu
+            do ik2=1,nk
+                do ix=1,nexp
+                    exp_f_prime = exp_grid(ix,T-it)
+                    do iaf=1,na
+                        do iuf=1,nu
+                            do ifc=1,nfc
+                                dum=k_grid(ik)+k_grid(ik2)
+                                vnext = pol_v_aux(iam,iu2,iaf,iuf,ifc,ifcm,MEN)%eval([dum,exp_f_prime,exp_m_prime])
+                                evm(j,ik,ixm,iam,ium,T-it,ifcm) = evm(j,ik,ixm,iam,ium,T-it,ifcm)&
+                                         + trans_u(MEN,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*vnext   
+                                
+                                
+                                !if(dum<k_grid(nk)-0.001d0) then
+                                !    call db3val(dum,exp_grid(ix,T-it),exp_grid(ixm,T-it),idx,idy,idz,&
+                                !    tx,ty(:,T-it),tz(:,T-it),&
+                                !    nk,nexp,nexp,kx,ky,kz,&
+                                !    v_bspl(iam,iu2,iaf,iuf,ifc,ifcm)%coefs,vnext,iflag,&
+                                !    inbvx,inbvy,inbvz,iloy,iloz,ww2,ww1,ww0,extrap=.true.)   
+                                !    
+                                !    evm(j,ik,ixm,iam,ium,T-it,ifcm)=evm(j,ik,ixm,iam,ium,T-it,ifcm)+trans_u(1,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*vnext
+                                !else
+                                !    evm(j,ik,ixm,iam,ium,T-it,ifcm)=evm(j,ik,ixm,iam,ium,T-it,ifcm)+trans_u(1,ium,iu2)*ability_prob(iam,iaf)*fpartner(ik2,ix,iaf,iuf,T-it,ifc)*LinInterp(dum,k_grid,v(:,ix,ixm,iam,iu2,iaf,iuf,T-it,ifc,ifcm),nk)
+                                !end if
                             end do
                         end do
                     end do
                 end do
             end do
         end do
+    end do
 
 end subroutine partest2
     
@@ -143,7 +161,6 @@ subroutine partest3(counter)
     use PolicyFunctions
     use glob0
     use Utilities
-    !USE BS3IN_INT
     use bspline_sub_module
 
     implicit none
@@ -155,6 +172,7 @@ subroutine partest3(counter)
     integer :: iflag
     integer :: iknot
     real(8), pointer :: exp_grid_ptr(:)    
+    real(8), pointer :: v_mar_tmp(:,:,:)
     
     !Assigning the grid points
     dum3=((counter*1d0)/(na*nfc*1d0))-0.00001d0
@@ -168,8 +186,6 @@ subroutine partest3(counter)
     do ifcm=1,nfcm    
         do iaf=1,na
             do iuf=1,nu
-                !CALL D_BS3IN(k_grid, exp_grid(:,T-it), exp_grid(:,T-it), ev(:,:,:,iam,ium,iaf,iuf,T-it,ifc,ifcm), KORDER, EXPORDER, EXPORDER, K_KNOT, EXP_KNOT(:,T-it), EXP_KNOT(:,T-it), ev_spln_coefs(:,:,:,iam,ium,iaf,iuf,T-it,ifc,ifcm), nk, nexp, nexp)
-                !CALL D_BS3IN(k_grid, exp_grid(:,T-it), exp_grid(:,T-it), v(:,:,:,iam,ium,iaf,iuf,T-it,ifc,ifcm), KORDER, EXPORDER, EXPORDER, K_KNOT, EXP_KNOT(:,T-it), EXP_KNOT(:,T-it), v_spln_coefs(:,:,:,iam,ium,iaf,iuf,T-it,ifc,ifcm), nk, nexp, nexp)
                 call db3ink(k_grid,nk,exp_grid_ptr,nexp,exp_grid_ptr,nexp,&
                     v(:,:,:,iam,ium,iaf,iuf,T-it,ifc,ifcm),&
                     kx,ky,kz,iknot,tx,ty(:,T-it),tz(:,T-it),&
@@ -177,7 +193,13 @@ subroutine partest3(counter)
                 call db3ink(k_grid,nk,exp_grid_ptr,nexp,exp_grid_ptr,nexp,&
                     ev(:,:,:,iam,ium,iaf,iuf,T-it,ifc,ifcm),&
                     kx,ky,kz,iknot,tx,ty(:,T-it),tz(:,T-it),&
-                    ev_bspl(iam,ium,iaf,iuf,ifc,ifcm)%coefs,iflag)                 
+                    ev_bspl(iam,ium,iaf,iuf,ifc,ifcm)%coefs,iflag)  
+                
+                do j = 1, 2
+                    v_mar_tmp => v_aux(:,:,:,iam,ium,iaf,iuf,ifc,ifcm,j)
+                    call pol_v_aux(iam, ium, iaf, iuf, ifc, ifcm, j)%set(v_mar_tmp, k_grid, exp_grid_ptr, exp_grid_ptr)   
+                end do                 
+                
             end do
         end do
     end do
@@ -257,7 +279,6 @@ subroutine partest6(counter)
     exp_grid_ptr => exp_grid(:,T-it)    
 
     do j=1,2
-        !CALL D_BS2IN(k_grid, exp_grid(:,T-it), evm(j,:,:,iam,ium,T-it,ifc), KORDER, EXPORDER, K_KNOT, EXP_KNOT(:,T-it), evm_spln_coefs(j,:,:,iam,ium,T-it,ifc), nk, nexp)
         call db2ink(k_grid, nk, exp_grid_ptr, nexp, evm(j,:,:,iam,ium,T-it,ifc), &
             kx, ky, iknot, tx, ty(:,T-it), evm_bspl(j,iam,ium,ifc)%coefs, iflag)           
     end do
@@ -306,6 +327,7 @@ subroutine partest7(counter)
     if(T-it>1) then
 
         ev(ik,ix,:,iam,ium,:,:,T-it,:,:)=0d0
+        ev_aux(ik,ix,:,iam,ium,:,:,:,:,:) = 0d0
         dum3=K_grid(ik)/2d0
 
         do ifc=1,nfc
@@ -317,30 +339,24 @@ subroutine partest7(counter)
                             do iu2=1,nu
                                 do iu3=1,nu
                                     ev(ik,ix,ixm,iam,ium,iaf,iuf,T-it,ifc,ifcm)=ev(ik,ix,ixm,iam,ium,iaf,iuf,T-it,ifc,ifcm)+(1d0-Probd(T-it-1))*trans_u(1,ium,iu2)*trans_u(2,iuf,iu3)*V(ik,ix,ixm,iam,iu2,iaf,iu3,T-it,ifc,ifcm)
+                                    ev_aux(ik,ix,ixm,iam,ium,iaf,iuf,ifc,ifcm,MEN) = ev_aux(ik,ix,ixm,iam,ium,iaf,iuf,ifc,ifcm,MEN)+(1d0-Probd(T-it-1))*trans_u(1,ium,iu2)*trans_u(2,iuf,iu3)*V_aux(ik,ix,ixm,iam,iu2,iaf,iu3,ifc,ifcm,MEN)
+                                    ev_aux(ik,ix,ixm,iam,ium,iaf,iuf,ifc,ifcm,WOMEN) = ev_aux(ik,ix,ixm,iam,ium,iaf,iuf,ifc,ifcm,WOMEN)+(1d0-Probd(T-it-1))*trans_u(1,ium,iu2)*trans_u(2,iuf,iu3)*V_aux(ik,ix,ixm,iam,iu2,iaf,iu3,ifc,ifcm,WOMEN)
                                 end do
                             end do
 
                             do iu3=1,nu
-                                !vnext = D_BS2VL(dum3,exp_grid(ix,T-it), KORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T-it), nk, nexp, vs_spln_coefs(2,:,:,iaf,iu3,T-it,ifc))
                                 call db2val(dum3,exp_grid(ix,T-it),idx,idy,&
                                     tx,ty(:,T-it),nk,nexp,kx,ky,&
                                     vs_bspl(2,iaf,iu3,ifc)%coefs,vnext,iflag,&
                                     inbvx,inbvy,iloy,w1_d2,w0_d2,extrap=.true.)  
-                                !if (abs(vnext-vnext_test)>1d-10) then
-                                !    print *, 'WARNING'
-                                !end if
                                 ev(ik,ix,ixm,iam,ium,iaf,iuf,T-it,ifc,ifcm)=ev(ik,ix,ixm,iam,ium,iaf,iuf,T-it,ifc,ifcm)+Probd(T-it-1)*trans_u(2,iuf,iu3)*0.5d0*vnext
                             end do
 
                             do iu2=1,nu
-                                !vnext = D_BS2VL(dum3,exp_grid(ixm,T-it), KORDER, EXPORDER, K_KNOT,EXP_KNOT(:,T-it), nk, nexp, vs_spln_coefs(1,:,:,iam,iu2,T-it,ifcm))
                                 call db2val(dum3,exp_grid(ixm,T-it),idx,idy,&
                                     tx,ty(:,T-it),nk,nexp,kx,ky,&
                                     vs_bspl(1,iam,iu2,ifcm)%coefs,vnext,iflag,&
-                                    inbvx,inbvy,iloy,w1_d2,w0_d2,extrap=.true.)       
-                                !if (abs(vnext-vnext_test)>1d-10) then
-                                !    print *, 'WARNING'
-                                !end if                                    
+                                    inbvx,inbvy,iloy,w1_d2,w0_d2,extrap=.true.)                                          
                                 ev(ik,ix,ixm,iam,ium,iaf,iuf,T-it,ifc,ifcm)=ev(ik,ix,ixm,iam,ium,iaf,iuf,T-it,ifc,ifcm)+Probd(T-it-1)*trans_u(1,ium,iu2)*0.5d0*vnext
                             end do
 
@@ -436,3 +452,121 @@ subroutine partest10(counter)
     end do
             
 end subroutine partest10
+
+subroutine update_ev_aux(i_age)
+    use PolicyFunctions, only: exp_grid, ev_aux, v_aux, k_grid, pol_ev_aux
+    use Model_Parameters, only: MEN, WOMEN, na, nexp, nfc, nk, nu
+    implicit none
+    integer :: i_age
+    integer :: i, ia, iu, ifc
+    real(8), pointer :: exp_grid_ptr(:) 
+    integer :: iam, iaf, ium, iuf, ifcm, ifcf
+    integer :: iexp1, iexp2
+    real(8) :: ev_sing_tmp(nk,nexp), ev_mar_tmp(nk,nexp,nexp)
+    real(8), pointer :: v_mar_tmp(:,:,:)
+    integer :: i_m, i_f, jj
+    
+    exp_grid_ptr => exp_grid(:,i_age)     
+    
+    do iam = 1, na
+        do iaf = 1, na
+            do ium = 1, nu
+                do iuf = 1, nu
+                    do ifcm = 1, nfc
+                        do ifcf = 1, nfc                                
+                            do jj = MEN, WOMEN
+                                v_mar_tmp => ev_aux(:,:,:,iam,ium,iaf,iuf,ifcm,ifcf,jj)
+                                call pol_ev_aux(iam, ium, iaf, iuf, ifcm, ifcf, jj)%set(v_mar_tmp, k_grid, exp_grid_ptr, exp_grid_ptr)
+                                !v_mar_tmp => v_aux(:,:,:,iam,ium,iaf,iuf,ifcm,ifcf,jj)
+                                !call pol_v_aux(iam, ium, iaf, iuf, ifcm, ifcf, jj)%set(v_mar_tmp, k_grid, exp_grid_ptr, exp_grid_ptr)
+                            end do             
+                        end do
+                    end do
+                end do
+            end do
+        end do
+    end do
+            
+end subroutine update_ev_aux   
+
+subroutine update_lfp_policies(i_age)
+    use PolicyFunctions, only: exp_grid, evs, evm, ev, k_grid, v, vs, v_lfp, vs_lfp, pol_v_mar_lfp, pol_v_sing_lfp
+    !use GlobParams, only: 
+    use Model_Parameters, only: nexp, nk, LFP_M1, LFP_M0, LFP_F1, LFP_F0, LFP_0, LFP_1, MEN, WOMEN
+    !use pyplot_module, only : pyplot, wp => pyplot_wp
+
+    integer :: i_age
+    integer :: i, ia, iu, ifc
+    real(8), pointer :: exp_grid_ptr(:) 
+    integer :: iam, iaf, ium, iuf, ifcm, ifcf
+    integer :: iexp1, iexp2
+    real(8) :: ev_sing_tmp(nk,nexp), ev_mar_tmp(nk,nexp,nexp)
+    real(8) :: v_mar_tmp(nk,nexp,nexp), v_sing_tmp(nk,nexp)
+    !type(pyplot) :: plt   !! pytplot handler
+    character(len=*), parameter :: testdir = "Plots/"
+    integer :: istat !! status code
+    character(len=2) :: age_ch
+    integer :: i_m, i_f, ii
+
+    write(age_ch, '(i2)') i_age
+
+    exp_grid_ptr => exp_grid(:,i_age)
+    do i = 1, 2
+        do ia = 1, na
+            do iu = 1, nu
+                do ifc = 1, nfc
+                    !ev_sing_tmp = beta*OmegaActive(i_age-1)*( (1d0-Probm(i_age-1))*evs(i,:,:,ia,iu,i_age,ifc) + Probm(i_age-1)*evm(i,:,:,ia,iu,i_age,ifc) )
+                    !call pol_ev_single(i, ia, iu, ifc)%set(ev_sing_tmp, k_grid, exp_grid_ptr)
+                    !v_sing_tmp = Vs(i,:,:,ia,iu,i_age,ifc)
+                    !call pol_v_sing(i, ia, iu, i_age, ifc)%set(v_sing_tmp, k_grid, exp_grid_ptr)
+                    do ii = LFP_1, LFP_0
+                        v_sing_tmp = Vs_lfp(i,:,:,ia,iu,i_age,ifc,ii)
+                        call pol_v_sing_lfp(i, ia, iu, i_age, ifc, ii)%set(v_sing_tmp, k_grid, exp_grid_ptr)                            
+                    end do
+                end do
+            end do
+        end do
+    end do          
+
+
+    do iam = 1, na
+        do iaf = 1, na
+            do ium = 1, nu
+                do iuf = 1, nu
+                    do ifcm = 1, nfc
+                        do ifcf = 1, nfc
+                            !ev_mar_tmp = beta*OmegaActive(i_age-1)*ev(:,:,:,iam,ium,iaf,iuf,i_age,ifcm,ifcf)
+                            !ev_mar_tmp = ev(:,:,:,iam,ium,iaf,iuf,i_age,ifcm,ifcf)
+                            !call pol_ev(iam, ium, iaf, iuf, ifcm, ifcf)%set(ev_mar_tmp, k_grid, exp_grid_ptr, exp_grid_ptr)
+                            !v_mar_tmp = v(:,:,:,iam,ium,iaf,iuf,i_age,ifcm,ifcf)
+                            !call pol_v_mar(iam, ium, iaf, iuf, i_age, ifcm, ifcf)%set(v_mar_tmp, k_grid, exp_grid_ptr, exp_grid_ptr)
+
+                            do i_m = LFP_M1, LFP_M0
+                                do i_f = LFP_F1, LFP_F0
+                                    do ii = MEN, WOMEN
+                                        v_mar_tmp = v_lfp(:,:,:,iam,ium,iaf,iuf,i_age,ifcm,ifcf,i_m,i_f,ii)
+                                        call pol_v_mar_lfp(iam, ium, iaf, iuf, i_age, ifcm, ifcf, i_m, i_f,ii)%set(v_mar_tmp, k_grid, exp_grid_ptr, exp_grid_ptr)
+                                    end do
+                                end do
+                            end do
+
+                        end do
+                    end do
+                end do
+            end do
+        end do
+    end do
+
+    !call plt%initialize(grid=.true.,xlabel='Savings',figsize=[20,10],&
+    !                    title='Married',legend=.true.,axis_equal=.true.,&
+    !                    tight_layout=.true.)  
+    !iam = 2
+    !ium = 2
+    !iaf = 2
+    !iuf = 2
+    !ifcm = 1
+    !ifcf = 1
+    !call plt%add_plot(k_grid,v(:,iexp1,iexp2,iam,ium,iaf,iuf,i_age,ifcm,ifcf),label='iexp=1',linestyle='b-o',markersize=5,linewidth=2,istat=istat)
+    !call plt%savefig(testdir//'Vmarried'//age_ch//'.png', pyfile=testdir//'plottest.py',istat=istat)   
+
+end subroutine update_lfp_policies

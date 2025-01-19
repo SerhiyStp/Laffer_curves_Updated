@@ -1,13 +1,24 @@
 module Model_Parameters
 
     implicit none
+    
+    ! Labels
+    integer, parameter :: MEN=1
+    integer, parameter :: WOMEN=2  
+    integer, parameter :: LFP_1=1
+    integer, parameter :: LFP_0=2
+    integer, parameter :: LFP_M1=LFP_1
+    integer, parameter :: LFP_M0=LFP_0
+    integer, parameter :: LFP_F1=LFP_1
+    integer, parameter :: LFP_F0=LFP_0    
 
     real(8), parameter :: etam    = 1d0/0.4d0  ! Inverse Frisch elasticity men
     real(8), parameter :: etaf    = 1d0/0.8d0  ! Inverse Frisch elasticity women
     real(8), parameter :: mu   = 0.02d0       ! The growth rate of the economy
     !real(8), parameter :: beta   = 0.97d0    !Discount factor
     real(8), parameter :: beta   = 1.00114d0    !Discount factor
-    integer, parameter :: testing = 0
+    
+    integer, parameter :: testing = 1
     integer, parameter :: Tret   = 5*testing + 36*(1-testing) !36 !5         ! Years in retirement  (65-100)
     integer, parameter :: T      = 6*testing + 45*(1-testing) !45 !6         ! Years of active life (20-64)
     integer, parameter :: nfc   = 5         ! Number of fixed costs
@@ -26,7 +37,7 @@ module Model_Parameters
     real(8) :: ss_coefs(4)
 
 
-
+    real(8) :: minhours=0.001d0
     real(8), parameter :: tk     = 0.36d0     ! Capital tax
     real(8), parameter :: sigma  = 4d0        ! Risk aversion parameter
     real(8), parameter :: alpha  = 1d0/3d0     ! Capital share

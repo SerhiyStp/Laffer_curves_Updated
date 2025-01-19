@@ -57,7 +57,6 @@ program Laffer
 
                 dum2= 1.5d0*wage(1,a(1,na),dble(T),u(1,nu))/(1d0+t_employer)
                 call MakeGrid(nw,wage_grid,0.01d0,dum2,2d0)
-                !C0ss = (t_employee1-t_employee2)*(SocSecCap*AE + log(2.0d0)/c_sigm)
                 !!$OMP PARALLEL PRIVATE(ik)
                 !!$OMP DO SCHEDULE(DYNAMIC)
                 do ik=1,nc
@@ -66,16 +65,16 @@ program Laffer
                 !!$OMP END DO    
                 !!$OMP END PARALLEL
 
-                open(22, file='laborm.txt')
-                open(23, file='laborf.txt')
-                ium = 40
-                iuf = 40
-                do ii = 1, nk
-                    write(22, '(2f12.6)') c_grid(ii), laborm(ii,10,10) !, laborm(ii,10,80), labor
-                    write(23, '(2f12.6)') c_grid(ii), laborf(ii,ium,iuf)
-                end do
-                close(22)
-                close(23)
+                !open(22, file='laborm.txt')
+                !open(23, file='laborf.txt')
+                !ium = 40
+                !iuf = 40
+                !do ii = 1, nk
+                !    write(22, '(2f12.6)') c_grid(ii), laborm(ii,10,10) !, laborm(ii,10,80), labor
+                !    write(23, '(2f12.6)') c_grid(ii), laborf(ii,ium,iuf)
+                !end do
+                !close(22)
+                !close(23)
 
                 print *, 'hours worked problem solved'            
 
@@ -86,7 +85,7 @@ program Laffer
                     !$OMP PARALLEL PRIVATE(counter)
                     !$OMP DO SCHEDULE(DYNAMIC)
                     do counter=1,nk*nexp*na
-                    call SolveInRetirement(counter)
+                        call SolveInRetirement(counter)
                     end do
                     !$OMP END DO    
                     !$OMP END PARALLEL
@@ -185,7 +184,9 @@ program Laffer
                 end do
                 !$OMP END DO    
                 !$OMP END PARALLEL
-
+                
+                call update_ev_aux(T)
+                call update_lfp_policies(T)
 
 
                 !Compute optimal policies for age 2-63
@@ -264,6 +265,9 @@ program Laffer
                     end do
                     !$OMP END DO    
                     !$OMP END PARALLEL
+                    
+                    call update_ev_aux(T-it)
+                    call update_lfp_policies(T-it)
 
                 end do
 
@@ -339,14 +343,16 @@ contains
         allocate(k(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
         allocate(nm(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
         allocate(nf(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        !allocate(ev_spln_coefs(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        !allocate(v_spln_coefs(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        !allocate(v_spln_coefs_kdim(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        !allocate(vdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        !allocate(cdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        !allocate(gkdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        !allocate(nmdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
-        !allocate(nfdum(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        allocate(v_aux(nk,nexp,nexp,na,nu,na,nu,nfc,nfcm,2))
+        allocate(ev_aux(nk,nexp,nexp,na,nu,na,nu,nfc,nfcm,2))
+        
+        allocate(lfpm(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        allocate(lfpf(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
+        allocate(c_lfp(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm,2,2))
+        allocate(v_lfp(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm,2,2,2))
+        allocate(k_lfp(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm,2,2))  
+        allocate(nm_lfp(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm,2,2))
+        allocate(nf_lfp(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm,2,2))           
 
         allocate(vs(2,nk,nexp,na,nu,T,nfc))
         allocate(evs(2,nk,nexp,na,nu,T,nfc))
@@ -356,6 +362,12 @@ contains
         allocate(Uprimes(2,nk,nexp,na,nu,T,nfc))
         allocate(ks(2,nk,nexp,na,nu,T,nfc))
         allocate(ns(2,nk,nexp,na,nu,T,nfc))
+        
+        allocate(lfps(2,nk,nexp,na,nu,T,nfc))
+        allocate(cs_lfp(2,nk,nexp,na,nu,T,nfc,2))
+        allocate(ns_lfp(2,nk,nexp,na,nu,T,nfc,2))
+        allocate(ks_lfp(2,nk,nexp,na,nu,T,nfc,2))  
+        allocate(vs_lfp(2,nk,nexp,na,nu,T,nfc,2))          
 
         allocate(Sim1m(nsim2,nsim,T+1,11))
         allocate(Sim1f(nsim2,nsim,T+1,11))
@@ -437,6 +449,8 @@ contains
         allocate(Uprimes_ret(2,nk,nexp,na,Tret))
         allocate(ks_ret(2,nk,nexp,na,Tret))
         allocate(break(nk))
+        
+        allocate(pol_v_mar_lfp(na, nu, na, nu, T, nfc, nfcm, 2, 2, 2))
 
 
         call init_Tax_ss(test=.true.)
