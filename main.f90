@@ -6,6 +6,7 @@ program Laffer
     use Tauchen
     use hybrd_wrapper, only: setHybrParams
     use, intrinsic :: iso_fortran_env, only: output_unit
+    use partests
     
     implicit none
     integer :: ik,tprint,it2,it3,it4,it6,it7,it8,ium,iam,iuf,iaf,ix,j,iu2,ik2,ifc,counter,iter_ratio
