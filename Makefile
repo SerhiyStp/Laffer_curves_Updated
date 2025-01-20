@@ -6,10 +6,9 @@ DOBJ    = obj/
 DMOD    = mod/
 DEXE    = ./
 LIBS    =
-FC      = ifx
+FC      = ifort
 OPTSC   = -c -qopenmp -module mod
-#OPTSL   = -qopenmp -module mod -L${MKLROOT}/lib/intel64 -lmkl_intel_ilp64 -lmkl_sequential -lmkl_core -lpthread -lm -ldl
-OPTSL   = -qopenmp -module mod -qmkl
+OPTSL   =  -oqpenmp -module mod
 VPATH   = $(DSRC) $(DOBJ) $(DMOD)
 MKDIRS  = $(DOBJ) $(DMOD) $(DEXE)
 LCEXES  = $(shell echo $(EXES) | tr '[:upper:]' '[:lower:]')
@@ -27,7 +26,6 @@ $(DEXE)MAIN: $(MKDIRS) $(DOBJ)main.o \
 	$(DOBJ)labor3.o \
 	$(DOBJ)labors.o \
 	$(DOBJ)lsupply.o \
-	$(DOBJ)partest.o \
 	$(DOBJ)simulation.o \
 	$(DOBJ)solveactivelife.o \
 	$(DOBJ)solvefirstactive.o \
@@ -104,7 +102,8 @@ $(DOBJ)main.o: ./main.f90 \
 	$(DOBJ)model_parameters.o \
 	$(DOBJ)policyfunctions.o \
 	$(DOBJ)tauchen.o \
-	$(DOBJ)hybrd_wrapper.o
+	$(DOBJ)hybrd_wrapper.o \
+	$(DOBJ)partest.o
 	@echo $(COTEXT)
 	@$(FC) $(OPTSC)  $< -o $@
 
@@ -122,7 +121,9 @@ $(DOBJ)partest.o: ./partest.f90 \
 	@$(FC) $(OPTSC)  $< -o $@
 
 $(DOBJ)policyfunctions.o: ./PolicyFunctions.f90 \
-	$(DOBJ)model_parameters.o
+	$(DOBJ)model_parameters.o \
+	$(DOBJ)bspline_sub_module.o \
+	$(DOBJ)utilities.o
 	@echo $(COTEXT)
 	@$(FC) $(OPTSC)  $< -o $@
 
