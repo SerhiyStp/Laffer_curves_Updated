@@ -8,6 +8,7 @@
 *.i90
 *.out
 *.mod
+*.zip
 Debug/
 x64/
 mod/
