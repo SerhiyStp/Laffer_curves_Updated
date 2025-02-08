@@ -338,7 +338,7 @@ program Laffer
         end do
         close(1)
 
-
+        write(output_unit, *) 'Program finished'
         stop
 
     end do
