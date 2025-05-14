@@ -9,11 +9,14 @@
 *.out
 *.mod
 *.zip
+*.log
+*.stswp
 Debug/
 x64/
 mod/
 obj/
 Release/
 backups/
+.vs/
 MAIN
 MAIN

@@ -1,4 +1,4 @@
-subroutine Statistics_to_file(file_id)
+subroutine Statistics(file_id)
 
     !This subroutine computes aggregate statistics from the simulation
 
@@ -18,6 +18,9 @@ subroutine Statistics_to_file(file_id)
     real(8), dimension (:), allocatable :: YVAR, BREG
     real(8) :: QPROP(NQPROP), XEMP(NQPROP), XHI(NQPROP), XLO(NQPROP)
     real(8), allocatable :: spousewage(:,:), spousewage2(:,:)
+    integer :: Lumpsum_or_G 
+    
+    Lumpsum_or_G = opt_Lumpsum
 
     allocate(XVARS(nsim2*nsim*T,1))
     allocate(YVAR(nsim2*nsim*T))
@@ -513,6 +516,55 @@ subroutine Statistics_to_file(file_id)
     write(file_id, *)'Married female labor force participation is',dum2
     !write(file_id, *)'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
     dum10=dum10+((dum2-0.668d0)/0.668d0)**2d0
+    
+dum2=0d0
+dum3=0d0
+
+do i=6,15
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1f(it2,it,i,10)>0.5) then
+        if(Sim1f(it2,it,i,4)>1d-3) then
+            dum2=dum2+(1d0)*WeightActive(i)
+        end if
+        dum3=dum3+1d0*WeightActive(i)
+    end if
+end do
+end do
+
+end do
+
+dum2=dum2/dum3
+
+ write(file_id, *) 'Married female labor force participation 25-34',dum2
+!!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
+dum10=dum10+((dum2-0.661d0)/0.661d0)**2d0
+
+dum2=0d0
+dum3=0d0
+
+do i=36,T
+
+do it2=1,nsim2
+do it=1,nsim
+    if(Sim1f(it2,it,i,10)>0.5) then
+        if(Sim1f(it2,it,i,4)>1d-3) then
+            dum2=dum2+(1d0)*WeightActive(i)
+        end if
+        dum3=dum3+1d0*WeightActive(i)
+    end if
+end do
+end do
+
+end do
+
+dum2=dum2/dum3
+
+write(file_id, *) 'Married female labor force participation 55-64',dum2
+
+!!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
+dum10=dum10+((dum2-0.597d0)/0.597d0)**2d0
 
     YVAR=sqrt(-1.0)
     XVARS=sqrt(-1.0)
@@ -1111,10 +1163,10 @@ subroutine Statistics_to_file(file_id)
     end do
 
     !CALL D_CORVC(NVAR, Spousewage2, COV, ICOPT=ICOPT)
-    !
+    !!
     !write(file_id, *)'Correlation of spousal wages is',COV(1,2)
-
-
+    !
+    !
     !dum10=dum10+((COV(1,2)-0.287)/0.287)**2
 
     !it4=0
@@ -1561,51 +1613,43 @@ subroutine Statistics_to_file(file_id)
     dum15=dum15/population_mass
 
     !GDP per capita
-
     dum9=0d0
-
     do i=1,T
-
         do it2=1,nsim2
             do it=1,nsim
                 dum9=dum9+(Sim1m(it2,it,i,6)*(1d0+t_employer)/w)*WeightActive(i)
-
                 if(Sim1f(it2,it,i,10)<0.5d0) then
                     dum9=dum9+(Sim1f(it2,it,i,6)*(1d0+t_employer)/w)*WeightActive(i)
                 end if
-
             end do
         end do
-
     end do
-
-
     !write(file_id, *)'Ltot is',dum9
-
     dum3=((ratio*dum9)**alpha)*(dum9**(1-alpha))/population_mass
-
     write(file_id, *)'GDP per capita is',dum3
-
     write(file_id, *)'Lumpsum is',lumpsum/2d0
 
 
     !Government Budget
-
-    lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+2d0*milspendtoGDP*dum3)
+    if (Lumpsum_or_G == opt_G) then
+        ! Fix lumpsum
+        ! Q: do we need to check whether G >= 0?
+        lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+lumpsum*0.5d0)
+        lumpsumdum=lumpsumdum*2d0
+        epsilon3=0d0
+    else if (Lumpsum_or_G == opt_Lumpsum) then
+        lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+2d0*milspendtoGDP*dum3)
+        lumpsumdum=lumpsumdum*2d0
+        epsilon3=lumpsum-lumpsumdum
+        lumpsum=lumpsum-0.1d0*(lumpsum-lumpsumdum)
+    else
+        print *, 'ERROR: must be Lumpsum or G'
+    end if
 
     write(file_id, *)'Net revenue is',lumpsumdum
 
-    lumpsumdum=lumpsumdum*2d0
-
-    epsilon3=lumpsum-lumpsumdum
-
-    !epsilon3=0d0
-    lumpsum=lumpsum-0.1d0*(lumpsum-lumpsumdum)
-
-
 
     !Labor income tax level
-
     dum2=0d0
     dum3=0d0
     dum4=0d0
@@ -1663,7 +1707,7 @@ subroutine Statistics_to_file(file_id)
 
     epsilon5=AE-dum2/dum3
 
-    AE=AE-0.1d0*(AE-dum2/dum3)
+    !AE=AE-0.1d0*(AE-dum2/dum3)
 
     Unemp_benefit=0.201795*AE
 
@@ -2758,4 +2802,4 @@ subroutine Statistics_to_file(file_id)
 
     !STOP
 
-end subroutine Statistics_to_file
+end subroutine Statistics

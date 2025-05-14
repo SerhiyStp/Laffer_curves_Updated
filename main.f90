@@ -7,7 +7,7 @@ program Laffer
     use hybrd_wrapper, only: setHybrParams
     use, intrinsic :: iso_fortran_env, only: output_unit
     use partests
-    
+
     implicit none
     integer :: ik,tprint,it2,it3,it4,it6,it7,it8,ium,iam,iuf,iaf,ix,j,iu2,ik2,ifc,counter,iter_ratio
     real(8) :: dum,dum2,dum3,dum4,dum5,dum6,epsilon_ratio=1d0,epsilon_ratio_old=1d0,step_ratio=0.05
@@ -16,9 +16,9 @@ program Laffer
     EXTERNAL labor1
     EXTERNAL labor3
     EXTERNAL labors
-    
+
     !call OMP_SET_NUM_THREADS(106)
-    
+
     write(output_unit, *) "Program started"
     call Initialize
     call setHybrParams(2)
@@ -103,7 +103,7 @@ program Laffer
                     !$OMP PARALLEL PRIVATE(counter)
                     !$OMP DO SCHEDULE(DYNAMIC)
                     do counter = 1, na
-                    call partest10(counter)
+                        call partest10(counter)
                     end do
                     !$OMP END DO    
                     !$OMP END PARALLEL               
@@ -186,7 +186,7 @@ program Laffer
                 end do
                 !$OMP END DO    
                 !$OMP END PARALLEL
-                
+
                 call update_ev_aux(T)
                 call update_lfp_policies(T)
 
@@ -267,7 +267,7 @@ program Laffer
                     end do
                     !$OMP END DO    
                     !$OMP END PARALLEL
-                    
+
                     call update_ev_aux(T-it)
                     call update_lfp_policies(T-it)
 
@@ -294,18 +294,15 @@ program Laffer
                 !$OMP END DO    
                 !$OMP END PARALLEL
 
-                call Statistics_to_file(output_unit)
+                call Statistics(output_unit)
 
-                open(1, file='singledist.txt')
-                write (1, *) fpartner,mpartner
-                close(1)
-
-                open(1, file='abilityprob.txt')
-                write (1, *) ability_prob
-                close(1)
-
-                !Variables are age, gender, ID number, weight, marital status, asset holdings, household labor income, Household_Labor_Income_Tax_Paid,  Household_consumption_Tax_Paid, ability, hours, earnings
-
+                !open(1, file='singledist.txt')
+                !write (1, *) fpartner,mpartner
+                !close(1)
+                !
+                !open(1, file='abilityprob.txt')
+                !write (1, *) ability_prob
+                !close(1)
 
                 Print *,'epsilon is',epsilon
                 Print *,'epsilon2 is',epsilon2
@@ -315,6 +312,20 @@ program Laffer
                 open(41, file='last_results.txt')
                 write(41, *) AE, lumpsum, psi0, gamma_redistr 
                 close(41)
+                !Variables are age, gender, ID number, weight, marital status, asset holdings, household labor income, Household_Labor_Income_Tax_Paid,  Household_consumption_Tax_Paid, ability, hours, earnings
+                open(1, file='Simulation_output.txt')
+                do it2=1,T
+                    do it3=1,nsim2
+                        do it4=1,nsim
+                            write (1,'(F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4)') it2*1d0, 1d0, nsim*(it3-1)*1d0+it4*1d0, 1d0, Sim1m(it3,it4,it2,10), Sim1m(it3,it4,it2,1), Sim1m(it3,it4,it2,6), Sim1m(it3,it4,it2,7), Sim1m(it3,it4,it2,8), exp1m(it3,it4,it2,2)*1d0, Sim1m(it3,it4,it2,4), Sim1m(it3,it4,it2,5)  
+                            write (1,'(F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4)') it2*1d0, 2d0, nsim*(it3-1)*1d0+it4*1d0, 1d0, Sim1f(it3,it4,it2,10), Sim1f(it3,it4,it2,1), Sim1f(it3,it4,it2,6), Sim1f(it3,it4,it2,7), Sim1f(it3,it4,it2,8), exp1f(it3,it4,it2,2)*1d0, Sim1f(it3,it4,it2,4), Sim1f(it3,it4,it2,5)
+                        end do
+                    end do
+                end do
+                close(1)
+
+                write(output_unit, *) 'Program finished'
+                stop
 
             end do
 
@@ -324,8 +335,8 @@ program Laffer
 
         end do
 
-        call Statistics_to_file(61)
-        tax_level_scale = tax_level_scale - 0.01d0
+        call Statistics(61)
+        !tax_level_scale = tax_level_scale - 0.01d0
 
         open(1, file='Simulation_output.txt')
         do it2=1,T
@@ -345,7 +356,7 @@ program Laffer
 
     close(61)
 
-contains
+    contains
 
     subroutine Initialize()
 
@@ -363,7 +374,7 @@ contains
         allocate(nf(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
         allocate(v_aux(nk,nexp,nexp,na,nu,na,nu,nfc,nfcm,2))
         allocate(ev_aux(nk,nexp,nexp,na,nu,na,nu,nfc,nfcm,2))
-        
+
         allocate(lfpm(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
         allocate(lfpf(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm))
         allocate(c_lfp(nk,nexp,nexp,na,nu,na,nu,T,nfc,nfcm,2,2))
@@ -380,7 +391,7 @@ contains
         allocate(Uprimes(2,nk,nexp,na,nu,T,nfc))
         allocate(ks(2,nk,nexp,na,nu,T,nfc))
         allocate(ns(2,nk,nexp,na,nu,T,nfc))
-        
+
         allocate(lfps(2,nk,nexp,na,nu,T,nfc))
         allocate(cs_lfp(2,nk,nexp,na,nu,T,nfc,2))
         allocate(ns_lfp(2,nk,nexp,na,nu,T,nfc,2))
@@ -467,7 +478,7 @@ contains
         allocate(Uprimes_ret(2,nk,nexp,na,Tret))
         allocate(ks_ret(2,nk,nexp,na,Tret))
         allocate(break(nk))
-        
+
         allocate(pol_v_mar_lfp(na, nu, na, nu, T, nfc, nfcm, 2, 2, 2))
 
 
@@ -527,8 +538,8 @@ contains
         gamma(2,:) = (/ 0.0784408d0, -0.0025596d0, 0.0000256d0 /)
         !gamma(1,:) = (/ 0.0690d0, -0.00129d0, 0.0d0 /)
         !gamma(2,:) = (/ 0.0430d0, -0.00078d0, 0.0d0 /)
-        gamma0=-0.1402d0
-        gamma0f=-0.1868d0
+        gamma0=-0.1070d0
+        gamma0f=-0.1450d0
 
         theta(:) = (/ 0.975d0*tax_level_scale, 0.149d0*tax_prog_scale /)
         thetas(:) = (/ 0.895d0*tax_level_scale, 0.140d0*tax_prog_scale /)
@@ -559,7 +570,7 @@ contains
         open(1, file='divprob.txt')
 
         do it2=1,T
-        read (1, *) probd(it2)
+            read (1, *) probd(it2)
         end do
 
         close(1)
@@ -567,7 +578,7 @@ contains
         open(1, file='marprob.txt')
 
         do it2=1,T
-        read (1, *) probm(it2)
+            read (1, *) probm(it2)
         end do
 
         close(1)
@@ -622,7 +633,7 @@ contains
 
         OmegaRet2(1)=1d0
         do it2=1,Tret-1
-        OmegaRet2(it2+1)=OmegaRet(it2)
+            OmegaRet2(it2+1)=OmegaRet(it2)
         end do
 
 
@@ -734,7 +745,7 @@ contains
         else
             print *, 'WARNING: failed to find coefficients of the smoothing part of the t_ss function'
         end if
-    
+
         if (test == .true.) then
             ylo = 0.0d0
             yhi = 3.5d0
@@ -751,7 +762,7 @@ contains
             end do
             close(11)
         end if
-        
+
     end subroutine init_Tax_ss
 
 

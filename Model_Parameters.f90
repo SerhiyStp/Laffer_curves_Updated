@@ -2,6 +2,10 @@ module Model_Parameters
 
     implicit none
     
+    ! Tax policy options
+    integer, parameter :: opt_G = 1
+    integer, parameter :: opt_Lumpsum = 2
+    
     ! Labels
     integer, parameter :: MEN=1
     integer, parameter :: WOMEN=2  
@@ -12,11 +16,11 @@ module Model_Parameters
     integer, parameter :: LFP_F1=LFP_1
     integer, parameter :: LFP_F0=LFP_0    
 
-    real(8), parameter :: etam    = 1d0/0.4d0  ! Inverse Frisch elasticity men
-    real(8), parameter :: etaf    = 1d0/0.8d0  ! Inverse Frisch elasticity women
+    real(8), parameter :: etam    = 1d0/0.3d0  ! Inverse Frisch elasticity men
+    real(8), parameter :: etaf    = 1d0/0.6d0  ! Inverse Frisch elasticity women
     real(8), parameter :: mu   = 0.02d0       ! The growth rate of the economy
     !real(8), parameter :: beta   = 0.97d0    !Discount factor
-    real(8), parameter :: beta   = 1.00114d0    !Discount factor
+    real(8), parameter :: beta   = 1.0019935d0    !Discount factor
     
     integer, parameter :: testing = 0
     integer, parameter :: Tret   = 5*testing + 36*(1-testing) !36 !5         ! Years in retirement  (65-100)
@@ -43,22 +47,22 @@ module Model_Parameters
     real(8), parameter :: alpha  = 1d0/3d0     ! Capital share
     real(8), parameter :: delta  = 0.0988d0-mu     ! Capital depreciation
     real(8), parameter :: deltaexp  = 0.000d0     !Depreciation of experience
-    real(8) :: chim= 13.75d0,  chims=29.30d0       ! Disutility from work men
-    real(8) :: chif= 4.21d0,   chifs= 8.91d0       ! Disutility from work women
+    real(8) :: chim= 31.40d0,  chims=75.50d0       ! Disutility from work men
+    real(8) :: chif= 7.42d0,   chifs= 14.77d0       ! Disutility from work women
     real(8), parameter :: sigma_um=0.32228727D0, rho_um=0.3959915D0 ! Parameters governing the process for the  idiosyncratic shock, men
     real(8), parameter :: sigma_am=0.31469361d0, rho_am=0D0     ! Stdev of ability, men
     real(8), parameter :: sigma_uf=0.31004311d0, rho_uf=0.339295 ! Parameters governing the process for the  idiosyncratic shock, women
     real(8), parameter :: sigma_af=0.38475527d0, rho_af=0d0    ! Stdev of ability, women
-    real(8), parameter :: sigma_fcm=0.190d0, rho_fcm=0d0  !Stdev and persistence of fixed costs, married women
-    real(8), parameter :: sigma_fcs=0.671d0, rho_fcs=0d0    !Stdev and persistence of fixed costs, single women
-    real(8), parameter :: mu_fcm=0.227d0, mu_fcs=-0.0120d0   ! Mean fixed cost of LFP, women
-    real(8) :: mu_fcm1=-0.02290d0, mu_fcm2=0.0004109d0          !First and 2nd order term of married female cost of working
-    real(8), parameter :: sigma_fcmm=0.0001d0, rho_fcmm=0d0  !Stdev and persistence of fixed costs, married men
-    real(8), parameter :: sigma_fcsm=0.281d0, rho_fcsm=0d0    !Stdev of fixed costs, single men
-    real(8), parameter :: mu_fcmm=0.1755d0, mu_fcsm=0.5989d0   !Mean fixed cost of LFP, men
+    real(8), parameter :: sigma_fcm=0.1707d0, rho_fcm=0d0  !Stdev and persistence of fixed costs, married women
+    real(8), parameter :: sigma_fcs=0.5590d0, rho_fcs=0d0    !Stdev and persistence of fixed costs, single women
+    real(8), parameter :: mu_fcm=0.2400d0, mu_fcs=0.0105d0   ! Mean fixed cost of LFP, women
+    real(8) :: mu_fcm1=-0.022782d0, mu_fcm2=0.0004034d0          !First and 2nd order term of married female cost of working
+    real(8), parameter :: sigma_fcmm=0.0301d0, rho_fcmm=0d0  !Stdev and persistence of fixed costs, married men
+    real(8), parameter :: sigma_fcsm=0.4119d0, rho_fcsm=0d0    !Stdev of fixed costs, single men
+    real(8), parameter :: mu_fcmm=0.2008d0, mu_fcsm=0.5565d0   !Mean fixed cost of LFP, men
     real(8) :: gamma(2,3), gamma0, gamma0f  ! Returns to experience parameters
     real(8) :: AE                           ! Average earnings
-    real(8) :: match=0.084d0                 ! Assortative mating parameter
+    real(8) :: match=0.09102d0                 ! Assortative mating parameter
     real(8) :: theta(2), thetas(2)            ! Labor tax parameters
     real(8) :: tax_level_scale=1.0d0, tax_prog_scale=1.0d0  ! Parameters to scale tax- level and progressivity
     real(8), parameter :: ybar = 1.2d0                ! Upper limit for SS tax
@@ -83,9 +87,9 @@ module Model_Parameters
     real(8), dimension (:,:,:), allocatable :: trans_a     ! Dummy transition matrix for a (used to compute the unconditional probability of each a)
     real(8), dimension (:,:,:), allocatable :: trans_fc, trans_fcm ! Dummy transition matrix for fc (used to compute the unconditional probability of each a)
 
-    real(8) :: Gamma_redistr = 2d0*0.01727d0
-    real(8) :: Psi0=0.2371d0, w05=1.70423761746912d0, w2=4.69173016308841d0
-    real(8) :: Unemp_benefit, lumpsum=2d0*0.0409d0, lumpsumdum=2d0*0.09184923463949926d0
+    real(8) :: Gamma_redistr = 2d0*0.01737d0
+    real(8) :: Psi0=0.2396d0, w05=1.70423761746912d0, w2=4.69173016308841d0
+    real(8) :: Unemp_benefit, lumpsum=2d0*0.0390d0, lumpsumdum=2d0*0.09184923463949926d0
 
     real(8), dimension (:), allocatable :: OmegaRet, OmegaRet2, OmegaActive, Probm, Probd
     real(8), dimension (:), allocatable :: WeightRet, WeightActive
