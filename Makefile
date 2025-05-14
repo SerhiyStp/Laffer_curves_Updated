@@ -6,10 +6,9 @@ DOBJ    = obj/
 DMOD    = mod/
 DEXE    = ./
 LIBS    =
-FC      = ifx
-OPTSC   = -c -qopenmp -module mod -O3
-#OPTSL   =  -oqpenmp -module mod
-OPTSL   = -qopenmp -module mod -qmkl
+FC      = ifort
+OPTSC   = -c -qopenmp -module mod
+OPTSL   = -qopenmp -module mod
 VPATH   = $(DSRC) $(DOBJ) $(DMOD)
 MKDIRS  = $(DOBJ) $(DMOD) $(DEXE)
 LCEXES  = $(shell echo $(EXES) | tr '[:upper:]' '[:lower:]')
@@ -32,7 +31,7 @@ $(DEXE)MAIN: $(MKDIRS) $(DOBJ)main.o \
 	$(DOBJ)solvefirstactive.o \
 	$(DOBJ)solveinretirement.o \
 	$(DOBJ)solvelastactive.o \
-	$(DOBJ)statistics_to_file.o \
+	$(DOBJ)statistics.o \
 	$(DOBJ)dogleg.o \
 	$(DOBJ)dpmpar.o \
 	$(DOBJ)enorm.o \
@@ -170,7 +169,7 @@ $(DOBJ)solvelastactive.o: ./Solvelastactive.f90 \
 	@echo $(COTEXT)
 	@$(FC) $(OPTSC)  $< -o $@
 
-$(DOBJ)statistics_to_file.o: ./Statistics_to_file.f90 \
+$(DOBJ)statistics.o: ./Statistics.f90 \
 	$(DOBJ)model_parameters.o \
 	$(DOBJ)policyfunctions.o \
 	$(DOBJ)utilities.o
