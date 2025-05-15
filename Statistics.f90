@@ -13,13 +13,13 @@ subroutine Statistics(file_id)
     integer :: i,country,ia,ia2,iu,ix,um,it2,ik,ifc, NVAR=2,it3,it4,ICOPT=2,ik2
     integer, parameter :: NQPROP=3
     real(8) :: dum2,dum3,dum4,dum5,dum6,dum7,dum8,dum9,dum10,dum11,dum12,dum13,dum14,dum15,dum16,dum17,SST,SSE,COV(2,2)
-    real(8) :: dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25,r_ret,ss_tax,ss_expense,population_mass,mass_working
+    real(8) :: dum18,dum19,dum20,dum21,dum22,dum23,dum24,dum25,r_ret,ss_tax,ss_expense,population_mass,mass_working,savings,GDP
     real(8), dimension (:,:), allocatable :: XVARS
     real(8), dimension (:), allocatable :: YVAR, BREG
     real(8) :: QPROP(NQPROP), XEMP(NQPROP), XHI(NQPROP), XLO(NQPROP)
     real(8), allocatable :: spousewage(:,:), spousewage2(:,:)
     integer :: Lumpsum_or_G 
-    
+
     Lumpsum_or_G = opt_Lumpsum
 
     allocate(XVARS(nsim2*nsim*T,1))
@@ -516,55 +516,55 @@ subroutine Statistics(file_id)
     write(file_id, *)'Married female labor force participation is',dum2
     !write(file_id, *)'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
     dum10=dum10+((dum2-0.668d0)/0.668d0)**2d0
-    
-dum2=0d0
-dum3=0d0
 
-do i=6,15
+    dum2=0d0
+    dum3=0d0
 
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)>0.5) then
-        if(Sim1f(it2,it,i,4)>1d-3) then
-            dum2=dum2+(1d0)*WeightActive(i)
-        end if
-        dum3=dum3+1d0*WeightActive(i)
-    end if
-end do
-end do
+    do i=6,15
 
-end do
+        do it2=1,nsim2
+            do it=1,nsim
+                if(Sim1f(it2,it,i,10)>0.5) then
+                    if(Sim1f(it2,it,i,4)>1d-3) then
+                        dum2=dum2+(1d0)*WeightActive(i)
+                    end if
+                    dum3=dum3+1d0*WeightActive(i)
+                end if
+            end do
+        end do
 
-dum2=dum2/dum3
+    end do
 
- write(file_id, *) 'Married female labor force participation 25-34',dum2
-!!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
-dum10=dum10+((dum2-0.661d0)/0.661d0)**2d0
+    dum2=dum2/dum3
 
-dum2=0d0
-dum3=0d0
+    write(file_id, *) 'Married female labor force participation 25-34',dum2
+    !!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
+    dum10=dum10+((dum2-0.661d0)/0.661d0)**2d0
 
-do i=36,T
+    dum2=0d0
+    dum3=0d0
 
-do it2=1,nsim2
-do it=1,nsim
-    if(Sim1f(it2,it,i,10)>0.5) then
-        if(Sim1f(it2,it,i,4)>1d-3) then
-            dum2=dum2+(1d0)*WeightActive(i)
-        end if
-        dum3=dum3+1d0*WeightActive(i)
-    end if
-end do
-end do
+    do i=36,T
 
-end do
+        do it2=1,nsim2
+            do it=1,nsim
+                if(Sim1f(it2,it,i,10)>0.5) then
+                    if(Sim1f(it2,it,i,4)>1d-3) then
+                        dum2=dum2+(1d0)*WeightActive(i)
+                    end if
+                    dum3=dum3+1d0*WeightActive(i)
+                end if
+            end do
+        end do
 
-dum2=dum2/dum3
+    end do
 
-write(file_id, *) 'Married female labor force participation 55-64',dum2
+    dum2=dum2/dum3
 
-!!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
-dum10=dum10+((dum2-0.597d0)/0.597d0)**2d0
+    write(file_id, *) 'Married female labor force participation 55-64',dum2
+
+    !!Print *,'contribution to FCN is is',((dum2-0.668d0)/0.668d0)**2d0
+    dum10=dum10+((dum2-0.597d0)/0.597d0)**2d0
 
     YVAR=sqrt(-1.0)
     XVARS=sqrt(-1.0)
@@ -1282,7 +1282,76 @@ dum10=dum10+((dum2-0.597d0)/0.597d0)**2d0
 
     write(file_id, *)'Labor income tax rate including TSS is',dum4/dum2
 
-    write(file_id, *)'Tax revenue per capita including TSS is',dum3/dum5
+    !Savings
+
+    dum2=0d0
+
+    do i=1,T
+
+        do it2=1,nsim2
+            do it=1,nsim
+                dum2=dum2+Sim1m(it2,it,i,1)*WeightActive(i)
+
+                if(Sim1f(it2,it,i,10)<0.5d0) then
+                    dum2=dum2+Sim1f(it2,it,i,1)*WeightActive(i)
+                end if
+
+            end do
+        end do
+
+    end do
+
+    do i=1,Tret
+
+        do it2=1,nsim2
+            do it=1,nsim
+                dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)
+
+                if(Sim1f(it2,it,T,10)<0.5d0) then
+                    dum2=dum2+SimR1f(it2,it,i,1)*WeightRet(i)
+                end if
+            end do
+        end do
+
+    end do
+
+    dum2=dum2/population_mass
+
+    write(file_id, *)'Savings per capita is',dum2
+    savings=dum2
+
+    !GDP per capita
+
+    dum9=0d0
+
+
+    do i=1,T
+
+        do it2=1,nsim2
+            do it=1,nsim
+                dum9=dum9+(Sim1m(it2,it,i,6)*(1d0+t_employer)/w)*WeightActive(i)
+
+                if(Sim1f(it2,it,i,10)<0.5d0) then
+                    dum9=dum9+(Sim1f(it2,it,i,6)*(1d0+t_employer)/w)*WeightActive(i)
+                end if
+
+            end do
+        end do
+
+    end do
+
+
+    !write(file_id, *)'Ltot is',dum9
+
+    GDP=((ratio*dum9)**alpha)*(dum9**(1-alpha))/population_mass
+
+
+    !Find capital inflow or outflow in the open economy and it's tax revenue
+    !dum6=(GDP*2.68334015639268d0-(savings+Gamma_redistr))*r*tk
+    dum6=(GDP*2.68334015639268d0-(savings+Gamma_redistr))*r*tk
+
+    write(file_id, *)'Tax revenue per capita including TSS is',(dum3/dum5)+dum6
+
 
     !write(file_id, *)'Labor Income tax per capita is',dum7/dum5
 
@@ -1348,46 +1417,6 @@ dum10=dum10+((dum2-0.597d0)/0.597d0)**2d0
     !epsilon=0d0
     Psi0=Psi0-0.1d0*(Psi0-dum4)
 
-    !Savings
-
-    dum2=0d0
-    dum3=0d0
-
-    do i=1,T
-
-        do it2=1,nsim2
-            do it=1,nsim
-                dum2=dum2+Sim1m(it2,it,i,1)*WeightActive(i)
-                dum3=dum3+2d0*WeightActive(i)
-
-                if(Sim1f(it2,it,i,10)<0.5d0) then
-                    dum2=dum2+Sim1f(it2,it,i,1)*WeightActive(i)
-                end if
-
-            end do
-        end do
-
-    end do
-
-    do i=1,Tret
-
-        do it2=1,nsim2
-            do it=1,nsim
-                dum2=dum2+SimR1m(it2,it,i,1)*WeightRet(i)
-                dum3=dum3+2d0*WeightRet(i)
-
-                if(Sim1f(it2,it,T,10)<0.5d0) then
-                    dum2=dum2+SimR1f(it2,it,i,1)*WeightRet(i)
-                end if
-            end do
-        end do
-
-    end do
-
-    dum2=dum2/dum3
-
-    write(file_id, *)'Savings per capita is',dum2
-    dum6=dum2
 
     ! Assets for redistribution
 
@@ -1635,9 +1664,11 @@ dum10=dum10+((dum2-0.597d0)/0.597d0)**2d0
         ! Fix lumpsum
         ! Q: do we need to check whether G >= 0?
         lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+lumpsum*0.5d0)
-        lumpsumdum=lumpsumdum*2d0
+        !lumpsumdum=lumpsumdum*2d0
         epsilon3=0d0
     else if (Lumpsum_or_G == opt_Lumpsum) then
+        ! Fix G = 2*milspending
+        ! Q: do we need to check whether lumpsum >= 0?
         lumpsumdum=(dum5+dum7)+mu*debttoGDP*dum3-(dum15+r*debttoGDP*dum3+2d0*milspendtoGDP*dum3)
         lumpsumdum=lumpsumdum*2d0
         epsilon3=lumpsum-lumpsumdum
