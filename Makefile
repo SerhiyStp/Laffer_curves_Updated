@@ -8,7 +8,7 @@ DEXE    = ./
 LIBS    =
 FC      = ifort
 OPTSC   = -c -qopenmp -module mod
-OPTSL   = -qopenmp -module mod
+OPTSL   =  -oqpenmp -module mod
 VPATH   = $(DSRC) $(DOBJ) $(DMOD)
 MKDIRS  = $(DOBJ) $(DMOD) $(DEXE)
 LCEXES  = $(shell echo $(EXES) | tr '[:upper:]' '[:lower:]')
@@ -30,7 +30,6 @@ $(DEXE)MAIN: $(MKDIRS) $(DOBJ)main.o \
 	$(DOBJ)solveactivelife.o \
 	$(DOBJ)solvefirstactive.o \
 	$(DOBJ)solveinretirement.o \
-	$(DOBJ)solvelastactive.o \
 	$(DOBJ)statistics.o \
 	$(DOBJ)dogleg.o \
 	$(DOBJ)dpmpar.o \
@@ -57,6 +56,11 @@ $(DOBJ)bspline_sub_module.o: ./bspline_sub_module.f90 \
 	@$(FC) $(OPTSC)  $< -o $@
 
 $(DOBJ)glob0.o: ./glob0.f90
+	@echo $(COTEXT)
+	@$(FC) $(OPTSC)  $< -o $@
+
+$(DOBJ)goldensearch.o: ./GoldenSearch.f90 \
+	$(DOBJ)policyfunctions.o
 	@echo $(COTEXT)
 	@$(FC) $(OPTSC)  $< -o $@
 
@@ -103,7 +107,8 @@ $(DOBJ)main.o: ./main.f90 \
 	$(DOBJ)policyfunctions.o \
 	$(DOBJ)tauchen.o \
 	$(DOBJ)hybrd_wrapper.o \
-	$(DOBJ)partest.o
+	$(DOBJ)partest.o \
+	$(DOBJ)solvelastactive.o
 	@echo $(COTEXT)
 	@$(FC) $(OPTSC)  $< -o $@
 
@@ -165,7 +170,9 @@ $(DOBJ)solvelastactive.o: ./Solvelastactive.f90 \
 	$(DOBJ)policyfunctions.o \
 	$(DOBJ)glob0.o \
 	$(DOBJ)utilities.o \
-	$(DOBJ)bspline_sub_module.o
+	$(DOBJ)bspline_sub_module.o \
+	$(DOBJ)goldensearch.o \
+	$(DOBJ)valuefunctions.o
 	@echo $(COTEXT)
 	@$(FC) $(OPTSC)  $< -o $@
 
@@ -183,6 +190,12 @@ $(DOBJ)tauchen.o: ./tauchen.f90
 $(DOBJ)utilities.o: ./Utilities.f90 \
 	$(DOBJ)model_parameters.o \
 	$(DOBJ)glob0.o
+	@echo $(COTEXT)
+	@$(FC) $(OPTSC)  $< -o $@
+
+$(DOBJ)valuefunctions.o: ./ValueFunctions.f90 \
+	$(DOBJ)policyfunctions.o \
+	$(DOBJ)bspline_sub_module.o
 	@echo $(COTEXT)
 	@$(FC) $(OPTSC)  $< -o $@
 

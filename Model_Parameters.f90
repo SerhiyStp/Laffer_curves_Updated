@@ -22,7 +22,7 @@ module Model_Parameters
     !real(8), parameter :: beta   = 0.97d0    !Discount factor
     real(8), parameter :: beta   = 1.0019935d0    !Discount factor
     
-    integer, parameter :: testing = 0
+    integer, parameter :: testing = 1
     integer, parameter :: Tret   = 5*testing + 36*(1-testing) !36 !5         ! Years in retirement  (65-100)
     integer, parameter :: T      = 6*testing + 45*(1-testing) !45 !6         ! Years of active life (20-64)
     integer, parameter :: nfc   = 5         ! Number of fixed costs
