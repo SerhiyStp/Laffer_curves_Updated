@@ -40,7 +40,8 @@ module PolicyFunctions
     real(8), dimension (:,:), allocatable :: labormwork,laborfwork
     real(8), dimension (:,:), allocatable :: laborsinglem,laborsinglef
     ! Policy functions for retired
-    real(8), dimension (:,:,:,:,:,:), allocatable :: c_ret, v_ret, ev_ret 
+    real(8), dimension (:,:,:,:,:,:), allocatable :: c_ret, v_ret
+    real(8), dimension (:,:,:,:,:,:), allocatable, target :: ev_ret 
     real(8), dimension (:,:,:,:,:,:), allocatable :: edc_ret, Uprime_ret 
     real(8), dimension (:,:,:,:,:,:), allocatable :: k_ret
     real(8), dimension (:,:,:,:,:), allocatable :: vs_ret, evs_ret, Eulers_ret 
@@ -99,6 +100,11 @@ module PolicyFunctions
     
     type policy_fn_3d
         real(8) :: coefs(nx, ny, nz)
+        integer :: inbvx
+        integer :: inbvy
+        integer :: inbvz
+        integer :: iloy
+        integer :: iloz        
         real(8) :: tx(nx+kxx)
         real(8) :: ty(ny+kyy)
         real(8) :: tz(nz+kzz)
@@ -107,6 +113,7 @@ module PolicyFunctions
         real(8) :: zgrid(nz)
     contains
         procedure :: set => set_3d
+        procedure :: reset => reset_3d
         procedure :: eval => eval_3d
     end type policy_fn_3d
 
@@ -115,6 +122,8 @@ module PolicyFunctions
     !type (policy_fn_3d), dimension(na, nu, na, nu, T, nfc, nfcm, 2, 2, 2), target :: pol_v_mar_lfp
     type (policy_fn_3d), allocatable, target :: pol_v_mar_lfp(:, :, :, :, :, :, :, :, :, :)
     type (policy_fn_2d), dimension(2, na, nu, T, nfc, 2) :: pol_v_sing_lfp
+    
+    type (policy_fn_3d), dimension(na, na), target :: EV_mar_ret_pf
     
 contains
     
@@ -163,11 +172,19 @@ contains
         call db3ink(xgrid, nx, ygrid, ny, zgrid, nz, &
                     fvals, kxx, kyy, kzz, iknot, self%tx, self%ty, self%tz, &
                     self%coefs, iflag)      
-        !self%coefs = fvals
-        !self%xgrid = xgrid
-        !self%ygrid = ygrid
-        !self%zgrid = zgrid
+        call self%reset()
     end subroutine set_3d
+    
+    subroutine reset_3d(self)
+        class(policy_fn_3d) :: self
+        
+        self%inbvx = 1
+        self%inbvy = 1
+        self%inbvz = 1
+        self%iloy = 1
+        self%iloz = 1         
+    
+    end subroutine reset_3d    
 
     function eval_3d(self, x)
         use bspline_sub_module, only: db3val
@@ -179,11 +196,16 @@ contains
         integer :: inbvx, inbvy, inbvz, iloy, iloz
         real(8) :: ww2(kyy,kzz), ww1(kzz), ww0(3*max(kxx,kyy,kzz))
 
-        inbvx = 1
-        inbvy = 1
-        inbvz = 1
-        iloy = 1        
-        iloz = 1        
+        !inbvx = 1
+        inbvx = self%inbvx
+        !inbvy = 1
+        inbvy = self%inbvy
+        !inbvz = 1
+        inbvz = self%inbvz
+        !iloy = 1        
+        iloy = self%iloy
+        !iloz = 1       
+        iloz = self%iloz       
         
         call db3val(x(1), x(2), x(3), 0, 0, 0, &
                     self%tx, self%ty, self%tz, &
@@ -192,7 +214,6 @@ contains
                     inbvx, inbvy, inbvz, iloy, iloz, &
                     ww2, ww1, ww0, extrap=.true.)         
         
-        !eval_3d = trilin_interp(self%xgrid, self%ygrid, self%zgrid, self%coefs, nx, ny, nz, x)
         
     end function eval_3d
 

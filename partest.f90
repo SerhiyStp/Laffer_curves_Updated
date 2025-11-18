@@ -430,6 +430,7 @@ contains
         real(8) :: c2, MU2, d1, d2, vp(nu),dum3,dum4,dum5,dum6,y
         real(8) :: P1,P2,P3,P4,V2,V3,dum2
         real(8), pointer:: exp_grid_ptr(:)
+        real(8), pointer:: fcn_3d(:,:,:)
         integer :: iknot
         integer :: iflag     
         
@@ -447,13 +448,16 @@ contains
         
         do iaf=1,na
             call db3ink(k_grid,nk,exp_grid_ptr,nexp,exp_grid_ptr,nexp,&
-            ev_ret(:,:,:,iam,iaf,Tret-it+1),&
-            kx,ky,kz,iknot,tx,ty(:,T+Tret+1-it),tz(:,T+Tret+1-it),&
-            ev_ret_bspl(iam,iaf)%coefs,iflag) 
+                        ev_ret(:,:,:,iam,iaf,Tret-it+1),&
+                        kx,ky,kz,iknot,tx,ty(:,T+Tret+1-it),tz(:,T+Tret+1-it),&
+                        ev_ret_bspl(iam,iaf)%coefs,iflag) 
             call db3ink(k_grid,nk,exp_grid_ptr,nexp,exp_grid_ptr,nexp,&
-            edc_ret(:,:,:,iam,iaf,Tret-it+1),&
-            kx,ky,kz,iknot,tx,ty(:,T+Tret+1-it),tz(:,T+Tret+1-it),&
-            edc_ret_bspl(iam,iaf)%coefs,iflag)     
+                        edc_ret(:,:,:,iam,iaf,Tret-it+1),&
+                        kx,ky,kz,iknot,tx,ty(:,T+Tret+1-it),tz(:,T+Tret+1-it),&
+                        edc_ret_bspl(iam,iaf)%coefs,iflag) 
+            
+            fcn_3d => ev_ret(:,:,:,iam,iaf,Tret-it+1)
+            call EV_mar_ret_pf(iam, iaf)%set(fcn_3d, k_grid, exp_grid_ptr, exp_grid_ptr)            
         end do
         
     end subroutine partest10
