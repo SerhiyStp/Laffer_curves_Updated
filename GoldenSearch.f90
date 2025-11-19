@@ -12,6 +12,7 @@ module GoldenSearch_mod
         ! This would be adjusted according to the problem to be solved.
         real(8), pointer :: xaux(:)
         real(8), pointer :: yaux(:)
+        integer :: iaux
         type(policy_fn_3d), pointer :: val_fn_ptr  
     end type context
 
@@ -123,6 +124,7 @@ contains
         real(8) :: tol
         real(8) :: fp2, fp3
         real(8) :: fmax
+        integer :: iter
 
 
         if ( .not. present(tol_opt) ) then
@@ -136,6 +138,7 @@ contains
         p4 = hi
 
         ! do while (abs(p4-p1) > tol)
+        iter = 1
         do
             p2 = c_gs*p1 + r_gs*p4
             p3 = r_gs*p1 + c_gs*p4
@@ -147,9 +150,10 @@ contains
                 p4 = p3
             end if
             if (abs(p4-p1) < tol) exit
+            iter = iter + 1
         end do
         
-        xmax = p3 
+        xmax = p2 
         fmax = fp2
 
     end subroutine goldensearch_h       

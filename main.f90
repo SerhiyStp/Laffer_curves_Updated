@@ -314,16 +314,16 @@ program Laffer
                 write(41, *) AE, lumpsum, psi0, gamma_redistr 
                 close(41)
                 !Variables are age, gender, ID number, weight, marital status, asset holdings, household labor income, Household_Labor_Income_Tax_Paid,  Household_consumption_Tax_Paid, ability, hours, earnings
-                open(1, file='Simulation_output.txt')
-                do it2=1,T
-                    do it3=1,nsim2
-                        do it4=1,nsim
-                            write (1,'(F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4)') it2*1d0, 1d0, nsim*(it3-1)*1d0+it4*1d0, 1d0, Sim1m(it3,it4,it2,10), Sim1m(it3,it4,it2,1), Sim1m(it3,it4,it2,6), Sim1m(it3,it4,it2,7), Sim1m(it3,it4,it2,8), exp1m(it3,it4,it2,2)*1d0, Sim1m(it3,it4,it2,4), Sim1m(it3,it4,it2,5)  
-                            write (1,'(F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4)') it2*1d0, 2d0, nsim*(it3-1)*1d0+it4*1d0, 1d0, Sim1f(it3,it4,it2,10), Sim1f(it3,it4,it2,1), Sim1f(it3,it4,it2,6), Sim1f(it3,it4,it2,7), Sim1f(it3,it4,it2,8), exp1f(it3,it4,it2,2)*1d0, Sim1f(it3,it4,it2,4), Sim1f(it3,it4,it2,5)
-                        end do
-                    end do
-                end do
-                close(1)
+                !open(1, file='Simulation_output.txt')
+                !do it2=1,T
+                !    do it3=1,nsim2
+                !        do it4=1,nsim
+                !            write (1,'(F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4)') it2*1d0, 1d0, nsim*(it3-1)*1d0+it4*1d0, 1d0, Sim1m(it3,it4,it2,10), Sim1m(it3,it4,it2,1), Sim1m(it3,it4,it2,6), Sim1m(it3,it4,it2,7), Sim1m(it3,it4,it2,8), exp1m(it3,it4,it2,2)*1d0, Sim1m(it3,it4,it2,4), Sim1m(it3,it4,it2,5)  
+                !            write (1,'(F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4,F12.4)') it2*1d0, 2d0, nsim*(it3-1)*1d0+it4*1d0, 1d0, Sim1f(it3,it4,it2,10), Sim1f(it3,it4,it2,1), Sim1f(it3,it4,it2,6), Sim1f(it3,it4,it2,7), Sim1f(it3,it4,it2,8), exp1f(it3,it4,it2,2)*1d0, Sim1f(it3,it4,it2,4), Sim1f(it3,it4,it2,5)
+                !        end do
+                !    end do
+                !end do
+                !close(1)
 
                 write(output_unit, *) 'Program finished'
                 stop

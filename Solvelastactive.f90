@@ -46,6 +46,8 @@ contains
         type(context) :: data_aux
         real(8), target :: xaux(6)       
         real(8) :: expm_prime, expf_prime, nonlabinc
+        real(8) :: tol_test
+        integer :: iter_gs
 
         idx=0
         idy=0
@@ -55,6 +57,8 @@ contains
         inbvz=1
         iloy=1
         iloz=1    
+        
+        tol_gs = 1d-6
 
 
         !Assigning the grid points
@@ -91,24 +95,21 @@ contains
         vus=0d0
         
         
-        expf_prime = exp_grid(ix,T)+1d0
-        xaux(6) = expf_prime
+
         
-        nonlabinc = (k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum 
-        xaux(3) = nonlabinc        
+    
 
 
         ! Last period of active life
         !if employed
         do ifc=1,nfc
             do ifcm=1,nfcm
-                xaux(4) = (fc(1,ifc)+fcage(1,1)*(T)+fcage(1,2)*(T)**(2d0)) + fcm(1,ifcm)
+                
                 do iaf = 1, na
                     data_aux%val_fn_ptr => EV_mar_ret_pf(iam,iaf)
                     do iuf = 1, nu
                         do ixm = 1, nexp
-                            expm_prime = exp_grid(ixm,T)+1d0
-                            xaux(5) = expm_prime                            
+                           
                             !Print *,'ix is',ix
                             !Finding optimal capital by golden search
                             wagem = wage(1,a(1,iam),exp_grid(ixm,T),u(1,ium))/(1d0+t_employer)
@@ -123,7 +124,7 @@ contains
                             c_lo = P1
                             c_hi = P4
                             
-                            
+                            iter_gs = 1
                             do
                                 P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
                                 P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -180,6 +181,7 @@ contains
                                     P4=P3
                                 end if
                                 if((P4-P1)<1d-6) exit
+                                iter_gs = iter_gs + 1
                             end do
 
                             Ve=V2
@@ -188,9 +190,35 @@ contains
                             nef=dum5
                             ce=P2
                             
-                            tol_gs = 1d-6
+                            nonlabinc = (k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum 
+                            xaux(3) = nonlabinc                                
+                            xaux(4) = (fc(1,ifc)+fcage(1,1)*(T)+fcage(1,2)*(T)**(2d0)) + fcm(1,ifcm)
+                            expm_prime = exp_grid(ixm,T)+1d0
+                            xaux(5) = expm_prime                             
+                            expf_prime = exp_grid(ix,T)+1d0
+                            xaux(6) = expf_prime
                             data_aux%xaux => xaux
+                            data_aux%iaux = 1
                             call goldensearch_h(fun_opt_mar, c_lo, c_hi, c_soln, vmax, data_aux, tol_gs)
+                            
+                            
+                            tol_test = 1d-4
+                            
+                            if (abs(c_soln - ce) > tol_test) then
+                                print *, 'WARNING: c'
+                            end if
+                            if (abs(vmax - ve) > tol_test) then
+                                print *, 'WARNING: v'
+                            end if
+                            if (abs(ke - data_aux%yaux(1)) > tol_test) then
+                                print *, 'WARNING: k'
+                            end if
+                            if (abs(nem - data_aux%yaux(2)) > tol_test) then
+                                print *, 'WARNING: nm'
+                            end if
+                            if (abs(nef - data_aux%yaux(3)) > tol_test) then
+                                print *, 'WARNING: nf'
+                            end if
 
                             if(nem<0d0) then
                                 Print *,'ik is',ik
@@ -230,6 +258,10 @@ contains
 
                             P1=0.01d0
                             P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+(wagem)*(1d0-tax_labor(wagem))-tSS_employee(wagem))/(1d0+tc))
+                            
+                            c_lo = P1
+                            c_hi = P4                            
+                            iter_gs = 1
                             do
                                 P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
                                 P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -292,6 +324,7 @@ contains
                                     P4=P3
                                 end if
                                 if((P4-P1)<1d-6) exit
+                                iter_gs = iter_gs + 1
                             end do
 
                             Vu=V2
@@ -299,6 +332,34 @@ contains
                             num=dum4
                             nuf=0d0
                             cu=P2
+                            
+                            nonlabinc = (k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit 
+                            xaux(3) = nonlabinc                                
+                            xaux(4) = fcm(1,ifcm)
+                            expm_prime = exp_grid(ixm,T)+1d0
+                            xaux(5) = expm_prime                             
+                            expf_prime = exp_grid(ix,T)*(1d0-deltaexp)
+                            xaux(6) = expf_prime                            
+                            data_aux%iaux = 2
+                            call goldensearch_h(fun_opt_mar, c_lo, c_hi, c_soln, vmax, data_aux, tol_gs)
+                            
+                            
+                            if (abs(c_soln - cu) > tol_test) then
+                                print *, 'WARNING: c'
+                            end if
+                            if (abs(vmax - vu) > tol_test) then
+                                print *, 'WARNING: v'
+                            end if
+                            if (abs(ku - data_aux%yaux(1)) > tol_test) then
+                                print *, 'WARNING: k'
+                            end if
+                            if (abs(num - data_aux%yaux(2)) > tol_test) then
+                                print *, 'WARNING: nm'
+                            end if
+                            if (abs(nuf - data_aux%yaux(3)) > tol_test) then
+                                print *, 'WARNING: nf'
+                            end if                            
+                            
                             
                             lfpm_u=1d0
                             lfpf_u=0d0
@@ -314,6 +375,10 @@ contains
 
                             P1=0.01d0
                             P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit+(wagef)*(1d0-tax_labor(wagef))-tSS_employee(wagef))/(1d0+tc))
+                            
+                            c_lo = P1
+                            c_hi = P4                            
+                            iter_gs = 1
                             do
                                 P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
                                 P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -376,7 +441,37 @@ contains
                                     P4=P3
                                 end if
                                 if((P4-P1)<1d-6) exit
+                                iter_gs = iter_gs + 1
                             end do
+                            
+                            
+                            nonlabinc = (k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+Unemp_benefit 
+                            xaux(3) = nonlabinc                             
+                            xaux(4) = (fc(1,ifc)+fcage(1,1)*(T)+fcage(1,2)*(T)**(2d0))
+                            expm_prime = exp_grid(ixm,T)*(1d0-deltaexp)
+                            xaux(5) = expm_prime                             
+                            expf_prime = exp_grid(ix,T)+1d0
+                            xaux(6) = expf_prime                            
+                            data_aux%iaux = 3
+                            call goldensearch_h(fun_opt_mar, c_lo, c_hi, c_soln, vmax, data_aux, tol_gs)   
+                            
+                            
+                            if (abs(c_soln - P2) > tol_test) then
+                                print *, 'WARNING: c'
+                            end if
+                            if (abs(vmax - v2) > tol_test) then
+                                print *, 'WARNING: v'
+                            end if
+                            if (abs(dum2 - data_aux%yaux(1)) > tol_test) then
+                                print *, 'WARNING: k'
+                            end if
+                            if (abs(0d0 - data_aux%yaux(2)) > tol_test) then
+                                print *, 'WARNING: nm'
+                            end if
+                            if (abs(dum4 - data_aux%yaux(3)) > tol_test) then
+                                print *, 'WARNING: nf'
+                            end if                            
+                            
 
                             if (V2 >= vu) then
                                 Vu=V2
@@ -401,6 +496,10 @@ contains
 
                             P1=0.01d0
                             P4=min((k_grid(nk)-0.001d0)/(1d0+tc),((k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+2d0*Unemp_benefit)/(1d0+tc))
+                            
+                            c_lo = P1
+                            c_hi = P4                            
+                            iter_gs = 1
                             do
                                 P2 = P1 + ((3.0-sqrt(5.0))/2.0)*(P4-P1)
                                 P3 = P1 + ((sqrt(5.0)-1.0)/2.0)*(P4-P1)
@@ -453,7 +552,19 @@ contains
                                     P4=P3
                                 end if
                                 if((P4-P1)<1d-6) exit
+                                iter_gs = iter_gs + 1
                             end do
+                            
+                            nonlabinc = (k_grid(ik) + Gamma_redistr)*(1d0+r*(1d0-tk))+lumpsum+2d0*Unemp_benefit 
+                            xaux(3) = nonlabinc                             
+                            xaux(4) = 0d0
+                            expm_prime = exp_grid(ixm,T)*(1d0-deltaexp)
+                            xaux(5) = expm_prime                             
+                            expf_prime = exp_grid(ix,T)*(1d0-deltaexp)
+                            xaux(6) = expf_prime                            
+                            data_aux%iaux = 4
+                            call goldensearch_h(fun_opt_mar, c_lo, c_hi, c_soln, vmax, data_aux, tol_gs)                              
+                            
 
                             if (V2 >= vu) then
                                 Vu=V2
@@ -464,6 +575,23 @@ contains
                                 lfpm_u=0d0
                                 lfpf_u=0d0                             
                             end if
+                            
+                            if (abs(c_soln - P2) > tol_test) then
+                                print *, 'WARNING: c'
+                            end if
+                            if (abs(vmax - v2) > tol_test) then
+                                print *, 'WARNING: v'
+                            end if
+                            if (abs(dum2 - data_aux%yaux(1)) > tol_test) then
+                                print *, 'WARNING: k'
+                            end if
+                            if (abs(0d0 - data_aux%yaux(2)) > tol_test) then
+                                print *, 'WARNING: nm'
+                            end if
+                            if (abs(0d0 - data_aux%yaux(3)) > tol_test) then
+                                print *, 'WARNING: nf'
+                            end if                              
+                            
                             
                             c_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F0)=P2
                             k_lfp(ik,ix,ixm,iam,ium,iaf,iuf,T,ifc,ifcm,LFP_M0,LFP_F0)=dum2    
@@ -840,7 +968,8 @@ contains
         !real(8) :: data_aux(3)
         real(8) :: val
         real(8) :: hm, hf
-        real(8) :: xhrs(3)
+        real(8) :: x3d(3)
+        real(8) :: x2d(2)
         real(8) :: gross_labinc, net_labinc
         real(8) :: vprime
         real(8) :: kp
@@ -848,24 +977,57 @@ contains
         real(8) :: Ucur
         real(8) :: wagem_loc, wagef_loc, nonlabinc_loc, fc_loc, expm_prime_loc, expf_prime_loc
         real(8), target :: yaux(3)
+        integer :: icase
         
-        wagem_loc = data_aux%xaux(1)
-        wagef_loc = data_aux%xaux(2)
+
         nonlabinc_loc = data_aux%xaux(3)
         fc_loc = data_aux%xaux(4)
         expm_prime_loc = data_aux%xaux(5)
         expf_prime_loc = data_aux%xaux(6)
         
-        xhrs = [cons, wagem_loc, wagef_loc]
-        hm = trilin_interp(c_grid, wage_grid, wage_grid, laborm, nc, nw, nw, xhrs)
-        hm = min(max(hm, 1d-10), 1d0)
-        hf = trilin_interp(c_grid, wage_grid, wage_grid, laborf, nc, nw, nw, xhrs)
-        hf = min(max(hf, 1d-10), 1d0)
-        labinc_m = hm*wagem_loc
-        labinc_f = hf*wagef_loc
-        gross_labinc = labinc_m + labinc_f
-        net_labinc = gross_labinc*(1d0-tax_labor(gross_labinc))
-        kp = (nonlabinc_loc + net_labinc - tSS_employee(labinc_m) - tSS_employee(labinc_f) - cons*(1d0+tc))/(1d0+mu)
+        icase = data_aux%iaux
+        
+        select case (icase)
+            
+        case(1)
+            wagem_loc = data_aux%xaux(1)
+            wagef_loc = data_aux%xaux(2)          
+            x3d = [cons, wagem_loc, wagef_loc]
+            hm = trilin_interp(c_grid, wage_grid, wage_grid, laborm, nc, nw, nw, x3d)
+            hm = min(max(hm, 1d-10), 1d0)
+            hf = trilin_interp(c_grid, wage_grid, wage_grid, laborf, nc, nw, nw, x3d)
+            hf = min(max(hf, 1d-10), 1d0)
+            labinc_m = hm*wagem_loc
+            labinc_f = hf*wagef_loc
+            gross_labinc = labinc_m + labinc_f
+            net_labinc = gross_labinc*(1d0-tax_labor(gross_labinc)) - tSS_employee(labinc_m) - tSS_employee(labinc_f)          
+        case(2)
+            wagem_loc = data_aux%xaux(1)
+            x2d = [cons,wagem_loc]
+            hm = bilin_interp(c_grid, wage_grid, labormwork, nc, nw, x2d)
+            hm = min(max(hm,0d0),1d0)
+            hf = 0d0
+            labinc_m = hm*wagem_loc
+            gross_labinc = labinc_m
+            net_labinc = gross_labinc*(1d0-tax_labor(gross_labinc)) - tSS_employee(labinc_m)
+        case(3)
+            wagef_loc = data_aux%xaux(2)
+            x2d = [cons,wagef_loc]
+            hm = 0d0
+            hf = bilin_interp(c_grid, wage_grid, laborfwork, nc, nw, x2d)
+            hf = min(max(hf,0d0),1d0)
+            labinc_f = hf*wagef_loc
+            gross_labinc = labinc_f
+            net_labinc = gross_labinc*(1d0-tax_labor(gross_labinc)) - tSS_employee(labinc_f)
+        case(4)
+            net_labinc = 0d0
+            hm = 0d0
+            hf = 0d0
+        end select 
+        
+        
+
+        kp = (nonlabinc_loc + net_labinc  - cons*(1d0+tc))/(1d0+mu)
         if (kp < 0.0001d0) then
             val = -999999999d0
         else

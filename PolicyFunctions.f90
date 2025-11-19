@@ -82,9 +82,9 @@ module PolicyFunctions
     integer, parameter :: nx = nk
     integer, parameter :: ny = nexp
     integer, parameter :: nz = nexp
-    integer, parameter :: kxx = 4 !3
-    integer, parameter :: kyy = 4 !3
-    integer, parameter :: kzz = 4 !3
+    integer, parameter :: kxx = 3 !4 !3
+    integer, parameter :: kyy = 3 !4 !3
+    integer, parameter :: kzz = 3 !4 !3
     
     type policy_fn_2d
         real(8) :: coefs(nx, ny)
@@ -99,6 +99,7 @@ module PolicyFunctions
     end type policy_fn_2d    
     
     type policy_fn_3d
+        real(8) :: fvals(nx, ny, nz)
         real(8) :: coefs(nx, ny, nz)
         integer :: inbvx
         integer :: inbvy
@@ -112,6 +113,7 @@ module PolicyFunctions
         real(8) :: ygrid(ny)
         real(8) :: zgrid(nz)
     contains
+        procedure :: lin_interp => lin_interp_3d
         procedure :: set => set_3d
         procedure :: reset => reset_3d
         procedure :: eval => eval_3d
@@ -216,5 +218,15 @@ contains
         
         
     end function eval_3d
+    
+    
+    function lin_interp_3d(self, x) result(f)
+        use Utilities, only: trilin_interp
+        class(policy_fn_3d) :: self
+        real(8), intent(in) :: x(3)
+        real(8) :: f
+        
+        f = trilin_interp(self%xgrid, self%ygrid, self%zgrid, self%fvals, nx, ny, nz, x)
+    end function lin_interp_3d
 
 end module PolicyFunctions
